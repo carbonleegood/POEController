@@ -55,7 +55,7 @@ namespace Controller
            if (ret == DialogResult.Cancel)
                return;
           //  Application.Run(new Trance());
-        //  Application.Run(new FormControl());
+          //Application.Run(new FormControl());
            UI = new Controller();
            if (StartParam != null)
            {
