@@ -9,31 +9,66 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Controller</RootNamespace>
     <AssemblyName>Controller</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>D:\中文\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>D:\中文\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bitbug_favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>D:\中文\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>D:\中文\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +87,20 @@
   <ItemGroup>
     <Compile Include="Action.cs" />
     <Compile Include="Analysis.cs" />
+    <Compile Include="PolicyGobackAnalysis.cs" />
+    <Compile Include="PolicyMissionAnalysis.cs" />
+    <Compile Include="Controller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller.Designer.cs">
+      <DependentUpon>Controller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCFGName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCFGName.Designer.cs">
+      <DependentUpon>FormCFGName.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,17 +114,41 @@
       <DependentUpon>FormSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="GameFuncCall.cs" />
+    <Compile Include="GData.cs" />
+    <Compile Include="GobackAnalysis.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="MissionAnalysis.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Thrift结构\MonsterInfo.cs" />
+    <Compile Include="Thrift结构\ItemFullInfo.cs" />
+    <Compile Include="Thrift结构\ItemInfo.cs" />
+    <Compile Include="Thrift结构\ItemSpaceInfo.cs" />
+    <Compile Include="Thrift结构\LootType.cs" />
+    <Compile Include="Thrift结构\MapInfo.cs" />
+    <Compile Include="Thrift结构\ObjInfo.cs" />
+    <Compile Include="Thrift结构\PlayerInfo.cs" />
     <Compile Include="Thrift结构\Pos.cs" />
+    <Compile Include="Thrift结构\TrophyBaseInfo.cs" />
+    <Compile Include="Thrift结构\TrophyInfo.cs" />
+    <Compile Include="Thrift结构\WaypointInfo.cs" />
+    <Compile Include="Trance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Trance.Designer.cs">
+      <DependentUpon>Trance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Worker.cs" />
+    <EmbeddedResource Include="Controller.resx">
+      <DependentUpon>Controller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCFGName.resx">
+      <DependentUpon>FormCFGName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormControl.resx">
       <DependentUpon>FormControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,7 +166,14 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Trance.resx">
+      <DependentUpon>Trance.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -107,7 +187,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="bitbug_favicon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

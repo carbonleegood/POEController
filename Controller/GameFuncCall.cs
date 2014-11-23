@@ -39,6 +39,11 @@ namespace Thrift.GameCall
       IAsyncResult Begin_Update(AsyncCallback callback, object state);
       void End_Update(IAsyncResult asyncResult);
       #endif
+      void SetWorkPath(string strPath);
+      #if SILVERLIGHT
+      IAsyncResult Begin_SetWorkPath(AsyncCallback callback, object state, string strPath);
+      void End_SetWorkPath(IAsyncResult asyncResult);
+      #endif
       Pos GetPlayerPos();
       #if SILVERLIGHT
       IAsyncResult Begin_GetPlayerPos(AsyncCallback callback, object state);
@@ -48,6 +53,256 @@ namespace Thrift.GameCall
       #if SILVERLIGHT
       IAsyncResult Begin_Move(AsyncCallback callback, object state, int x, int y);
       void End_Move(IAsyncResult asyncResult);
+      #endif
+      void CastUntargetSkill(short x, short y, short skillNum, short castType);
+      #if SILVERLIGHT
+      IAsyncResult Begin_CastUntargetSkill(AsyncCallback callback, object state, short x, short y, short skillNum, short castType);
+      void End_CastUntargetSkill(IAsyncResult asyncResult);
+      #endif
+      void CastTargetSkill(int TargetObjPtr, short skillNum, short castType);
+      #if SILVERLIGHT
+      IAsyncResult Begin_CastTargetSkill(AsyncCallback callback, object state, int TargetObjPtr, short skillNum, short castType);
+      void End_CastTargetSkill(IAsyncResult asyncResult);
+      #endif
+      List<ObjInfo> GetRoundList();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetRoundList(AsyncCallback callback, object state);
+      List<ObjInfo> End_GetRoundList(IAsyncResult asyncResult);
+      #endif
+      List<ObjInfo> GetRoundListTest();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetRoundListTest(AsyncCallback callback, object state);
+      List<ObjInfo> End_GetRoundListTest(IAsyncResult asyncResult);
+      #endif
+      PlayerInfo GetPlayerInfo();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetPlayerInfo(AsyncCallback callback, object state);
+      PlayerInfo End_GetPlayerInfo(IAsyncResult asyncResult);
+      #endif
+      void StopMove();
+      #if SILVERLIGHT
+      IAsyncResult Begin_StopMove(AsyncCallback callback, object state);
+      void End_StopMove(IAsyncResult asyncResult);
+      #endif
+      MapInfo GetMapData();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetMapData(AsyncCallback callback, object state);
+      MapInfo End_GetMapData(IAsyncResult asyncResult);
+      #endif
+      void ActiveTarget(int ObjPtr);
+      #if SILVERLIGHT
+      IAsyncResult Begin_ActiveTarget(AsyncCallback callback, object state, int ObjPtr);
+      void End_ActiveTarget(IAsyncResult asyncResult);
+      #endif
+      List<WaypointInfo> GetWaypointInfo();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetWaypointInfo(AsyncCallback callback, object state);
+      List<WaypointInfo> End_GetWaypointInfo(IAsyncResult asyncResult);
+      #endif
+      void Transport(int MapID, int WaypointID, int DungeonModel);
+      #if SILVERLIGHT
+      IAsyncResult Begin_Transport(AsyncCallback callback, object state, int MapID, int WaypointID, int DungeonModel);
+      void End_Transport(IAsyncResult asyncResult);
+      #endif
+      List<ItemInfo> GetContainerItemList(int GetType);
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetContainerItemList(AsyncCallback callback, object state, int GetType);
+      List<ItemInfo> End_GetContainerItemList(IAsyncResult asyncResult);
+      #endif
+      List<ItemSpaceInfo> GetBagItemSpaceInfo();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetBagItemSpaceInfo(AsyncCallback callback, object state);
+      List<ItemSpaceInfo> End_GetBagItemSpaceInfo(IAsyncResult asyncResult);
+      #endif
+      WaypointInfo GetCurrentMapInfo();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetCurrentMapInfo(AsyncCallback callback, object state);
+      WaypointInfo End_GetCurrentMapInfo(IAsyncResult asyncResult);
+      #endif
+      int GetCurrentMapID();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetCurrentMapID(AsyncCallback callback, object state);
+      int End_GetCurrentMapID(IAsyncResult asyncResult);
+      #endif
+      TrophyInfo GetTrophyInfo(int TrophyObjPtr);
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetTrophyInfo(AsyncCallback callback, object state, int TrophyObjPtr);
+      TrophyInfo End_GetTrophyInfo(IAsyncResult asyncResult);
+      #endif
+      int SetLootTypeList(List<LootType> LootList, short SocketFilter, short SocketConnectFilter, bool LootThreeSocketColor, short SkillQualityFilter);
+      #if SILVERLIGHT
+      IAsyncResult Begin_SetLootTypeList(AsyncCallback callback, object state, List<LootType> LootList, short SocketFilter, short SocketConnectFilter, bool LootThreeSocketColor, short SkillQualityFilter);
+      int End_SetLootTypeList(IAsyncResult asyncResult);
+      #endif
+      int ClearTrophyFilter();
+      #if SILVERLIGHT
+      IAsyncResult Begin_ClearTrophyFilter(AsyncCallback callback, object state);
+      int End_ClearTrophyFilter(IAsyncResult asyncResult);
+      #endif
+      List<TrophyInfo> GetTrophyList(List<TrophyBaseInfo> TrophyIDList);
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetTrophyList(AsyncCallback callback, object state, List<TrophyBaseInfo> TrophyIDList);
+      List<TrophyInfo> End_GetTrophyList(IAsyncResult asyncResult);
+      #endif
+      int ReadLoginState();
+      #if SILVERLIGHT
+      IAsyncResult Begin_ReadLoginState(AsyncCallback callback, object state);
+      int End_ReadLoginState(IAsyncResult asyncResult);
+      #endif
+      int UseItem(int WinID, int ServiceID);
+      #if SILVERLIGHT
+      IAsyncResult Begin_UseItem(AsyncCallback callback, object state, int WinID, int ServiceID);
+      int End_UseItem(IAsyncResult asyncResult);
+      #endif
+      int UseTransDoor();
+      #if SILVERLIGHT
+      IAsyncResult Begin_UseTransDoor(AsyncCallback callback, object state);
+      int End_UseTransDoor(IAsyncResult asyncResult);
+      #endif
+      int ClickNPCMenu(int MenuID);
+      #if SILVERLIGHT
+      IAsyncResult Begin_ClickNPCMenu(AsyncCallback callback, object state, int MenuID);
+      int End_ClickNPCMenu(IAsyncResult asyncResult);
+      #endif
+      int PutToSell(int Left, int Top, int ServiceID, int WinID);
+      #if SILVERLIGHT
+      IAsyncResult Begin_PutToSell(AsyncCallback callback, object state, int Left, int Top, int ServiceID, int WinID);
+      int End_PutToSell(IAsyncResult asyncResult);
+      #endif
+      int ConfirmSell();
+      #if SILVERLIGHT
+      IAsyncResult Begin_ConfirmSell(AsyncCallback callback, object state);
+      int End_ConfirmSell(IAsyncResult asyncResult);
+      #endif
+      int ReturnChoseRole();
+      #if SILVERLIGHT
+      IAsyncResult Begin_ReturnChoseRole(AsyncCallback callback, object state);
+      int End_ReturnChoseRole(IAsyncResult asyncResult);
+      #endif
+      int Relive(int ReliveType);
+      #if SILVERLIGHT
+      IAsyncResult Begin_Relive(AsyncCallback callback, object state, int ReliveType);
+      int End_Relive(IAsyncResult asyncResult);
+      #endif
+      int GetNearbyWaypointID();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyWaypointID(AsyncCallback callback, object state);
+      int End_GetNearbyWaypointID(IAsyncResult asyncResult);
+      #endif
+      int GetNearbySellNPCObjPtr(int NPCNum);
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbySellNPCObjPtr(AsyncCallback callback, object state, int NPCNum);
+      int End_GetNearbySellNPCObjPtr(IAsyncResult asyncResult);
+      #endif
+      int GetNearbyGoCityTransferDoorObjPtr();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyGoCityTransferDoorObjPtr(AsyncCallback callback, object state);
+      int End_GetNearbyGoCityTransferDoorObjPtr(IAsyncResult asyncResult);
+      #endif
+      int GetNearbyGoBattleTransfetDoorObjPtr();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyGoBattleTransfetDoorObjPtr(AsyncCallback callback, object state);
+      int End_GetNearbyGoBattleTransfetDoorObjPtr(IAsyncResult asyncResult);
+      #endif
+      int GetNearbyStorageObjPtr();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyStorageObjPtr(AsyncCallback callback, object state);
+      int End_GetNearbyStorageObjPtr(IAsyncResult asyncResult);
+      #endif
+      int GetNearbyCrossObjPtr();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyCrossObjPtr(AsyncCallback callback, object state);
+      int End_GetNearbyCrossObjPtr(IAsyncResult asyncResult);
+      #endif
+      int GetNearbyPollutantGateObjPtr();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyPollutantGateObjPtr(AsyncCallback callback, object state);
+      int End_GetNearbyPollutantGateObjPtr(IAsyncResult asyncResult);
+      #endif
+      int ReloadPollutantGateName();
+      #if SILVERLIGHT
+      IAsyncResult Begin_ReloadPollutantGateName(AsyncCallback callback, object state);
+      int End_ReloadPollutantGateName(IAsyncResult asyncResult);
+      #endif
+      int LogGateName();
+      #if SILVERLIGHT
+      IAsyncResult Begin_LogGateName(AsyncCallback callback, object state);
+      int End_LogGateName(IAsyncResult asyncResult);
+      #endif
+      int PickupItem(int BagObjPtr, int ItemServiceID);
+      #if SILVERLIGHT
+      IAsyncResult Begin_PickupItem(AsyncCallback callback, object state, int BagObjPtr, int ItemServiceID);
+      int End_PickupItem(IAsyncResult asyncResult);
+      #endif
+      int DropdownItem(int StoragePageObjPtr, short Left, short Top);
+      #if SILVERLIGHT
+      IAsyncResult Begin_DropdownItem(AsyncCallback callback, object state, int StoragePageObjPtr, short Left, short Top);
+      int End_DropdownItem(IAsyncResult asyncResult);
+      #endif
+      int DropdownItemStack(int StoragePageObjPtr, int TargetServiceID);
+      #if SILVERLIGHT
+      IAsyncResult Begin_DropdownItemStack(AsyncCallback callback, object state, int StoragePageObjPtr, int TargetServiceID);
+      int End_DropdownItemStack(IAsyncResult asyncResult);
+      #endif
+      int ActiveStoragePageInfo(int PageNum);
+      #if SILVERLIGHT
+      IAsyncResult Begin_ActiveStoragePageInfo(AsyncCallback callback, object state, int PageNum);
+      int End_ActiveStoragePageInfo(IAsyncResult asyncResult);
+      #endif
+      int GetStoragePagePtr(int ContainerNum);
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetStoragePagePtr(AsyncCallback callback, object state, int ContainerNum);
+      int End_GetStoragePagePtr(IAsyncResult asyncResult);
+      #endif
+      int IdentityItem(int CurrencyServiceID, int ArmorServiceID);
+      #if SILVERLIGHT
+      IAsyncResult Begin_IdentityItem(AsyncCallback callback, object state, int CurrencyServiceID, int ArmorServiceID);
+      int End_IdentityItem(IAsyncResult asyncResult);
+      #endif
+      void WaitCastComplete();
+      #if SILVERLIGHT
+      IAsyncResult Begin_WaitCastComplete(AsyncCallback callback, object state);
+      void End_WaitCastComplete(IAsyncResult asyncResult);
+      #endif
+      int ReadStorageUIPTR(int PageNum);
+      #if SILVERLIGHT
+      IAsyncResult Begin_ReadStorageUIPTR(AsyncCallback callback, object state, int PageNum);
+      int End_ReadStorageUIPTR(IAsyncResult asyncResult);
+      #endif
+      int ReadStoragePageNum();
+      #if SILVERLIGHT
+      IAsyncResult Begin_ReadStoragePageNum(AsyncCallback callback, object state);
+      int End_ReadStoragePageNum(IAsyncResult asyncResult);
+      #endif
+      void HitKey(int Key);
+      #if SILVERLIGHT
+      IAsyncResult Begin_HitKey(AsyncCallback callback, object state, int Key);
+      void End_HitKey(IAsyncResult asyncResult);
+      #endif
+      void UpSkill();
+      #if SILVERLIGHT
+      IAsyncResult Begin_UpSkill(AsyncCallback callback, object state);
+      void End_UpSkill(IAsyncResult asyncResult);
+      #endif
+      bool IsItemOnMouse();
+      #if SILVERLIGHT
+      IAsyncResult Begin_IsItemOnMouse(AsyncCallback callback, object state);
+      bool End_IsItemOnMouse(IAsyncResult asyncResult);
+      #endif
+      bool IsBuffExists(int skill);
+      #if SILVERLIGHT
+      IAsyncResult Begin_IsBuffExists(AsyncCallback callback, object state, int skill);
+      bool End_IsBuffExists(IAsyncResult asyncResult);
+      #endif
+      int GetItemDescription(int ItemObjPtr);
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetItemDescription(AsyncCallback callback, object state, int ItemObjPtr);
+      int End_GetItemDescription(IAsyncResult asyncResult);
+      #endif
+      List<ItemFullInfo> GetBagItemFullInfo();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetBagItemFullInfo(AsyncCallback callback, object state);
+      List<ItemFullInfo> End_GetBagItemFullInfo(IAsyncResult asyncResult);
       #endif
     }
 
@@ -349,6 +604,65 @@ namespace Thrift.GameCall
 
       
       #if SILVERLIGHT
+      public IAsyncResult Begin_SetWorkPath(AsyncCallback callback, object state, string strPath)
+      {
+        return send_SetWorkPath(callback, state, strPath);
+      }
+
+      public void End_SetWorkPath(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        recv_SetWorkPath();
+      }
+
+      #endif
+
+      public void SetWorkPath(string strPath)
+      {
+        #if !SILVERLIGHT
+        send_SetWorkPath(strPath);
+        recv_SetWorkPath();
+
+        #else
+        var asyncResult = Begin_SetWorkPath(null, null, strPath);
+        End_SetWorkPath(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_SetWorkPath(AsyncCallback callback, object state, string strPath)
+      #else
+      public void send_SetWorkPath(string strPath)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("SetWorkPath", TMessageType.Call, seqid_));
+        SetWorkPath_args args = new SetWorkPath_args();
+        args.StrPath = strPath;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public void recv_SetWorkPath()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        SetWorkPath_result result = new SetWorkPath_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        return;
+      }
+
+      
+      #if SILVERLIGHT
       public IAsyncResult Begin_GetPlayerPos(AsyncCallback callback, object state)
       {
         return send_GetPlayerPos(callback, state);
@@ -468,6 +782,3075 @@ namespace Thrift.GameCall
         return;
       }
 
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_CastUntargetSkill(AsyncCallback callback, object state, short x, short y, short skillNum, short castType)
+      {
+        return send_CastUntargetSkill(callback, state, x, y, skillNum, castType);
+      }
+
+      public void End_CastUntargetSkill(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        recv_CastUntargetSkill();
+      }
+
+      #endif
+
+      public void CastUntargetSkill(short x, short y, short skillNum, short castType)
+      {
+        #if !SILVERLIGHT
+        send_CastUntargetSkill(x, y, skillNum, castType);
+        recv_CastUntargetSkill();
+
+        #else
+        var asyncResult = Begin_CastUntargetSkill(null, null, x, y, skillNum, castType);
+        End_CastUntargetSkill(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_CastUntargetSkill(AsyncCallback callback, object state, short x, short y, short skillNum, short castType)
+      #else
+      public void send_CastUntargetSkill(short x, short y, short skillNum, short castType)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("CastUntargetSkill", TMessageType.Call, seqid_));
+        CastUntargetSkill_args args = new CastUntargetSkill_args();
+        args.X = x;
+        args.Y = y;
+        args.SkillNum = skillNum;
+        args.CastType = castType;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public void recv_CastUntargetSkill()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        CastUntargetSkill_result result = new CastUntargetSkill_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        return;
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_CastTargetSkill(AsyncCallback callback, object state, int TargetObjPtr, short skillNum, short castType)
+      {
+        return send_CastTargetSkill(callback, state, TargetObjPtr, skillNum, castType);
+      }
+
+      public void End_CastTargetSkill(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        recv_CastTargetSkill();
+      }
+
+      #endif
+
+      public void CastTargetSkill(int TargetObjPtr, short skillNum, short castType)
+      {
+        #if !SILVERLIGHT
+        send_CastTargetSkill(TargetObjPtr, skillNum, castType);
+        recv_CastTargetSkill();
+
+        #else
+        var asyncResult = Begin_CastTargetSkill(null, null, TargetObjPtr, skillNum, castType);
+        End_CastTargetSkill(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_CastTargetSkill(AsyncCallback callback, object state, int TargetObjPtr, short skillNum, short castType)
+      #else
+      public void send_CastTargetSkill(int TargetObjPtr, short skillNum, short castType)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("CastTargetSkill", TMessageType.Call, seqid_));
+        CastTargetSkill_args args = new CastTargetSkill_args();
+        args.TargetObjPtr = TargetObjPtr;
+        args.SkillNum = skillNum;
+        args.CastType = castType;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public void recv_CastTargetSkill()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        CastTargetSkill_result result = new CastTargetSkill_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        return;
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetRoundList(AsyncCallback callback, object state)
+      {
+        return send_GetRoundList(callback, state);
+      }
+
+      public List<ObjInfo> End_GetRoundList(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetRoundList();
+      }
+
+      #endif
+
+      public List<ObjInfo> GetRoundList()
+      {
+        #if !SILVERLIGHT
+        send_GetRoundList();
+        return recv_GetRoundList();
+
+        #else
+        var asyncResult = Begin_GetRoundList(null, null);
+        return End_GetRoundList(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetRoundList(AsyncCallback callback, object state)
+      #else
+      public void send_GetRoundList()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetRoundList", TMessageType.Call, seqid_));
+        GetRoundList_args args = new GetRoundList_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public List<ObjInfo> recv_GetRoundList()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetRoundList_result result = new GetRoundList_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetRoundList failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetRoundListTest(AsyncCallback callback, object state)
+      {
+        return send_GetRoundListTest(callback, state);
+      }
+
+      public List<ObjInfo> End_GetRoundListTest(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetRoundListTest();
+      }
+
+      #endif
+
+      public List<ObjInfo> GetRoundListTest()
+      {
+        #if !SILVERLIGHT
+        send_GetRoundListTest();
+        return recv_GetRoundListTest();
+
+        #else
+        var asyncResult = Begin_GetRoundListTest(null, null);
+        return End_GetRoundListTest(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetRoundListTest(AsyncCallback callback, object state)
+      #else
+      public void send_GetRoundListTest()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetRoundListTest", TMessageType.Call, seqid_));
+        GetRoundListTest_args args = new GetRoundListTest_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public List<ObjInfo> recv_GetRoundListTest()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetRoundListTest_result result = new GetRoundListTest_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetRoundListTest failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetPlayerInfo(AsyncCallback callback, object state)
+      {
+        return send_GetPlayerInfo(callback, state);
+      }
+
+      public PlayerInfo End_GetPlayerInfo(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetPlayerInfo();
+      }
+
+      #endif
+
+      public PlayerInfo GetPlayerInfo()
+      {
+        #if !SILVERLIGHT
+        send_GetPlayerInfo();
+        return recv_GetPlayerInfo();
+
+        #else
+        var asyncResult = Begin_GetPlayerInfo(null, null);
+        return End_GetPlayerInfo(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetPlayerInfo(AsyncCallback callback, object state)
+      #else
+      public void send_GetPlayerInfo()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetPlayerInfo", TMessageType.Call, seqid_));
+        GetPlayerInfo_args args = new GetPlayerInfo_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public PlayerInfo recv_GetPlayerInfo()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetPlayerInfo_result result = new GetPlayerInfo_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetPlayerInfo failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_StopMove(AsyncCallback callback, object state)
+      {
+        return send_StopMove(callback, state);
+      }
+
+      public void End_StopMove(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        recv_StopMove();
+      }
+
+      #endif
+
+      public void StopMove()
+      {
+        #if !SILVERLIGHT
+        send_StopMove();
+        recv_StopMove();
+
+        #else
+        var asyncResult = Begin_StopMove(null, null);
+        End_StopMove(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_StopMove(AsyncCallback callback, object state)
+      #else
+      public void send_StopMove()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("StopMove", TMessageType.Call, seqid_));
+        StopMove_args args = new StopMove_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public void recv_StopMove()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        StopMove_result result = new StopMove_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        return;
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetMapData(AsyncCallback callback, object state)
+      {
+        return send_GetMapData(callback, state);
+      }
+
+      public MapInfo End_GetMapData(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetMapData();
+      }
+
+      #endif
+
+      public MapInfo GetMapData()
+      {
+        #if !SILVERLIGHT
+        send_GetMapData();
+        return recv_GetMapData();
+
+        #else
+        var asyncResult = Begin_GetMapData(null, null);
+        return End_GetMapData(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetMapData(AsyncCallback callback, object state)
+      #else
+      public void send_GetMapData()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetMapData", TMessageType.Call, seqid_));
+        GetMapData_args args = new GetMapData_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public MapInfo recv_GetMapData()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetMapData_result result = new GetMapData_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetMapData failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ActiveTarget(AsyncCallback callback, object state, int ObjPtr)
+      {
+        return send_ActiveTarget(callback, state, ObjPtr);
+      }
+
+      public void End_ActiveTarget(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        recv_ActiveTarget();
+      }
+
+      #endif
+
+      public void ActiveTarget(int ObjPtr)
+      {
+        #if !SILVERLIGHT
+        send_ActiveTarget(ObjPtr);
+        recv_ActiveTarget();
+
+        #else
+        var asyncResult = Begin_ActiveTarget(null, null, ObjPtr);
+        End_ActiveTarget(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ActiveTarget(AsyncCallback callback, object state, int ObjPtr)
+      #else
+      public void send_ActiveTarget(int ObjPtr)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ActiveTarget", TMessageType.Call, seqid_));
+        ActiveTarget_args args = new ActiveTarget_args();
+        args.ObjPtr = ObjPtr;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public void recv_ActiveTarget()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ActiveTarget_result result = new ActiveTarget_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        return;
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetWaypointInfo(AsyncCallback callback, object state)
+      {
+        return send_GetWaypointInfo(callback, state);
+      }
+
+      public List<WaypointInfo> End_GetWaypointInfo(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetWaypointInfo();
+      }
+
+      #endif
+
+      public List<WaypointInfo> GetWaypointInfo()
+      {
+        #if !SILVERLIGHT
+        send_GetWaypointInfo();
+        return recv_GetWaypointInfo();
+
+        #else
+        var asyncResult = Begin_GetWaypointInfo(null, null);
+        return End_GetWaypointInfo(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetWaypointInfo(AsyncCallback callback, object state)
+      #else
+      public void send_GetWaypointInfo()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetWaypointInfo", TMessageType.Call, seqid_));
+        GetWaypointInfo_args args = new GetWaypointInfo_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public List<WaypointInfo> recv_GetWaypointInfo()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetWaypointInfo_result result = new GetWaypointInfo_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetWaypointInfo failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_Transport(AsyncCallback callback, object state, int MapID, int WaypointID, int DungeonModel)
+      {
+        return send_Transport(callback, state, MapID, WaypointID, DungeonModel);
+      }
+
+      public void End_Transport(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        recv_Transport();
+      }
+
+      #endif
+
+      public void Transport(int MapID, int WaypointID, int DungeonModel)
+      {
+        #if !SILVERLIGHT
+        send_Transport(MapID, WaypointID, DungeonModel);
+        recv_Transport();
+
+        #else
+        var asyncResult = Begin_Transport(null, null, MapID, WaypointID, DungeonModel);
+        End_Transport(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_Transport(AsyncCallback callback, object state, int MapID, int WaypointID, int DungeonModel)
+      #else
+      public void send_Transport(int MapID, int WaypointID, int DungeonModel)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("Transport", TMessageType.Call, seqid_));
+        Transport_args args = new Transport_args();
+        args.MapID = MapID;
+        args.WaypointID = WaypointID;
+        args.DungeonModel = DungeonModel;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public void recv_Transport()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        Transport_result result = new Transport_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        return;
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetContainerItemList(AsyncCallback callback, object state, int GetType)
+      {
+        return send_GetContainerItemList(callback, state, GetType);
+      }
+
+      public List<ItemInfo> End_GetContainerItemList(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetContainerItemList();
+      }
+
+      #endif
+
+      public List<ItemInfo> GetContainerItemList(int GetType)
+      {
+        #if !SILVERLIGHT
+        send_GetContainerItemList(GetType);
+        return recv_GetContainerItemList();
+
+        #else
+        var asyncResult = Begin_GetContainerItemList(null, null, GetType);
+        return End_GetContainerItemList(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetContainerItemList(AsyncCallback callback, object state, int GetType)
+      #else
+      public void send_GetContainerItemList(int GetType)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetContainerItemList", TMessageType.Call, seqid_));
+        GetContainerItemList_args args = new GetContainerItemList_args();
+        args.GetType = GetType;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public List<ItemInfo> recv_GetContainerItemList()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetContainerItemList_result result = new GetContainerItemList_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetContainerItemList failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetBagItemSpaceInfo(AsyncCallback callback, object state)
+      {
+        return send_GetBagItemSpaceInfo(callback, state);
+      }
+
+      public List<ItemSpaceInfo> End_GetBagItemSpaceInfo(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetBagItemSpaceInfo();
+      }
+
+      #endif
+
+      public List<ItemSpaceInfo> GetBagItemSpaceInfo()
+      {
+        #if !SILVERLIGHT
+        send_GetBagItemSpaceInfo();
+        return recv_GetBagItemSpaceInfo();
+
+        #else
+        var asyncResult = Begin_GetBagItemSpaceInfo(null, null);
+        return End_GetBagItemSpaceInfo(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetBagItemSpaceInfo(AsyncCallback callback, object state)
+      #else
+      public void send_GetBagItemSpaceInfo()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetBagItemSpaceInfo", TMessageType.Call, seqid_));
+        GetBagItemSpaceInfo_args args = new GetBagItemSpaceInfo_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public List<ItemSpaceInfo> recv_GetBagItemSpaceInfo()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetBagItemSpaceInfo_result result = new GetBagItemSpaceInfo_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetBagItemSpaceInfo failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetCurrentMapInfo(AsyncCallback callback, object state)
+      {
+        return send_GetCurrentMapInfo(callback, state);
+      }
+
+      public WaypointInfo End_GetCurrentMapInfo(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetCurrentMapInfo();
+      }
+
+      #endif
+
+      public WaypointInfo GetCurrentMapInfo()
+      {
+        #if !SILVERLIGHT
+        send_GetCurrentMapInfo();
+        return recv_GetCurrentMapInfo();
+
+        #else
+        var asyncResult = Begin_GetCurrentMapInfo(null, null);
+        return End_GetCurrentMapInfo(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetCurrentMapInfo(AsyncCallback callback, object state)
+      #else
+      public void send_GetCurrentMapInfo()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetCurrentMapInfo", TMessageType.Call, seqid_));
+        GetCurrentMapInfo_args args = new GetCurrentMapInfo_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public WaypointInfo recv_GetCurrentMapInfo()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetCurrentMapInfo_result result = new GetCurrentMapInfo_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetCurrentMapInfo failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetCurrentMapID(AsyncCallback callback, object state)
+      {
+        return send_GetCurrentMapID(callback, state);
+      }
+
+      public int End_GetCurrentMapID(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetCurrentMapID();
+      }
+
+      #endif
+
+      public int GetCurrentMapID()
+      {
+        #if !SILVERLIGHT
+        send_GetCurrentMapID();
+        return recv_GetCurrentMapID();
+
+        #else
+        var asyncResult = Begin_GetCurrentMapID(null, null);
+        return End_GetCurrentMapID(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetCurrentMapID(AsyncCallback callback, object state)
+      #else
+      public void send_GetCurrentMapID()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetCurrentMapID", TMessageType.Call, seqid_));
+        GetCurrentMapID_args args = new GetCurrentMapID_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetCurrentMapID()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetCurrentMapID_result result = new GetCurrentMapID_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetCurrentMapID failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetTrophyInfo(AsyncCallback callback, object state, int TrophyObjPtr)
+      {
+        return send_GetTrophyInfo(callback, state, TrophyObjPtr);
+      }
+
+      public TrophyInfo End_GetTrophyInfo(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetTrophyInfo();
+      }
+
+      #endif
+
+      public TrophyInfo GetTrophyInfo(int TrophyObjPtr)
+      {
+        #if !SILVERLIGHT
+        send_GetTrophyInfo(TrophyObjPtr);
+        return recv_GetTrophyInfo();
+
+        #else
+        var asyncResult = Begin_GetTrophyInfo(null, null, TrophyObjPtr);
+        return End_GetTrophyInfo(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetTrophyInfo(AsyncCallback callback, object state, int TrophyObjPtr)
+      #else
+      public void send_GetTrophyInfo(int TrophyObjPtr)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetTrophyInfo", TMessageType.Call, seqid_));
+        GetTrophyInfo_args args = new GetTrophyInfo_args();
+        args.TrophyObjPtr = TrophyObjPtr;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public TrophyInfo recv_GetTrophyInfo()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetTrophyInfo_result result = new GetTrophyInfo_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetTrophyInfo failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_SetLootTypeList(AsyncCallback callback, object state, List<LootType> LootList, short SocketFilter, short SocketConnectFilter, bool LootThreeSocketColor, short SkillQualityFilter)
+      {
+        return send_SetLootTypeList(callback, state, LootList, SocketFilter, SocketConnectFilter, LootThreeSocketColor, SkillQualityFilter);
+      }
+
+      public int End_SetLootTypeList(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_SetLootTypeList();
+      }
+
+      #endif
+
+      public int SetLootTypeList(List<LootType> LootList, short SocketFilter, short SocketConnectFilter, bool LootThreeSocketColor, short SkillQualityFilter)
+      {
+        #if !SILVERLIGHT
+        send_SetLootTypeList(LootList, SocketFilter, SocketConnectFilter, LootThreeSocketColor, SkillQualityFilter);
+        return recv_SetLootTypeList();
+
+        #else
+        var asyncResult = Begin_SetLootTypeList(null, null, LootList, SocketFilter, SocketConnectFilter, LootThreeSocketColor, SkillQualityFilter);
+        return End_SetLootTypeList(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_SetLootTypeList(AsyncCallback callback, object state, List<LootType> LootList, short SocketFilter, short SocketConnectFilter, bool LootThreeSocketColor, short SkillQualityFilter)
+      #else
+      public void send_SetLootTypeList(List<LootType> LootList, short SocketFilter, short SocketConnectFilter, bool LootThreeSocketColor, short SkillQualityFilter)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("SetLootTypeList", TMessageType.Call, seqid_));
+        SetLootTypeList_args args = new SetLootTypeList_args();
+        args.LootList = LootList;
+        args.SocketFilter = SocketFilter;
+        args.SocketConnectFilter = SocketConnectFilter;
+        args.LootThreeSocketColor = LootThreeSocketColor;
+        args.SkillQualityFilter = SkillQualityFilter;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_SetLootTypeList()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        SetLootTypeList_result result = new SetLootTypeList_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "SetLootTypeList failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ClearTrophyFilter(AsyncCallback callback, object state)
+      {
+        return send_ClearTrophyFilter(callback, state);
+      }
+
+      public int End_ClearTrophyFilter(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ClearTrophyFilter();
+      }
+
+      #endif
+
+      public int ClearTrophyFilter()
+      {
+        #if !SILVERLIGHT
+        send_ClearTrophyFilter();
+        return recv_ClearTrophyFilter();
+
+        #else
+        var asyncResult = Begin_ClearTrophyFilter(null, null);
+        return End_ClearTrophyFilter(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ClearTrophyFilter(AsyncCallback callback, object state)
+      #else
+      public void send_ClearTrophyFilter()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ClearTrophyFilter", TMessageType.Call, seqid_));
+        ClearTrophyFilter_args args = new ClearTrophyFilter_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ClearTrophyFilter()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ClearTrophyFilter_result result = new ClearTrophyFilter_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ClearTrophyFilter failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetTrophyList(AsyncCallback callback, object state, List<TrophyBaseInfo> TrophyIDList)
+      {
+        return send_GetTrophyList(callback, state, TrophyIDList);
+      }
+
+      public List<TrophyInfo> End_GetTrophyList(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetTrophyList();
+      }
+
+      #endif
+
+      public List<TrophyInfo> GetTrophyList(List<TrophyBaseInfo> TrophyIDList)
+      {
+        #if !SILVERLIGHT
+        send_GetTrophyList(TrophyIDList);
+        return recv_GetTrophyList();
+
+        #else
+        var asyncResult = Begin_GetTrophyList(null, null, TrophyIDList);
+        return End_GetTrophyList(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetTrophyList(AsyncCallback callback, object state, List<TrophyBaseInfo> TrophyIDList)
+      #else
+      public void send_GetTrophyList(List<TrophyBaseInfo> TrophyIDList)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetTrophyList", TMessageType.Call, seqid_));
+        GetTrophyList_args args = new GetTrophyList_args();
+        args.TrophyIDList = TrophyIDList;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public List<TrophyInfo> recv_GetTrophyList()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetTrophyList_result result = new GetTrophyList_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetTrophyList failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ReadLoginState(AsyncCallback callback, object state)
+      {
+        return send_ReadLoginState(callback, state);
+      }
+
+      public int End_ReadLoginState(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ReadLoginState();
+      }
+
+      #endif
+
+      public int ReadLoginState()
+      {
+        #if !SILVERLIGHT
+        send_ReadLoginState();
+        return recv_ReadLoginState();
+
+        #else
+        var asyncResult = Begin_ReadLoginState(null, null);
+        return End_ReadLoginState(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ReadLoginState(AsyncCallback callback, object state)
+      #else
+      public void send_ReadLoginState()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ReadLoginState", TMessageType.Call, seqid_));
+        ReadLoginState_args args = new ReadLoginState_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ReadLoginState()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ReadLoginState_result result = new ReadLoginState_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ReadLoginState failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_UseItem(AsyncCallback callback, object state, int WinID, int ServiceID)
+      {
+        return send_UseItem(callback, state, WinID, ServiceID);
+      }
+
+      public int End_UseItem(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_UseItem();
+      }
+
+      #endif
+
+      public int UseItem(int WinID, int ServiceID)
+      {
+        #if !SILVERLIGHT
+        send_UseItem(WinID, ServiceID);
+        return recv_UseItem();
+
+        #else
+        var asyncResult = Begin_UseItem(null, null, WinID, ServiceID);
+        return End_UseItem(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_UseItem(AsyncCallback callback, object state, int WinID, int ServiceID)
+      #else
+      public void send_UseItem(int WinID, int ServiceID)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("UseItem", TMessageType.Call, seqid_));
+        UseItem_args args = new UseItem_args();
+        args.WinID = WinID;
+        args.ServiceID = ServiceID;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_UseItem()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        UseItem_result result = new UseItem_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "UseItem failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_UseTransDoor(AsyncCallback callback, object state)
+      {
+        return send_UseTransDoor(callback, state);
+      }
+
+      public int End_UseTransDoor(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_UseTransDoor();
+      }
+
+      #endif
+
+      public int UseTransDoor()
+      {
+        #if !SILVERLIGHT
+        send_UseTransDoor();
+        return recv_UseTransDoor();
+
+        #else
+        var asyncResult = Begin_UseTransDoor(null, null);
+        return End_UseTransDoor(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_UseTransDoor(AsyncCallback callback, object state)
+      #else
+      public void send_UseTransDoor()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("UseTransDoor", TMessageType.Call, seqid_));
+        UseTransDoor_args args = new UseTransDoor_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_UseTransDoor()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        UseTransDoor_result result = new UseTransDoor_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "UseTransDoor failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ClickNPCMenu(AsyncCallback callback, object state, int MenuID)
+      {
+        return send_ClickNPCMenu(callback, state, MenuID);
+      }
+
+      public int End_ClickNPCMenu(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ClickNPCMenu();
+      }
+
+      #endif
+
+      public int ClickNPCMenu(int MenuID)
+      {
+        #if !SILVERLIGHT
+        send_ClickNPCMenu(MenuID);
+        return recv_ClickNPCMenu();
+
+        #else
+        var asyncResult = Begin_ClickNPCMenu(null, null, MenuID);
+        return End_ClickNPCMenu(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ClickNPCMenu(AsyncCallback callback, object state, int MenuID)
+      #else
+      public void send_ClickNPCMenu(int MenuID)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ClickNPCMenu", TMessageType.Call, seqid_));
+        ClickNPCMenu_args args = new ClickNPCMenu_args();
+        args.MenuID = MenuID;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ClickNPCMenu()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ClickNPCMenu_result result = new ClickNPCMenu_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ClickNPCMenu failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_PutToSell(AsyncCallback callback, object state, int Left, int Top, int ServiceID, int WinID)
+      {
+        return send_PutToSell(callback, state, Left, Top, ServiceID, WinID);
+      }
+
+      public int End_PutToSell(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_PutToSell();
+      }
+
+      #endif
+
+      public int PutToSell(int Left, int Top, int ServiceID, int WinID)
+      {
+        #if !SILVERLIGHT
+        send_PutToSell(Left, Top, ServiceID, WinID);
+        return recv_PutToSell();
+
+        #else
+        var asyncResult = Begin_PutToSell(null, null, Left, Top, ServiceID, WinID);
+        return End_PutToSell(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_PutToSell(AsyncCallback callback, object state, int Left, int Top, int ServiceID, int WinID)
+      #else
+      public void send_PutToSell(int Left, int Top, int ServiceID, int WinID)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("PutToSell", TMessageType.Call, seqid_));
+        PutToSell_args args = new PutToSell_args();
+        args.Left = Left;
+        args.Top = Top;
+        args.ServiceID = ServiceID;
+        args.WinID = WinID;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_PutToSell()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        PutToSell_result result = new PutToSell_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "PutToSell failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ConfirmSell(AsyncCallback callback, object state)
+      {
+        return send_ConfirmSell(callback, state);
+      }
+
+      public int End_ConfirmSell(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ConfirmSell();
+      }
+
+      #endif
+
+      public int ConfirmSell()
+      {
+        #if !SILVERLIGHT
+        send_ConfirmSell();
+        return recv_ConfirmSell();
+
+        #else
+        var asyncResult = Begin_ConfirmSell(null, null);
+        return End_ConfirmSell(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ConfirmSell(AsyncCallback callback, object state)
+      #else
+      public void send_ConfirmSell()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ConfirmSell", TMessageType.Call, seqid_));
+        ConfirmSell_args args = new ConfirmSell_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ConfirmSell()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ConfirmSell_result result = new ConfirmSell_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ConfirmSell failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ReturnChoseRole(AsyncCallback callback, object state)
+      {
+        return send_ReturnChoseRole(callback, state);
+      }
+
+      public int End_ReturnChoseRole(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ReturnChoseRole();
+      }
+
+      #endif
+
+      public int ReturnChoseRole()
+      {
+        #if !SILVERLIGHT
+        send_ReturnChoseRole();
+        return recv_ReturnChoseRole();
+
+        #else
+        var asyncResult = Begin_ReturnChoseRole(null, null);
+        return End_ReturnChoseRole(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ReturnChoseRole(AsyncCallback callback, object state)
+      #else
+      public void send_ReturnChoseRole()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ReturnChoseRole", TMessageType.Call, seqid_));
+        ReturnChoseRole_args args = new ReturnChoseRole_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ReturnChoseRole()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ReturnChoseRole_result result = new ReturnChoseRole_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ReturnChoseRole failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_Relive(AsyncCallback callback, object state, int ReliveType)
+      {
+        return send_Relive(callback, state, ReliveType);
+      }
+
+      public int End_Relive(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_Relive();
+      }
+
+      #endif
+
+      public int Relive(int ReliveType)
+      {
+        #if !SILVERLIGHT
+        send_Relive(ReliveType);
+        return recv_Relive();
+
+        #else
+        var asyncResult = Begin_Relive(null, null, ReliveType);
+        return End_Relive(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_Relive(AsyncCallback callback, object state, int ReliveType)
+      #else
+      public void send_Relive(int ReliveType)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("Relive", TMessageType.Call, seqid_));
+        Relive_args args = new Relive_args();
+        args.ReliveType = ReliveType;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_Relive()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        Relive_result result = new Relive_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "Relive failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyWaypointID(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyWaypointID(callback, state);
+      }
+
+      public int End_GetNearbyWaypointID(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyWaypointID();
+      }
+
+      #endif
+
+      public int GetNearbyWaypointID()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyWaypointID();
+        return recv_GetNearbyWaypointID();
+
+        #else
+        var asyncResult = Begin_GetNearbyWaypointID(null, null);
+        return End_GetNearbyWaypointID(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyWaypointID(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyWaypointID()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyWaypointID", TMessageType.Call, seqid_));
+        GetNearbyWaypointID_args args = new GetNearbyWaypointID_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyWaypointID()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyWaypointID_result result = new GetNearbyWaypointID_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyWaypointID failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbySellNPCObjPtr(AsyncCallback callback, object state, int NPCNum)
+      {
+        return send_GetNearbySellNPCObjPtr(callback, state, NPCNum);
+      }
+
+      public int End_GetNearbySellNPCObjPtr(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbySellNPCObjPtr();
+      }
+
+      #endif
+
+      public int GetNearbySellNPCObjPtr(int NPCNum)
+      {
+        #if !SILVERLIGHT
+        send_GetNearbySellNPCObjPtr(NPCNum);
+        return recv_GetNearbySellNPCObjPtr();
+
+        #else
+        var asyncResult = Begin_GetNearbySellNPCObjPtr(null, null, NPCNum);
+        return End_GetNearbySellNPCObjPtr(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbySellNPCObjPtr(AsyncCallback callback, object state, int NPCNum)
+      #else
+      public void send_GetNearbySellNPCObjPtr(int NPCNum)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbySellNPCObjPtr", TMessageType.Call, seqid_));
+        GetNearbySellNPCObjPtr_args args = new GetNearbySellNPCObjPtr_args();
+        args.NPCNum = NPCNum;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbySellNPCObjPtr()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbySellNPCObjPtr_result result = new GetNearbySellNPCObjPtr_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbySellNPCObjPtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyGoCityTransferDoorObjPtr(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyGoCityTransferDoorObjPtr(callback, state);
+      }
+
+      public int End_GetNearbyGoCityTransferDoorObjPtr(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyGoCityTransferDoorObjPtr();
+      }
+
+      #endif
+
+      public int GetNearbyGoCityTransferDoorObjPtr()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyGoCityTransferDoorObjPtr();
+        return recv_GetNearbyGoCityTransferDoorObjPtr();
+
+        #else
+        var asyncResult = Begin_GetNearbyGoCityTransferDoorObjPtr(null, null);
+        return End_GetNearbyGoCityTransferDoorObjPtr(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyGoCityTransferDoorObjPtr(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyGoCityTransferDoorObjPtr()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyGoCityTransferDoorObjPtr", TMessageType.Call, seqid_));
+        GetNearbyGoCityTransferDoorObjPtr_args args = new GetNearbyGoCityTransferDoorObjPtr_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyGoCityTransferDoorObjPtr()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyGoCityTransferDoorObjPtr_result result = new GetNearbyGoCityTransferDoorObjPtr_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyGoCityTransferDoorObjPtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyGoBattleTransfetDoorObjPtr(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyGoBattleTransfetDoorObjPtr(callback, state);
+      }
+
+      public int End_GetNearbyGoBattleTransfetDoorObjPtr(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyGoBattleTransfetDoorObjPtr();
+      }
+
+      #endif
+
+      public int GetNearbyGoBattleTransfetDoorObjPtr()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyGoBattleTransfetDoorObjPtr();
+        return recv_GetNearbyGoBattleTransfetDoorObjPtr();
+
+        #else
+        var asyncResult = Begin_GetNearbyGoBattleTransfetDoorObjPtr(null, null);
+        return End_GetNearbyGoBattleTransfetDoorObjPtr(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyGoBattleTransfetDoorObjPtr(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyGoBattleTransfetDoorObjPtr()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyGoBattleTransfetDoorObjPtr", TMessageType.Call, seqid_));
+        GetNearbyGoBattleTransfetDoorObjPtr_args args = new GetNearbyGoBattleTransfetDoorObjPtr_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyGoBattleTransfetDoorObjPtr()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyGoBattleTransfetDoorObjPtr_result result = new GetNearbyGoBattleTransfetDoorObjPtr_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyGoBattleTransfetDoorObjPtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyStorageObjPtr(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyStorageObjPtr(callback, state);
+      }
+
+      public int End_GetNearbyStorageObjPtr(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyStorageObjPtr();
+      }
+
+      #endif
+
+      public int GetNearbyStorageObjPtr()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyStorageObjPtr();
+        return recv_GetNearbyStorageObjPtr();
+
+        #else
+        var asyncResult = Begin_GetNearbyStorageObjPtr(null, null);
+        return End_GetNearbyStorageObjPtr(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyStorageObjPtr(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyStorageObjPtr()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyStorageObjPtr", TMessageType.Call, seqid_));
+        GetNearbyStorageObjPtr_args args = new GetNearbyStorageObjPtr_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyStorageObjPtr()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyStorageObjPtr_result result = new GetNearbyStorageObjPtr_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyStorageObjPtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyCrossObjPtr(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyCrossObjPtr(callback, state);
+      }
+
+      public int End_GetNearbyCrossObjPtr(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyCrossObjPtr();
+      }
+
+      #endif
+
+      public int GetNearbyCrossObjPtr()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyCrossObjPtr();
+        return recv_GetNearbyCrossObjPtr();
+
+        #else
+        var asyncResult = Begin_GetNearbyCrossObjPtr(null, null);
+        return End_GetNearbyCrossObjPtr(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyCrossObjPtr(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyCrossObjPtr()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyCrossObjPtr", TMessageType.Call, seqid_));
+        GetNearbyCrossObjPtr_args args = new GetNearbyCrossObjPtr_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyCrossObjPtr()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyCrossObjPtr_result result = new GetNearbyCrossObjPtr_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyCrossObjPtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyPollutantGateObjPtr(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyPollutantGateObjPtr(callback, state);
+      }
+
+      public int End_GetNearbyPollutantGateObjPtr(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyPollutantGateObjPtr();
+      }
+
+      #endif
+
+      public int GetNearbyPollutantGateObjPtr()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyPollutantGateObjPtr();
+        return recv_GetNearbyPollutantGateObjPtr();
+
+        #else
+        var asyncResult = Begin_GetNearbyPollutantGateObjPtr(null, null);
+        return End_GetNearbyPollutantGateObjPtr(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyPollutantGateObjPtr(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyPollutantGateObjPtr()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyPollutantGateObjPtr", TMessageType.Call, seqid_));
+        GetNearbyPollutantGateObjPtr_args args = new GetNearbyPollutantGateObjPtr_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyPollutantGateObjPtr()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyPollutantGateObjPtr_result result = new GetNearbyPollutantGateObjPtr_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyPollutantGateObjPtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ReloadPollutantGateName(AsyncCallback callback, object state)
+      {
+        return send_ReloadPollutantGateName(callback, state);
+      }
+
+      public int End_ReloadPollutantGateName(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ReloadPollutantGateName();
+      }
+
+      #endif
+
+      public int ReloadPollutantGateName()
+      {
+        #if !SILVERLIGHT
+        send_ReloadPollutantGateName();
+        return recv_ReloadPollutantGateName();
+
+        #else
+        var asyncResult = Begin_ReloadPollutantGateName(null, null);
+        return End_ReloadPollutantGateName(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ReloadPollutantGateName(AsyncCallback callback, object state)
+      #else
+      public void send_ReloadPollutantGateName()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ReloadPollutantGateName", TMessageType.Call, seqid_));
+        ReloadPollutantGateName_args args = new ReloadPollutantGateName_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ReloadPollutantGateName()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ReloadPollutantGateName_result result = new ReloadPollutantGateName_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ReloadPollutantGateName failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_LogGateName(AsyncCallback callback, object state)
+      {
+        return send_LogGateName(callback, state);
+      }
+
+      public int End_LogGateName(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_LogGateName();
+      }
+
+      #endif
+
+      public int LogGateName()
+      {
+        #if !SILVERLIGHT
+        send_LogGateName();
+        return recv_LogGateName();
+
+        #else
+        var asyncResult = Begin_LogGateName(null, null);
+        return End_LogGateName(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_LogGateName(AsyncCallback callback, object state)
+      #else
+      public void send_LogGateName()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("LogGateName", TMessageType.Call, seqid_));
+        LogGateName_args args = new LogGateName_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_LogGateName()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        LogGateName_result result = new LogGateName_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "LogGateName failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_PickupItem(AsyncCallback callback, object state, int BagObjPtr, int ItemServiceID)
+      {
+        return send_PickupItem(callback, state, BagObjPtr, ItemServiceID);
+      }
+
+      public int End_PickupItem(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_PickupItem();
+      }
+
+      #endif
+
+      public int PickupItem(int BagObjPtr, int ItemServiceID)
+      {
+        #if !SILVERLIGHT
+        send_PickupItem(BagObjPtr, ItemServiceID);
+        return recv_PickupItem();
+
+        #else
+        var asyncResult = Begin_PickupItem(null, null, BagObjPtr, ItemServiceID);
+        return End_PickupItem(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_PickupItem(AsyncCallback callback, object state, int BagObjPtr, int ItemServiceID)
+      #else
+      public void send_PickupItem(int BagObjPtr, int ItemServiceID)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("PickupItem", TMessageType.Call, seqid_));
+        PickupItem_args args = new PickupItem_args();
+        args.BagObjPtr = BagObjPtr;
+        args.ItemServiceID = ItemServiceID;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_PickupItem()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        PickupItem_result result = new PickupItem_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "PickupItem failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_DropdownItem(AsyncCallback callback, object state, int StoragePageObjPtr, short Left, short Top)
+      {
+        return send_DropdownItem(callback, state, StoragePageObjPtr, Left, Top);
+      }
+
+      public int End_DropdownItem(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_DropdownItem();
+      }
+
+      #endif
+
+      public int DropdownItem(int StoragePageObjPtr, short Left, short Top)
+      {
+        #if !SILVERLIGHT
+        send_DropdownItem(StoragePageObjPtr, Left, Top);
+        return recv_DropdownItem();
+
+        #else
+        var asyncResult = Begin_DropdownItem(null, null, StoragePageObjPtr, Left, Top);
+        return End_DropdownItem(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_DropdownItem(AsyncCallback callback, object state, int StoragePageObjPtr, short Left, short Top)
+      #else
+      public void send_DropdownItem(int StoragePageObjPtr, short Left, short Top)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("DropdownItem", TMessageType.Call, seqid_));
+        DropdownItem_args args = new DropdownItem_args();
+        args.StoragePageObjPtr = StoragePageObjPtr;
+        args.Left = Left;
+        args.Top = Top;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_DropdownItem()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        DropdownItem_result result = new DropdownItem_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "DropdownItem failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_DropdownItemStack(AsyncCallback callback, object state, int StoragePageObjPtr, int TargetServiceID)
+      {
+        return send_DropdownItemStack(callback, state, StoragePageObjPtr, TargetServiceID);
+      }
+
+      public int End_DropdownItemStack(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_DropdownItemStack();
+      }
+
+      #endif
+
+      public int DropdownItemStack(int StoragePageObjPtr, int TargetServiceID)
+      {
+        #if !SILVERLIGHT
+        send_DropdownItemStack(StoragePageObjPtr, TargetServiceID);
+        return recv_DropdownItemStack();
+
+        #else
+        var asyncResult = Begin_DropdownItemStack(null, null, StoragePageObjPtr, TargetServiceID);
+        return End_DropdownItemStack(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_DropdownItemStack(AsyncCallback callback, object state, int StoragePageObjPtr, int TargetServiceID)
+      #else
+      public void send_DropdownItemStack(int StoragePageObjPtr, int TargetServiceID)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("DropdownItemStack", TMessageType.Call, seqid_));
+        DropdownItemStack_args args = new DropdownItemStack_args();
+        args.StoragePageObjPtr = StoragePageObjPtr;
+        args.TargetServiceID = TargetServiceID;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_DropdownItemStack()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        DropdownItemStack_result result = new DropdownItemStack_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "DropdownItemStack failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ActiveStoragePageInfo(AsyncCallback callback, object state, int PageNum)
+      {
+        return send_ActiveStoragePageInfo(callback, state, PageNum);
+      }
+
+      public int End_ActiveStoragePageInfo(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ActiveStoragePageInfo();
+      }
+
+      #endif
+
+      public int ActiveStoragePageInfo(int PageNum)
+      {
+        #if !SILVERLIGHT
+        send_ActiveStoragePageInfo(PageNum);
+        return recv_ActiveStoragePageInfo();
+
+        #else
+        var asyncResult = Begin_ActiveStoragePageInfo(null, null, PageNum);
+        return End_ActiveStoragePageInfo(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ActiveStoragePageInfo(AsyncCallback callback, object state, int PageNum)
+      #else
+      public void send_ActiveStoragePageInfo(int PageNum)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ActiveStoragePageInfo", TMessageType.Call, seqid_));
+        ActiveStoragePageInfo_args args = new ActiveStoragePageInfo_args();
+        args.PageNum = PageNum;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ActiveStoragePageInfo()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ActiveStoragePageInfo_result result = new ActiveStoragePageInfo_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ActiveStoragePageInfo failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetStoragePagePtr(AsyncCallback callback, object state, int ContainerNum)
+      {
+        return send_GetStoragePagePtr(callback, state, ContainerNum);
+      }
+
+      public int End_GetStoragePagePtr(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetStoragePagePtr();
+      }
+
+      #endif
+
+      public int GetStoragePagePtr(int ContainerNum)
+      {
+        #if !SILVERLIGHT
+        send_GetStoragePagePtr(ContainerNum);
+        return recv_GetStoragePagePtr();
+
+        #else
+        var asyncResult = Begin_GetStoragePagePtr(null, null, ContainerNum);
+        return End_GetStoragePagePtr(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetStoragePagePtr(AsyncCallback callback, object state, int ContainerNum)
+      #else
+      public void send_GetStoragePagePtr(int ContainerNum)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetStoragePagePtr", TMessageType.Call, seqid_));
+        GetStoragePagePtr_args args = new GetStoragePagePtr_args();
+        args.ContainerNum = ContainerNum;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetStoragePagePtr()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetStoragePagePtr_result result = new GetStoragePagePtr_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetStoragePagePtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_IdentityItem(AsyncCallback callback, object state, int CurrencyServiceID, int ArmorServiceID)
+      {
+        return send_IdentityItem(callback, state, CurrencyServiceID, ArmorServiceID);
+      }
+
+      public int End_IdentityItem(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_IdentityItem();
+      }
+
+      #endif
+
+      public int IdentityItem(int CurrencyServiceID, int ArmorServiceID)
+      {
+        #if !SILVERLIGHT
+        send_IdentityItem(CurrencyServiceID, ArmorServiceID);
+        return recv_IdentityItem();
+
+        #else
+        var asyncResult = Begin_IdentityItem(null, null, CurrencyServiceID, ArmorServiceID);
+        return End_IdentityItem(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_IdentityItem(AsyncCallback callback, object state, int CurrencyServiceID, int ArmorServiceID)
+      #else
+      public void send_IdentityItem(int CurrencyServiceID, int ArmorServiceID)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("IdentityItem", TMessageType.Call, seqid_));
+        IdentityItem_args args = new IdentityItem_args();
+        args.CurrencyServiceID = CurrencyServiceID;
+        args.ArmorServiceID = ArmorServiceID;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_IdentityItem()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        IdentityItem_result result = new IdentityItem_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "IdentityItem failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_WaitCastComplete(AsyncCallback callback, object state)
+      {
+        return send_WaitCastComplete(callback, state);
+      }
+
+      public void End_WaitCastComplete(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        recv_WaitCastComplete();
+      }
+
+      #endif
+
+      public void WaitCastComplete()
+      {
+        #if !SILVERLIGHT
+        send_WaitCastComplete();
+        recv_WaitCastComplete();
+
+        #else
+        var asyncResult = Begin_WaitCastComplete(null, null);
+        End_WaitCastComplete(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_WaitCastComplete(AsyncCallback callback, object state)
+      #else
+      public void send_WaitCastComplete()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("WaitCastComplete", TMessageType.Call, seqid_));
+        WaitCastComplete_args args = new WaitCastComplete_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public void recv_WaitCastComplete()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        WaitCastComplete_result result = new WaitCastComplete_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        return;
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ReadStorageUIPTR(AsyncCallback callback, object state, int PageNum)
+      {
+        return send_ReadStorageUIPTR(callback, state, PageNum);
+      }
+
+      public int End_ReadStorageUIPTR(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ReadStorageUIPTR();
+      }
+
+      #endif
+
+      public int ReadStorageUIPTR(int PageNum)
+      {
+        #if !SILVERLIGHT
+        send_ReadStorageUIPTR(PageNum);
+        return recv_ReadStorageUIPTR();
+
+        #else
+        var asyncResult = Begin_ReadStorageUIPTR(null, null, PageNum);
+        return End_ReadStorageUIPTR(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ReadStorageUIPTR(AsyncCallback callback, object state, int PageNum)
+      #else
+      public void send_ReadStorageUIPTR(int PageNum)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ReadStorageUIPTR", TMessageType.Call, seqid_));
+        ReadStorageUIPTR_args args = new ReadStorageUIPTR_args();
+        args.PageNum = PageNum;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ReadStorageUIPTR()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ReadStorageUIPTR_result result = new ReadStorageUIPTR_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ReadStorageUIPTR failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ReadStoragePageNum(AsyncCallback callback, object state)
+      {
+        return send_ReadStoragePageNum(callback, state);
+      }
+
+      public int End_ReadStoragePageNum(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ReadStoragePageNum();
+      }
+
+      #endif
+
+      public int ReadStoragePageNum()
+      {
+        #if !SILVERLIGHT
+        send_ReadStoragePageNum();
+        return recv_ReadStoragePageNum();
+
+        #else
+        var asyncResult = Begin_ReadStoragePageNum(null, null);
+        return End_ReadStoragePageNum(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ReadStoragePageNum(AsyncCallback callback, object state)
+      #else
+      public void send_ReadStoragePageNum()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ReadStoragePageNum", TMessageType.Call, seqid_));
+        ReadStoragePageNum_args args = new ReadStoragePageNum_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ReadStoragePageNum()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ReadStoragePageNum_result result = new ReadStoragePageNum_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ReadStoragePageNum failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_HitKey(AsyncCallback callback, object state, int Key)
+      {
+        return send_HitKey(callback, state, Key);
+      }
+
+      public void End_HitKey(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        recv_HitKey();
+      }
+
+      #endif
+
+      public void HitKey(int Key)
+      {
+        #if !SILVERLIGHT
+        send_HitKey(Key);
+        recv_HitKey();
+
+        #else
+        var asyncResult = Begin_HitKey(null, null, Key);
+        End_HitKey(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_HitKey(AsyncCallback callback, object state, int Key)
+      #else
+      public void send_HitKey(int Key)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("HitKey", TMessageType.Call, seqid_));
+        HitKey_args args = new HitKey_args();
+        args.Key = Key;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public void recv_HitKey()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        HitKey_result result = new HitKey_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        return;
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_UpSkill(AsyncCallback callback, object state)
+      {
+        return send_UpSkill(callback, state);
+      }
+
+      public void End_UpSkill(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        recv_UpSkill();
+      }
+
+      #endif
+
+      public void UpSkill()
+      {
+        #if !SILVERLIGHT
+        send_UpSkill();
+        recv_UpSkill();
+
+        #else
+        var asyncResult = Begin_UpSkill(null, null);
+        End_UpSkill(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_UpSkill(AsyncCallback callback, object state)
+      #else
+      public void send_UpSkill()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("UpSkill", TMessageType.Call, seqid_));
+        UpSkill_args args = new UpSkill_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public void recv_UpSkill()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        UpSkill_result result = new UpSkill_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        return;
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_IsItemOnMouse(AsyncCallback callback, object state)
+      {
+        return send_IsItemOnMouse(callback, state);
+      }
+
+      public bool End_IsItemOnMouse(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_IsItemOnMouse();
+      }
+
+      #endif
+
+      public bool IsItemOnMouse()
+      {
+        #if !SILVERLIGHT
+        send_IsItemOnMouse();
+        return recv_IsItemOnMouse();
+
+        #else
+        var asyncResult = Begin_IsItemOnMouse(null, null);
+        return End_IsItemOnMouse(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_IsItemOnMouse(AsyncCallback callback, object state)
+      #else
+      public void send_IsItemOnMouse()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("IsItemOnMouse", TMessageType.Call, seqid_));
+        IsItemOnMouse_args args = new IsItemOnMouse_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public bool recv_IsItemOnMouse()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        IsItemOnMouse_result result = new IsItemOnMouse_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "IsItemOnMouse failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_IsBuffExists(AsyncCallback callback, object state, int skill)
+      {
+        return send_IsBuffExists(callback, state, skill);
+      }
+
+      public bool End_IsBuffExists(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_IsBuffExists();
+      }
+
+      #endif
+
+      public bool IsBuffExists(int skill)
+      {
+        #if !SILVERLIGHT
+        send_IsBuffExists(skill);
+        return recv_IsBuffExists();
+
+        #else
+        var asyncResult = Begin_IsBuffExists(null, null, skill);
+        return End_IsBuffExists(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_IsBuffExists(AsyncCallback callback, object state, int skill)
+      #else
+      public void send_IsBuffExists(int skill)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("IsBuffExists", TMessageType.Call, seqid_));
+        IsBuffExists_args args = new IsBuffExists_args();
+        args.Skill = skill;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public bool recv_IsBuffExists()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        IsBuffExists_result result = new IsBuffExists_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "IsBuffExists failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetItemDescription(AsyncCallback callback, object state, int ItemObjPtr)
+      {
+        return send_GetItemDescription(callback, state, ItemObjPtr);
+      }
+
+      public int End_GetItemDescription(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetItemDescription();
+      }
+
+      #endif
+
+      public int GetItemDescription(int ItemObjPtr)
+      {
+        #if !SILVERLIGHT
+        send_GetItemDescription(ItemObjPtr);
+        return recv_GetItemDescription();
+
+        #else
+        var asyncResult = Begin_GetItemDescription(null, null, ItemObjPtr);
+        return End_GetItemDescription(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetItemDescription(AsyncCallback callback, object state, int ItemObjPtr)
+      #else
+      public void send_GetItemDescription(int ItemObjPtr)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetItemDescription", TMessageType.Call, seqid_));
+        GetItemDescription_args args = new GetItemDescription_args();
+        args.ItemObjPtr = ItemObjPtr;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetItemDescription()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetItemDescription_result result = new GetItemDescription_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetItemDescription failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetBagItemFullInfo(AsyncCallback callback, object state)
+      {
+        return send_GetBagItemFullInfo(callback, state);
+      }
+
+      public List<ItemFullInfo> End_GetBagItemFullInfo(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetBagItemFullInfo();
+      }
+
+      #endif
+
+      public List<ItemFullInfo> GetBagItemFullInfo()
+      {
+        #if !SILVERLIGHT
+        send_GetBagItemFullInfo();
+        return recv_GetBagItemFullInfo();
+
+        #else
+        var asyncResult = Begin_GetBagItemFullInfo(null, null);
+        return End_GetBagItemFullInfo(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetBagItemFullInfo(AsyncCallback callback, object state)
+      #else
+      public void send_GetBagItemFullInfo()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetBagItemFullInfo", TMessageType.Call, seqid_));
+        GetBagItemFullInfo_args args = new GetBagItemFullInfo_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public List<ItemFullInfo> recv_GetBagItemFullInfo()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetBagItemFullInfo_result result = new GetBagItemFullInfo_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetBagItemFullInfo failed: unknown result");
+      }
+
     }
     public class Processor : TProcessor {
       public Processor(Iface iface)
@@ -477,8 +3860,59 @@ namespace Thrift.GameCall
         processMap_["IsValidServer"] = IsValidServer_Process;
         processMap_["Test"] = Test_Process;
         processMap_["Update"] = Update_Process;
+        processMap_["SetWorkPath"] = SetWorkPath_Process;
         processMap_["GetPlayerPos"] = GetPlayerPos_Process;
         processMap_["Move"] = Move_Process;
+        processMap_["CastUntargetSkill"] = CastUntargetSkill_Process;
+        processMap_["CastTargetSkill"] = CastTargetSkill_Process;
+        processMap_["GetRoundList"] = GetRoundList_Process;
+        processMap_["GetRoundListTest"] = GetRoundListTest_Process;
+        processMap_["GetPlayerInfo"] = GetPlayerInfo_Process;
+        processMap_["StopMove"] = StopMove_Process;
+        processMap_["GetMapData"] = GetMapData_Process;
+        processMap_["ActiveTarget"] = ActiveTarget_Process;
+        processMap_["GetWaypointInfo"] = GetWaypointInfo_Process;
+        processMap_["Transport"] = Transport_Process;
+        processMap_["GetContainerItemList"] = GetContainerItemList_Process;
+        processMap_["GetBagItemSpaceInfo"] = GetBagItemSpaceInfo_Process;
+        processMap_["GetCurrentMapInfo"] = GetCurrentMapInfo_Process;
+        processMap_["GetCurrentMapID"] = GetCurrentMapID_Process;
+        processMap_["GetTrophyInfo"] = GetTrophyInfo_Process;
+        processMap_["SetLootTypeList"] = SetLootTypeList_Process;
+        processMap_["ClearTrophyFilter"] = ClearTrophyFilter_Process;
+        processMap_["GetTrophyList"] = GetTrophyList_Process;
+        processMap_["ReadLoginState"] = ReadLoginState_Process;
+        processMap_["UseItem"] = UseItem_Process;
+        processMap_["UseTransDoor"] = UseTransDoor_Process;
+        processMap_["ClickNPCMenu"] = ClickNPCMenu_Process;
+        processMap_["PutToSell"] = PutToSell_Process;
+        processMap_["ConfirmSell"] = ConfirmSell_Process;
+        processMap_["ReturnChoseRole"] = ReturnChoseRole_Process;
+        processMap_["Relive"] = Relive_Process;
+        processMap_["GetNearbyWaypointID"] = GetNearbyWaypointID_Process;
+        processMap_["GetNearbySellNPCObjPtr"] = GetNearbySellNPCObjPtr_Process;
+        processMap_["GetNearbyGoCityTransferDoorObjPtr"] = GetNearbyGoCityTransferDoorObjPtr_Process;
+        processMap_["GetNearbyGoBattleTransfetDoorObjPtr"] = GetNearbyGoBattleTransfetDoorObjPtr_Process;
+        processMap_["GetNearbyStorageObjPtr"] = GetNearbyStorageObjPtr_Process;
+        processMap_["GetNearbyCrossObjPtr"] = GetNearbyCrossObjPtr_Process;
+        processMap_["GetNearbyPollutantGateObjPtr"] = GetNearbyPollutantGateObjPtr_Process;
+        processMap_["ReloadPollutantGateName"] = ReloadPollutantGateName_Process;
+        processMap_["LogGateName"] = LogGateName_Process;
+        processMap_["PickupItem"] = PickupItem_Process;
+        processMap_["DropdownItem"] = DropdownItem_Process;
+        processMap_["DropdownItemStack"] = DropdownItemStack_Process;
+        processMap_["ActiveStoragePageInfo"] = ActiveStoragePageInfo_Process;
+        processMap_["GetStoragePagePtr"] = GetStoragePagePtr_Process;
+        processMap_["IdentityItem"] = IdentityItem_Process;
+        processMap_["WaitCastComplete"] = WaitCastComplete_Process;
+        processMap_["ReadStorageUIPTR"] = ReadStorageUIPTR_Process;
+        processMap_["ReadStoragePageNum"] = ReadStoragePageNum_Process;
+        processMap_["HitKey"] = HitKey_Process;
+        processMap_["UpSkill"] = UpSkill_Process;
+        processMap_["IsItemOnMouse"] = IsItemOnMouse_Process;
+        processMap_["IsBuffExists"] = IsBuffExists_Process;
+        processMap_["GetItemDescription"] = GetItemDescription_Process;
+        processMap_["GetBagItemFullInfo"] = GetBagItemFullInfo_Process;
       }
 
       protected delegate void ProcessFunction(int seqid, TProtocol iprot, TProtocol oprot);
@@ -563,6 +3997,19 @@ namespace Thrift.GameCall
         oprot.Transport.Flush();
       }
 
+      public void SetWorkPath_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        SetWorkPath_args args = new SetWorkPath_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        SetWorkPath_result result = new SetWorkPath_result();
+        iface_.SetWorkPath(args.StrPath);
+        oprot.WriteMessageBegin(new TMessage("SetWorkPath", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
       public void GetPlayerPos_Process(int seqid, TProtocol iprot, TProtocol oprot)
       {
         GetPlayerPos_args args = new GetPlayerPos_args();
@@ -584,6 +4031,656 @@ namespace Thrift.GameCall
         Move_result result = new Move_result();
         iface_.Move(args.X, args.Y);
         oprot.WriteMessageBegin(new TMessage("Move", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void CastUntargetSkill_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        CastUntargetSkill_args args = new CastUntargetSkill_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        CastUntargetSkill_result result = new CastUntargetSkill_result();
+        iface_.CastUntargetSkill(args.X, args.Y, args.SkillNum, args.CastType);
+        oprot.WriteMessageBegin(new TMessage("CastUntargetSkill", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void CastTargetSkill_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        CastTargetSkill_args args = new CastTargetSkill_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        CastTargetSkill_result result = new CastTargetSkill_result();
+        iface_.CastTargetSkill(args.TargetObjPtr, args.SkillNum, args.CastType);
+        oprot.WriteMessageBegin(new TMessage("CastTargetSkill", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetRoundList_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetRoundList_args args = new GetRoundList_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetRoundList_result result = new GetRoundList_result();
+        result.Success = iface_.GetRoundList();
+        oprot.WriteMessageBegin(new TMessage("GetRoundList", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetRoundListTest_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetRoundListTest_args args = new GetRoundListTest_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetRoundListTest_result result = new GetRoundListTest_result();
+        result.Success = iface_.GetRoundListTest();
+        oprot.WriteMessageBegin(new TMessage("GetRoundListTest", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetPlayerInfo_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetPlayerInfo_args args = new GetPlayerInfo_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetPlayerInfo_result result = new GetPlayerInfo_result();
+        result.Success = iface_.GetPlayerInfo();
+        oprot.WriteMessageBegin(new TMessage("GetPlayerInfo", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void StopMove_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        StopMove_args args = new StopMove_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        StopMove_result result = new StopMove_result();
+        iface_.StopMove();
+        oprot.WriteMessageBegin(new TMessage("StopMove", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetMapData_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetMapData_args args = new GetMapData_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetMapData_result result = new GetMapData_result();
+        result.Success = iface_.GetMapData();
+        oprot.WriteMessageBegin(new TMessage("GetMapData", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ActiveTarget_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ActiveTarget_args args = new ActiveTarget_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ActiveTarget_result result = new ActiveTarget_result();
+        iface_.ActiveTarget(args.ObjPtr);
+        oprot.WriteMessageBegin(new TMessage("ActiveTarget", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetWaypointInfo_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetWaypointInfo_args args = new GetWaypointInfo_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetWaypointInfo_result result = new GetWaypointInfo_result();
+        result.Success = iface_.GetWaypointInfo();
+        oprot.WriteMessageBegin(new TMessage("GetWaypointInfo", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void Transport_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        Transport_args args = new Transport_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        Transport_result result = new Transport_result();
+        iface_.Transport(args.MapID, args.WaypointID, args.DungeonModel);
+        oprot.WriteMessageBegin(new TMessage("Transport", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetContainerItemList_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetContainerItemList_args args = new GetContainerItemList_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetContainerItemList_result result = new GetContainerItemList_result();
+        result.Success = iface_.GetContainerItemList(args.GetType);
+        oprot.WriteMessageBegin(new TMessage("GetContainerItemList", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetBagItemSpaceInfo_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetBagItemSpaceInfo_args args = new GetBagItemSpaceInfo_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetBagItemSpaceInfo_result result = new GetBagItemSpaceInfo_result();
+        result.Success = iface_.GetBagItemSpaceInfo();
+        oprot.WriteMessageBegin(new TMessage("GetBagItemSpaceInfo", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetCurrentMapInfo_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetCurrentMapInfo_args args = new GetCurrentMapInfo_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetCurrentMapInfo_result result = new GetCurrentMapInfo_result();
+        result.Success = iface_.GetCurrentMapInfo();
+        oprot.WriteMessageBegin(new TMessage("GetCurrentMapInfo", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetCurrentMapID_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetCurrentMapID_args args = new GetCurrentMapID_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetCurrentMapID_result result = new GetCurrentMapID_result();
+        result.Success = iface_.GetCurrentMapID();
+        oprot.WriteMessageBegin(new TMessage("GetCurrentMapID", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetTrophyInfo_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetTrophyInfo_args args = new GetTrophyInfo_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetTrophyInfo_result result = new GetTrophyInfo_result();
+        result.Success = iface_.GetTrophyInfo(args.TrophyObjPtr);
+        oprot.WriteMessageBegin(new TMessage("GetTrophyInfo", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void SetLootTypeList_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        SetLootTypeList_args args = new SetLootTypeList_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        SetLootTypeList_result result = new SetLootTypeList_result();
+        result.Success = iface_.SetLootTypeList(args.LootList, args.SocketFilter, args.SocketConnectFilter, args.LootThreeSocketColor, args.SkillQualityFilter);
+        oprot.WriteMessageBegin(new TMessage("SetLootTypeList", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ClearTrophyFilter_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ClearTrophyFilter_args args = new ClearTrophyFilter_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ClearTrophyFilter_result result = new ClearTrophyFilter_result();
+        result.Success = iface_.ClearTrophyFilter();
+        oprot.WriteMessageBegin(new TMessage("ClearTrophyFilter", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetTrophyList_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetTrophyList_args args = new GetTrophyList_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetTrophyList_result result = new GetTrophyList_result();
+        result.Success = iface_.GetTrophyList(args.TrophyIDList);
+        oprot.WriteMessageBegin(new TMessage("GetTrophyList", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ReadLoginState_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ReadLoginState_args args = new ReadLoginState_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ReadLoginState_result result = new ReadLoginState_result();
+        result.Success = iface_.ReadLoginState();
+        oprot.WriteMessageBegin(new TMessage("ReadLoginState", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void UseItem_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        UseItem_args args = new UseItem_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        UseItem_result result = new UseItem_result();
+        result.Success = iface_.UseItem(args.WinID, args.ServiceID);
+        oprot.WriteMessageBegin(new TMessage("UseItem", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void UseTransDoor_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        UseTransDoor_args args = new UseTransDoor_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        UseTransDoor_result result = new UseTransDoor_result();
+        result.Success = iface_.UseTransDoor();
+        oprot.WriteMessageBegin(new TMessage("UseTransDoor", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ClickNPCMenu_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ClickNPCMenu_args args = new ClickNPCMenu_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ClickNPCMenu_result result = new ClickNPCMenu_result();
+        result.Success = iface_.ClickNPCMenu(args.MenuID);
+        oprot.WriteMessageBegin(new TMessage("ClickNPCMenu", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void PutToSell_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        PutToSell_args args = new PutToSell_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        PutToSell_result result = new PutToSell_result();
+        result.Success = iface_.PutToSell(args.Left, args.Top, args.ServiceID, args.WinID);
+        oprot.WriteMessageBegin(new TMessage("PutToSell", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ConfirmSell_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ConfirmSell_args args = new ConfirmSell_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ConfirmSell_result result = new ConfirmSell_result();
+        result.Success = iface_.ConfirmSell();
+        oprot.WriteMessageBegin(new TMessage("ConfirmSell", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ReturnChoseRole_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ReturnChoseRole_args args = new ReturnChoseRole_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ReturnChoseRole_result result = new ReturnChoseRole_result();
+        result.Success = iface_.ReturnChoseRole();
+        oprot.WriteMessageBegin(new TMessage("ReturnChoseRole", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void Relive_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        Relive_args args = new Relive_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        Relive_result result = new Relive_result();
+        result.Success = iface_.Relive(args.ReliveType);
+        oprot.WriteMessageBegin(new TMessage("Relive", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbyWaypointID_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyWaypointID_args args = new GetNearbyWaypointID_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyWaypointID_result result = new GetNearbyWaypointID_result();
+        result.Success = iface_.GetNearbyWaypointID();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyWaypointID", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbySellNPCObjPtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbySellNPCObjPtr_args args = new GetNearbySellNPCObjPtr_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbySellNPCObjPtr_result result = new GetNearbySellNPCObjPtr_result();
+        result.Success = iface_.GetNearbySellNPCObjPtr(args.NPCNum);
+        oprot.WriteMessageBegin(new TMessage("GetNearbySellNPCObjPtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbyGoCityTransferDoorObjPtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyGoCityTransferDoorObjPtr_args args = new GetNearbyGoCityTransferDoorObjPtr_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyGoCityTransferDoorObjPtr_result result = new GetNearbyGoCityTransferDoorObjPtr_result();
+        result.Success = iface_.GetNearbyGoCityTransferDoorObjPtr();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyGoCityTransferDoorObjPtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbyGoBattleTransfetDoorObjPtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyGoBattleTransfetDoorObjPtr_args args = new GetNearbyGoBattleTransfetDoorObjPtr_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyGoBattleTransfetDoorObjPtr_result result = new GetNearbyGoBattleTransfetDoorObjPtr_result();
+        result.Success = iface_.GetNearbyGoBattleTransfetDoorObjPtr();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyGoBattleTransfetDoorObjPtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbyStorageObjPtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyStorageObjPtr_args args = new GetNearbyStorageObjPtr_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyStorageObjPtr_result result = new GetNearbyStorageObjPtr_result();
+        result.Success = iface_.GetNearbyStorageObjPtr();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyStorageObjPtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbyCrossObjPtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyCrossObjPtr_args args = new GetNearbyCrossObjPtr_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyCrossObjPtr_result result = new GetNearbyCrossObjPtr_result();
+        result.Success = iface_.GetNearbyCrossObjPtr();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyCrossObjPtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbyPollutantGateObjPtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyPollutantGateObjPtr_args args = new GetNearbyPollutantGateObjPtr_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyPollutantGateObjPtr_result result = new GetNearbyPollutantGateObjPtr_result();
+        result.Success = iface_.GetNearbyPollutantGateObjPtr();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyPollutantGateObjPtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ReloadPollutantGateName_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ReloadPollutantGateName_args args = new ReloadPollutantGateName_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ReloadPollutantGateName_result result = new ReloadPollutantGateName_result();
+        result.Success = iface_.ReloadPollutantGateName();
+        oprot.WriteMessageBegin(new TMessage("ReloadPollutantGateName", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void LogGateName_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        LogGateName_args args = new LogGateName_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        LogGateName_result result = new LogGateName_result();
+        result.Success = iface_.LogGateName();
+        oprot.WriteMessageBegin(new TMessage("LogGateName", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void PickupItem_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        PickupItem_args args = new PickupItem_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        PickupItem_result result = new PickupItem_result();
+        result.Success = iface_.PickupItem(args.BagObjPtr, args.ItemServiceID);
+        oprot.WriteMessageBegin(new TMessage("PickupItem", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void DropdownItem_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        DropdownItem_args args = new DropdownItem_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        DropdownItem_result result = new DropdownItem_result();
+        result.Success = iface_.DropdownItem(args.StoragePageObjPtr, args.Left, args.Top);
+        oprot.WriteMessageBegin(new TMessage("DropdownItem", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void DropdownItemStack_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        DropdownItemStack_args args = new DropdownItemStack_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        DropdownItemStack_result result = new DropdownItemStack_result();
+        result.Success = iface_.DropdownItemStack(args.StoragePageObjPtr, args.TargetServiceID);
+        oprot.WriteMessageBegin(new TMessage("DropdownItemStack", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ActiveStoragePageInfo_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ActiveStoragePageInfo_args args = new ActiveStoragePageInfo_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ActiveStoragePageInfo_result result = new ActiveStoragePageInfo_result();
+        result.Success = iface_.ActiveStoragePageInfo(args.PageNum);
+        oprot.WriteMessageBegin(new TMessage("ActiveStoragePageInfo", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetStoragePagePtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetStoragePagePtr_args args = new GetStoragePagePtr_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetStoragePagePtr_result result = new GetStoragePagePtr_result();
+        result.Success = iface_.GetStoragePagePtr(args.ContainerNum);
+        oprot.WriteMessageBegin(new TMessage("GetStoragePagePtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void IdentityItem_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        IdentityItem_args args = new IdentityItem_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        IdentityItem_result result = new IdentityItem_result();
+        result.Success = iface_.IdentityItem(args.CurrencyServiceID, args.ArmorServiceID);
+        oprot.WriteMessageBegin(new TMessage("IdentityItem", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void WaitCastComplete_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        WaitCastComplete_args args = new WaitCastComplete_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        WaitCastComplete_result result = new WaitCastComplete_result();
+        iface_.WaitCastComplete();
+        oprot.WriteMessageBegin(new TMessage("WaitCastComplete", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ReadStorageUIPTR_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ReadStorageUIPTR_args args = new ReadStorageUIPTR_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ReadStorageUIPTR_result result = new ReadStorageUIPTR_result();
+        result.Success = iface_.ReadStorageUIPTR(args.PageNum);
+        oprot.WriteMessageBegin(new TMessage("ReadStorageUIPTR", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ReadStoragePageNum_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ReadStoragePageNum_args args = new ReadStoragePageNum_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ReadStoragePageNum_result result = new ReadStoragePageNum_result();
+        result.Success = iface_.ReadStoragePageNum();
+        oprot.WriteMessageBegin(new TMessage("ReadStoragePageNum", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void HitKey_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        HitKey_args args = new HitKey_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        HitKey_result result = new HitKey_result();
+        iface_.HitKey(args.Key);
+        oprot.WriteMessageBegin(new TMessage("HitKey", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void UpSkill_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        UpSkill_args args = new UpSkill_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        UpSkill_result result = new UpSkill_result();
+        iface_.UpSkill();
+        oprot.WriteMessageBegin(new TMessage("UpSkill", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void IsItemOnMouse_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        IsItemOnMouse_args args = new IsItemOnMouse_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        IsItemOnMouse_result result = new IsItemOnMouse_result();
+        result.Success = iface_.IsItemOnMouse();
+        oprot.WriteMessageBegin(new TMessage("IsItemOnMouse", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void IsBuffExists_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        IsBuffExists_args args = new IsBuffExists_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        IsBuffExists_result result = new IsBuffExists_result();
+        result.Success = iface_.IsBuffExists(args.Skill);
+        oprot.WriteMessageBegin(new TMessage("IsBuffExists", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetItemDescription_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetItemDescription_args args = new GetItemDescription_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetItemDescription_result result = new GetItemDescription_result();
+        result.Success = iface_.GetItemDescription(args.ItemObjPtr);
+        oprot.WriteMessageBegin(new TMessage("GetItemDescription", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetBagItemFullInfo_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetBagItemFullInfo_args args = new GetBagItemFullInfo_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetBagItemFullInfo_result result = new GetBagItemFullInfo_result();
+        result.Success = iface_.GetBagItemFullInfo();
+        oprot.WriteMessageBegin(new TMessage("GetBagItemFullInfo", TMessageType.Reply, seqid)); 
         result.Write(oprot);
         oprot.WriteMessageEnd();
         oprot.Transport.Flush();
@@ -1122,6 +5219,140 @@ namespace Thrift.GameCall
     #if !SILVERLIGHT
     [Serializable]
     #endif
+    public partial class SetWorkPath_args : TBase
+    {
+      private string _strPath;
+
+      public string StrPath
+      {
+        get
+        {
+          return _strPath;
+        }
+        set
+        {
+          __isset.strPath = true;
+          this._strPath = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool strPath;
+      }
+
+      public SetWorkPath_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.String) {
+                StrPath = iprot.ReadString();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("SetWorkPath_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (StrPath != null && __isset.strPath) {
+          field.Name = "strPath";
+          field.Type = TType.String;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteString(StrPath);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("SetWorkPath_args(");
+        sb.Append("StrPath: ");
+        sb.Append(StrPath);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class SetWorkPath_result : TBase
+    {
+
+      public SetWorkPath_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("SetWorkPath_result");
+        oprot.WriteStructBegin(struc);
+
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("SetWorkPath_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
     public partial class GetPlayerPos_args : TBase
     {
 
@@ -1415,6 +5646,8149 @@ namespace Thrift.GameCall
 
       public override string ToString() {
         StringBuilder sb = new StringBuilder("Move_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class CastUntargetSkill_args : TBase
+    {
+      private short _x;
+      private short _y;
+      private short _skillNum;
+      private short _castType;
+
+      public short X
+      {
+        get
+        {
+          return _x;
+        }
+        set
+        {
+          __isset.x = true;
+          this._x = value;
+        }
+      }
+
+      public short Y
+      {
+        get
+        {
+          return _y;
+        }
+        set
+        {
+          __isset.y = true;
+          this._y = value;
+        }
+      }
+
+      public short SkillNum
+      {
+        get
+        {
+          return _skillNum;
+        }
+        set
+        {
+          __isset.skillNum = true;
+          this._skillNum = value;
+        }
+      }
+
+      public short CastType
+      {
+        get
+        {
+          return _castType;
+        }
+        set
+        {
+          __isset.castType = true;
+          this._castType = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool x;
+        public bool y;
+        public bool skillNum;
+        public bool castType;
+      }
+
+      public CastUntargetSkill_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I16) {
+                X = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I16) {
+                Y = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 3:
+              if (field.Type == TType.I16) {
+                SkillNum = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 4:
+              if (field.Type == TType.I16) {
+                CastType = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("CastUntargetSkill_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.x) {
+          field.Name = "x";
+          field.Type = TType.I16;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(X);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.y) {
+          field.Name = "y";
+          field.Type = TType.I16;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(Y);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.skillNum) {
+          field.Name = "skillNum";
+          field.Type = TType.I16;
+          field.ID = 3;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(SkillNum);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.castType) {
+          field.Name = "castType";
+          field.Type = TType.I16;
+          field.ID = 4;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(CastType);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("CastUntargetSkill_args(");
+        sb.Append("X: ");
+        sb.Append(X);
+        sb.Append(",Y: ");
+        sb.Append(Y);
+        sb.Append(",SkillNum: ");
+        sb.Append(SkillNum);
+        sb.Append(",CastType: ");
+        sb.Append(CastType);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class CastUntargetSkill_result : TBase
+    {
+
+      public CastUntargetSkill_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("CastUntargetSkill_result");
+        oprot.WriteStructBegin(struc);
+
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("CastUntargetSkill_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class CastTargetSkill_args : TBase
+    {
+      private int _TargetObjPtr;
+      private short _skillNum;
+      private short _castType;
+
+      public int TargetObjPtr
+      {
+        get
+        {
+          return _TargetObjPtr;
+        }
+        set
+        {
+          __isset.TargetObjPtr = true;
+          this._TargetObjPtr = value;
+        }
+      }
+
+      public short SkillNum
+      {
+        get
+        {
+          return _skillNum;
+        }
+        set
+        {
+          __isset.skillNum = true;
+          this._skillNum = value;
+        }
+      }
+
+      public short CastType
+      {
+        get
+        {
+          return _castType;
+        }
+        set
+        {
+          __isset.castType = true;
+          this._castType = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool TargetObjPtr;
+        public bool skillNum;
+        public bool castType;
+      }
+
+      public CastTargetSkill_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                TargetObjPtr = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I16) {
+                SkillNum = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 3:
+              if (field.Type == TType.I16) {
+                CastType = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("CastTargetSkill_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.TargetObjPtr) {
+          field.Name = "TargetObjPtr";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(TargetObjPtr);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.skillNum) {
+          field.Name = "skillNum";
+          field.Type = TType.I16;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(SkillNum);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.castType) {
+          field.Name = "castType";
+          field.Type = TType.I16;
+          field.ID = 3;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(CastType);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("CastTargetSkill_args(");
+        sb.Append("TargetObjPtr: ");
+        sb.Append(TargetObjPtr);
+        sb.Append(",SkillNum: ");
+        sb.Append(SkillNum);
+        sb.Append(",CastType: ");
+        sb.Append(CastType);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class CastTargetSkill_result : TBase
+    {
+
+      public CastTargetSkill_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("CastTargetSkill_result");
+        oprot.WriteStructBegin(struc);
+
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("CastTargetSkill_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetRoundList_args : TBase
+    {
+
+      public GetRoundList_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetRoundList_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetRoundList_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetRoundList_result : TBase
+    {
+      private List<ObjInfo> _success;
+
+      public List<ObjInfo> Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetRoundList_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.List) {
+                {
+                  Success = new List<ObjInfo>();
+                  TList _list48 = iprot.ReadListBegin();
+                  for( int _i49 = 0; _i49 < _list48.Count; ++_i49)
+                  {
+                    ObjInfo _elem50 = new ObjInfo();
+                    _elem50 = new ObjInfo();
+                    _elem50.Read(iprot);
+                    Success.Add(_elem50);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetRoundList_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.List;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
+              foreach (ObjInfo _iter51 in Success)
+              {
+                _iter51.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetRoundList_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetRoundListTest_args : TBase
+    {
+
+      public GetRoundListTest_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetRoundListTest_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetRoundListTest_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetRoundListTest_result : TBase
+    {
+      private List<ObjInfo> _success;
+
+      public List<ObjInfo> Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetRoundListTest_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.List) {
+                {
+                  Success = new List<ObjInfo>();
+                  TList _list52 = iprot.ReadListBegin();
+                  for( int _i53 = 0; _i53 < _list52.Count; ++_i53)
+                  {
+                    ObjInfo _elem54 = new ObjInfo();
+                    _elem54 = new ObjInfo();
+                    _elem54.Read(iprot);
+                    Success.Add(_elem54);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetRoundListTest_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.List;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
+              foreach (ObjInfo _iter55 in Success)
+              {
+                _iter55.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetRoundListTest_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetPlayerInfo_args : TBase
+    {
+
+      public GetPlayerInfo_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetPlayerInfo_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetPlayerInfo_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetPlayerInfo_result : TBase
+    {
+      private PlayerInfo _success;
+
+      public PlayerInfo Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetPlayerInfo_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.Struct) {
+                Success = new PlayerInfo();
+                Success.Read(iprot);
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetPlayerInfo_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.Struct;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            Success.Write(oprot);
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetPlayerInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success== null ? "<null>" : Success.ToString());
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class StopMove_args : TBase
+    {
+
+      public StopMove_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("StopMove_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("StopMove_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class StopMove_result : TBase
+    {
+
+      public StopMove_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("StopMove_result");
+        oprot.WriteStructBegin(struc);
+
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("StopMove_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetMapData_args : TBase
+    {
+
+      public GetMapData_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetMapData_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetMapData_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetMapData_result : TBase
+    {
+      private MapInfo _success;
+
+      public MapInfo Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetMapData_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.Struct) {
+                Success = new MapInfo();
+                Success.Read(iprot);
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetMapData_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.Struct;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            Success.Write(oprot);
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetMapData_result(");
+        sb.Append("Success: ");
+        sb.Append(Success== null ? "<null>" : Success.ToString());
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ActiveTarget_args : TBase
+    {
+      private int _ObjPtr;
+
+      public int ObjPtr
+      {
+        get
+        {
+          return _ObjPtr;
+        }
+        set
+        {
+          __isset.ObjPtr = true;
+          this._ObjPtr = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool ObjPtr;
+      }
+
+      public ActiveTarget_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                ObjPtr = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ActiveTarget_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.ObjPtr) {
+          field.Name = "ObjPtr";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ObjPtr);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ActiveTarget_args(");
+        sb.Append("ObjPtr: ");
+        sb.Append(ObjPtr);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ActiveTarget_result : TBase
+    {
+
+      public ActiveTarget_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ActiveTarget_result");
+        oprot.WriteStructBegin(struc);
+
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ActiveTarget_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetWaypointInfo_args : TBase
+    {
+
+      public GetWaypointInfo_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetWaypointInfo_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetWaypointInfo_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetWaypointInfo_result : TBase
+    {
+      private List<WaypointInfo> _success;
+
+      public List<WaypointInfo> Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetWaypointInfo_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.List) {
+                {
+                  Success = new List<WaypointInfo>();
+                  TList _list56 = iprot.ReadListBegin();
+                  for( int _i57 = 0; _i57 < _list56.Count; ++_i57)
+                  {
+                    WaypointInfo _elem58 = new WaypointInfo();
+                    _elem58 = new WaypointInfo();
+                    _elem58.Read(iprot);
+                    Success.Add(_elem58);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetWaypointInfo_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.List;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
+              foreach (WaypointInfo _iter59 in Success)
+              {
+                _iter59.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetWaypointInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class Transport_args : TBase
+    {
+      private int _MapID;
+      private int _WaypointID;
+      private int _DungeonModel;
+
+      public int MapID
+      {
+        get
+        {
+          return _MapID;
+        }
+        set
+        {
+          __isset.MapID = true;
+          this._MapID = value;
+        }
+      }
+
+      public int WaypointID
+      {
+        get
+        {
+          return _WaypointID;
+        }
+        set
+        {
+          __isset.WaypointID = true;
+          this._WaypointID = value;
+        }
+      }
+
+      public int DungeonModel
+      {
+        get
+        {
+          return _DungeonModel;
+        }
+        set
+        {
+          __isset.DungeonModel = true;
+          this._DungeonModel = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool MapID;
+        public bool WaypointID;
+        public bool DungeonModel;
+      }
+
+      public Transport_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                MapID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I32) {
+                WaypointID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 3:
+              if (field.Type == TType.I32) {
+                DungeonModel = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("Transport_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.MapID) {
+          field.Name = "MapID";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(MapID);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.WaypointID) {
+          field.Name = "WaypointID";
+          field.Type = TType.I32;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(WaypointID);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.DungeonModel) {
+          field.Name = "DungeonModel";
+          field.Type = TType.I32;
+          field.ID = 3;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(DungeonModel);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("Transport_args(");
+        sb.Append("MapID: ");
+        sb.Append(MapID);
+        sb.Append(",WaypointID: ");
+        sb.Append(WaypointID);
+        sb.Append(",DungeonModel: ");
+        sb.Append(DungeonModel);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class Transport_result : TBase
+    {
+
+      public Transport_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("Transport_result");
+        oprot.WriteStructBegin(struc);
+
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("Transport_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetContainerItemList_args : TBase
+    {
+      private int _GetType;
+
+      public int GetType
+      {
+        get
+        {
+          return _GetType;
+        }
+        set
+        {
+          __isset.GetType = true;
+          this._GetType = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool GetType;
+      }
+
+      public GetContainerItemList_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                GetType = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetContainerItemList_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.GetType) {
+          field.Name = "GetType";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(GetType);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetContainerItemList_args(");
+        sb.Append("GetType: ");
+        sb.Append(GetType);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetContainerItemList_result : TBase
+    {
+      private List<ItemInfo> _success;
+
+      public List<ItemInfo> Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetContainerItemList_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.List) {
+                {
+                  Success = new List<ItemInfo>();
+                  TList _list60 = iprot.ReadListBegin();
+                  for( int _i61 = 0; _i61 < _list60.Count; ++_i61)
+                  {
+                    ItemInfo _elem62 = new ItemInfo();
+                    _elem62 = new ItemInfo();
+                    _elem62.Read(iprot);
+                    Success.Add(_elem62);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetContainerItemList_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.List;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
+              foreach (ItemInfo _iter63 in Success)
+              {
+                _iter63.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetContainerItemList_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetBagItemSpaceInfo_args : TBase
+    {
+
+      public GetBagItemSpaceInfo_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetBagItemSpaceInfo_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetBagItemSpaceInfo_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetBagItemSpaceInfo_result : TBase
+    {
+      private List<ItemSpaceInfo> _success;
+
+      public List<ItemSpaceInfo> Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetBagItemSpaceInfo_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.List) {
+                {
+                  Success = new List<ItemSpaceInfo>();
+                  TList _list64 = iprot.ReadListBegin();
+                  for( int _i65 = 0; _i65 < _list64.Count; ++_i65)
+                  {
+                    ItemSpaceInfo _elem66 = new ItemSpaceInfo();
+                    _elem66 = new ItemSpaceInfo();
+                    _elem66.Read(iprot);
+                    Success.Add(_elem66);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetBagItemSpaceInfo_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.List;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
+              foreach (ItemSpaceInfo _iter67 in Success)
+              {
+                _iter67.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetBagItemSpaceInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetCurrentMapInfo_args : TBase
+    {
+
+      public GetCurrentMapInfo_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetCurrentMapInfo_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetCurrentMapInfo_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetCurrentMapInfo_result : TBase
+    {
+      private WaypointInfo _success;
+
+      public WaypointInfo Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetCurrentMapInfo_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.Struct) {
+                Success = new WaypointInfo();
+                Success.Read(iprot);
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetCurrentMapInfo_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.Struct;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            Success.Write(oprot);
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetCurrentMapInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success== null ? "<null>" : Success.ToString());
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetCurrentMapID_args : TBase
+    {
+
+      public GetCurrentMapID_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetCurrentMapID_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetCurrentMapID_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetCurrentMapID_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetCurrentMapID_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetCurrentMapID_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetCurrentMapID_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetTrophyInfo_args : TBase
+    {
+      private int _TrophyObjPtr;
+
+      public int TrophyObjPtr
+      {
+        get
+        {
+          return _TrophyObjPtr;
+        }
+        set
+        {
+          __isset.TrophyObjPtr = true;
+          this._TrophyObjPtr = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool TrophyObjPtr;
+      }
+
+      public GetTrophyInfo_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                TrophyObjPtr = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetTrophyInfo_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.TrophyObjPtr) {
+          field.Name = "TrophyObjPtr";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(TrophyObjPtr);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetTrophyInfo_args(");
+        sb.Append("TrophyObjPtr: ");
+        sb.Append(TrophyObjPtr);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetTrophyInfo_result : TBase
+    {
+      private TrophyInfo _success;
+
+      public TrophyInfo Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetTrophyInfo_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.Struct) {
+                Success = new TrophyInfo();
+                Success.Read(iprot);
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetTrophyInfo_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.Struct;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            Success.Write(oprot);
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetTrophyInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success== null ? "<null>" : Success.ToString());
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class SetLootTypeList_args : TBase
+    {
+      private List<LootType> _LootList;
+      private short _SocketFilter;
+      private short _SocketConnectFilter;
+      private bool _LootThreeSocketColor;
+      private short _SkillQualityFilter;
+
+      public List<LootType> LootList
+      {
+        get
+        {
+          return _LootList;
+        }
+        set
+        {
+          __isset.LootList = true;
+          this._LootList = value;
+        }
+      }
+
+      public short SocketFilter
+      {
+        get
+        {
+          return _SocketFilter;
+        }
+        set
+        {
+          __isset.SocketFilter = true;
+          this._SocketFilter = value;
+        }
+      }
+
+      public short SocketConnectFilter
+      {
+        get
+        {
+          return _SocketConnectFilter;
+        }
+        set
+        {
+          __isset.SocketConnectFilter = true;
+          this._SocketConnectFilter = value;
+        }
+      }
+
+      public bool LootThreeSocketColor
+      {
+        get
+        {
+          return _LootThreeSocketColor;
+        }
+        set
+        {
+          __isset.LootThreeSocketColor = true;
+          this._LootThreeSocketColor = value;
+        }
+      }
+
+      public short SkillQualityFilter
+      {
+        get
+        {
+          return _SkillQualityFilter;
+        }
+        set
+        {
+          __isset.SkillQualityFilter = true;
+          this._SkillQualityFilter = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool LootList;
+        public bool SocketFilter;
+        public bool SocketConnectFilter;
+        public bool LootThreeSocketColor;
+        public bool SkillQualityFilter;
+      }
+
+      public SetLootTypeList_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.List) {
+                {
+                  LootList = new List<LootType>();
+                  TList _list68 = iprot.ReadListBegin();
+                  for( int _i69 = 0; _i69 < _list68.Count; ++_i69)
+                  {
+                    LootType _elem70 = new LootType();
+                    _elem70 = new LootType();
+                    _elem70.Read(iprot);
+                    LootList.Add(_elem70);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I16) {
+                SocketFilter = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 3:
+              if (field.Type == TType.I16) {
+                SocketConnectFilter = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 4:
+              if (field.Type == TType.Bool) {
+                LootThreeSocketColor = iprot.ReadBool();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 5:
+              if (field.Type == TType.I16) {
+                SkillQualityFilter = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("SetLootTypeList_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (LootList != null && __isset.LootList) {
+          field.Name = "LootList";
+          field.Type = TType.List;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          {
+            oprot.WriteListBegin(new TList(TType.Struct, LootList.Count));
+            foreach (LootType _iter71 in LootList)
+            {
+              _iter71.Write(oprot);
+            }
+            oprot.WriteListEnd();
+          }
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.SocketFilter) {
+          field.Name = "SocketFilter";
+          field.Type = TType.I16;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(SocketFilter);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.SocketConnectFilter) {
+          field.Name = "SocketConnectFilter";
+          field.Type = TType.I16;
+          field.ID = 3;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(SocketConnectFilter);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.LootThreeSocketColor) {
+          field.Name = "LootThreeSocketColor";
+          field.Type = TType.Bool;
+          field.ID = 4;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteBool(LootThreeSocketColor);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.SkillQualityFilter) {
+          field.Name = "SkillQualityFilter";
+          field.Type = TType.I16;
+          field.ID = 5;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(SkillQualityFilter);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("SetLootTypeList_args(");
+        sb.Append("LootList: ");
+        sb.Append(LootList);
+        sb.Append(",SocketFilter: ");
+        sb.Append(SocketFilter);
+        sb.Append(",SocketConnectFilter: ");
+        sb.Append(SocketConnectFilter);
+        sb.Append(",LootThreeSocketColor: ");
+        sb.Append(LootThreeSocketColor);
+        sb.Append(",SkillQualityFilter: ");
+        sb.Append(SkillQualityFilter);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class SetLootTypeList_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public SetLootTypeList_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("SetLootTypeList_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("SetLootTypeList_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ClearTrophyFilter_args : TBase
+    {
+
+      public ClearTrophyFilter_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ClearTrophyFilter_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ClearTrophyFilter_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ClearTrophyFilter_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ClearTrophyFilter_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ClearTrophyFilter_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ClearTrophyFilter_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetTrophyList_args : TBase
+    {
+      private List<TrophyBaseInfo> _TrophyIDList;
+
+      public List<TrophyBaseInfo> TrophyIDList
+      {
+        get
+        {
+          return _TrophyIDList;
+        }
+        set
+        {
+          __isset.TrophyIDList = true;
+          this._TrophyIDList = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool TrophyIDList;
+      }
+
+      public GetTrophyList_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.List) {
+                {
+                  TrophyIDList = new List<TrophyBaseInfo>();
+                  TList _list72 = iprot.ReadListBegin();
+                  for( int _i73 = 0; _i73 < _list72.Count; ++_i73)
+                  {
+                    TrophyBaseInfo _elem74 = new TrophyBaseInfo();
+                    _elem74 = new TrophyBaseInfo();
+                    _elem74.Read(iprot);
+                    TrophyIDList.Add(_elem74);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetTrophyList_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (TrophyIDList != null && __isset.TrophyIDList) {
+          field.Name = "TrophyIDList";
+          field.Type = TType.List;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          {
+            oprot.WriteListBegin(new TList(TType.Struct, TrophyIDList.Count));
+            foreach (TrophyBaseInfo _iter75 in TrophyIDList)
+            {
+              _iter75.Write(oprot);
+            }
+            oprot.WriteListEnd();
+          }
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetTrophyList_args(");
+        sb.Append("TrophyIDList: ");
+        sb.Append(TrophyIDList);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetTrophyList_result : TBase
+    {
+      private List<TrophyInfo> _success;
+
+      public List<TrophyInfo> Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetTrophyList_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.List) {
+                {
+                  Success = new List<TrophyInfo>();
+                  TList _list76 = iprot.ReadListBegin();
+                  for( int _i77 = 0; _i77 < _list76.Count; ++_i77)
+                  {
+                    TrophyInfo _elem78 = new TrophyInfo();
+                    _elem78 = new TrophyInfo();
+                    _elem78.Read(iprot);
+                    Success.Add(_elem78);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetTrophyList_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.List;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
+              foreach (TrophyInfo _iter79 in Success)
+              {
+                _iter79.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetTrophyList_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReadLoginState_args : TBase
+    {
+
+      public ReadLoginState_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReadLoginState_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReadLoginState_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReadLoginState_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ReadLoginState_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReadLoginState_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReadLoginState_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class UseItem_args : TBase
+    {
+      private int _WinID;
+      private int _ServiceID;
+
+      public int WinID
+      {
+        get
+        {
+          return _WinID;
+        }
+        set
+        {
+          __isset.WinID = true;
+          this._WinID = value;
+        }
+      }
+
+      public int ServiceID
+      {
+        get
+        {
+          return _ServiceID;
+        }
+        set
+        {
+          __isset.ServiceID = true;
+          this._ServiceID = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool WinID;
+        public bool ServiceID;
+      }
+
+      public UseItem_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                WinID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I32) {
+                ServiceID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("UseItem_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.WinID) {
+          field.Name = "WinID";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(WinID);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.ServiceID) {
+          field.Name = "ServiceID";
+          field.Type = TType.I32;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ServiceID);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("UseItem_args(");
+        sb.Append("WinID: ");
+        sb.Append(WinID);
+        sb.Append(",ServiceID: ");
+        sb.Append(ServiceID);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class UseItem_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public UseItem_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("UseItem_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("UseItem_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class UseTransDoor_args : TBase
+    {
+
+      public UseTransDoor_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("UseTransDoor_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("UseTransDoor_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class UseTransDoor_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public UseTransDoor_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("UseTransDoor_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("UseTransDoor_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ClickNPCMenu_args : TBase
+    {
+      private int _MenuID;
+
+      public int MenuID
+      {
+        get
+        {
+          return _MenuID;
+        }
+        set
+        {
+          __isset.MenuID = true;
+          this._MenuID = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool MenuID;
+      }
+
+      public ClickNPCMenu_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                MenuID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ClickNPCMenu_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.MenuID) {
+          field.Name = "MenuID";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(MenuID);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ClickNPCMenu_args(");
+        sb.Append("MenuID: ");
+        sb.Append(MenuID);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ClickNPCMenu_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ClickNPCMenu_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ClickNPCMenu_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ClickNPCMenu_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class PutToSell_args : TBase
+    {
+      private int _Left;
+      private int _Top;
+      private int _ServiceID;
+      private int _WinID;
+
+      public int Left
+      {
+        get
+        {
+          return _Left;
+        }
+        set
+        {
+          __isset.Left = true;
+          this._Left = value;
+        }
+      }
+
+      public int Top
+      {
+        get
+        {
+          return _Top;
+        }
+        set
+        {
+          __isset.Top = true;
+          this._Top = value;
+        }
+      }
+
+      public int ServiceID
+      {
+        get
+        {
+          return _ServiceID;
+        }
+        set
+        {
+          __isset.ServiceID = true;
+          this._ServiceID = value;
+        }
+      }
+
+      public int WinID
+      {
+        get
+        {
+          return _WinID;
+        }
+        set
+        {
+          __isset.WinID = true;
+          this._WinID = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool Left;
+        public bool Top;
+        public bool ServiceID;
+        public bool WinID;
+      }
+
+      public PutToSell_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                Left = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I32) {
+                Top = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 3:
+              if (field.Type == TType.I32) {
+                ServiceID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 4:
+              if (field.Type == TType.I32) {
+                WinID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("PutToSell_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.Left) {
+          field.Name = "Left";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Left);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.Top) {
+          field.Name = "Top";
+          field.Type = TType.I32;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Top);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.ServiceID) {
+          field.Name = "ServiceID";
+          field.Type = TType.I32;
+          field.ID = 3;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ServiceID);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.WinID) {
+          field.Name = "WinID";
+          field.Type = TType.I32;
+          field.ID = 4;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(WinID);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("PutToSell_args(");
+        sb.Append("Left: ");
+        sb.Append(Left);
+        sb.Append(",Top: ");
+        sb.Append(Top);
+        sb.Append(",ServiceID: ");
+        sb.Append(ServiceID);
+        sb.Append(",WinID: ");
+        sb.Append(WinID);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class PutToSell_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public PutToSell_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("PutToSell_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("PutToSell_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ConfirmSell_args : TBase
+    {
+
+      public ConfirmSell_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ConfirmSell_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ConfirmSell_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ConfirmSell_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ConfirmSell_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ConfirmSell_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ConfirmSell_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReturnChoseRole_args : TBase
+    {
+
+      public ReturnChoseRole_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReturnChoseRole_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReturnChoseRole_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReturnChoseRole_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ReturnChoseRole_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReturnChoseRole_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReturnChoseRole_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class Relive_args : TBase
+    {
+      private int _ReliveType;
+
+      public int ReliveType
+      {
+        get
+        {
+          return _ReliveType;
+        }
+        set
+        {
+          __isset.ReliveType = true;
+          this._ReliveType = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool ReliveType;
+      }
+
+      public Relive_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                ReliveType = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("Relive_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.ReliveType) {
+          field.Name = "ReliveType";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ReliveType);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("Relive_args(");
+        sb.Append("ReliveType: ");
+        sb.Append(ReliveType);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class Relive_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public Relive_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("Relive_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("Relive_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyWaypointID_args : TBase
+    {
+
+      public GetNearbyWaypointID_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyWaypointID_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyWaypointID_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyWaypointID_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyWaypointID_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyWaypointID_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyWaypointID_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbySellNPCObjPtr_args : TBase
+    {
+      private int _NPCNum;
+
+      public int NPCNum
+      {
+        get
+        {
+          return _NPCNum;
+        }
+        set
+        {
+          __isset.NPCNum = true;
+          this._NPCNum = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool NPCNum;
+      }
+
+      public GetNearbySellNPCObjPtr_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                NPCNum = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbySellNPCObjPtr_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.NPCNum) {
+          field.Name = "NPCNum";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(NPCNum);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbySellNPCObjPtr_args(");
+        sb.Append("NPCNum: ");
+        sb.Append(NPCNum);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbySellNPCObjPtr_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbySellNPCObjPtr_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbySellNPCObjPtr_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbySellNPCObjPtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyGoCityTransferDoorObjPtr_args : TBase
+    {
+
+      public GetNearbyGoCityTransferDoorObjPtr_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyGoCityTransferDoorObjPtr_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyGoCityTransferDoorObjPtr_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyGoCityTransferDoorObjPtr_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyGoCityTransferDoorObjPtr_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyGoCityTransferDoorObjPtr_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyGoCityTransferDoorObjPtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyGoBattleTransfetDoorObjPtr_args : TBase
+    {
+
+      public GetNearbyGoBattleTransfetDoorObjPtr_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyGoBattleTransfetDoorObjPtr_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyGoBattleTransfetDoorObjPtr_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyGoBattleTransfetDoorObjPtr_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyGoBattleTransfetDoorObjPtr_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyGoBattleTransfetDoorObjPtr_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyGoBattleTransfetDoorObjPtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyStorageObjPtr_args : TBase
+    {
+
+      public GetNearbyStorageObjPtr_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyStorageObjPtr_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyStorageObjPtr_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyStorageObjPtr_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyStorageObjPtr_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyStorageObjPtr_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyStorageObjPtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyCrossObjPtr_args : TBase
+    {
+
+      public GetNearbyCrossObjPtr_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyCrossObjPtr_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyCrossObjPtr_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyCrossObjPtr_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyCrossObjPtr_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyCrossObjPtr_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyCrossObjPtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyPollutantGateObjPtr_args : TBase
+    {
+
+      public GetNearbyPollutantGateObjPtr_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyPollutantGateObjPtr_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyPollutantGateObjPtr_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyPollutantGateObjPtr_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyPollutantGateObjPtr_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyPollutantGateObjPtr_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyPollutantGateObjPtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReloadPollutantGateName_args : TBase
+    {
+
+      public ReloadPollutantGateName_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReloadPollutantGateName_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReloadPollutantGateName_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReloadPollutantGateName_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ReloadPollutantGateName_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReloadPollutantGateName_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReloadPollutantGateName_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class LogGateName_args : TBase
+    {
+
+      public LogGateName_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("LogGateName_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("LogGateName_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class LogGateName_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public LogGateName_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("LogGateName_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("LogGateName_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class PickupItem_args : TBase
+    {
+      private int _BagObjPtr;
+      private int _ItemServiceID;
+
+      public int BagObjPtr
+      {
+        get
+        {
+          return _BagObjPtr;
+        }
+        set
+        {
+          __isset.BagObjPtr = true;
+          this._BagObjPtr = value;
+        }
+      }
+
+      public int ItemServiceID
+      {
+        get
+        {
+          return _ItemServiceID;
+        }
+        set
+        {
+          __isset.ItemServiceID = true;
+          this._ItemServiceID = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool BagObjPtr;
+        public bool ItemServiceID;
+      }
+
+      public PickupItem_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                BagObjPtr = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I32) {
+                ItemServiceID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("PickupItem_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.BagObjPtr) {
+          field.Name = "BagObjPtr";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(BagObjPtr);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.ItemServiceID) {
+          field.Name = "ItemServiceID";
+          field.Type = TType.I32;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ItemServiceID);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("PickupItem_args(");
+        sb.Append("BagObjPtr: ");
+        sb.Append(BagObjPtr);
+        sb.Append(",ItemServiceID: ");
+        sb.Append(ItemServiceID);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class PickupItem_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public PickupItem_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("PickupItem_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("PickupItem_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class DropdownItem_args : TBase
+    {
+      private int _StoragePageObjPtr;
+      private short _Left;
+      private short _Top;
+
+      public int StoragePageObjPtr
+      {
+        get
+        {
+          return _StoragePageObjPtr;
+        }
+        set
+        {
+          __isset.StoragePageObjPtr = true;
+          this._StoragePageObjPtr = value;
+        }
+      }
+
+      public short Left
+      {
+        get
+        {
+          return _Left;
+        }
+        set
+        {
+          __isset.Left = true;
+          this._Left = value;
+        }
+      }
+
+      public short Top
+      {
+        get
+        {
+          return _Top;
+        }
+        set
+        {
+          __isset.Top = true;
+          this._Top = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool StoragePageObjPtr;
+        public bool Left;
+        public bool Top;
+      }
+
+      public DropdownItem_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                StoragePageObjPtr = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I16) {
+                Left = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 3:
+              if (field.Type == TType.I16) {
+                Top = iprot.ReadI16();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("DropdownItem_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.StoragePageObjPtr) {
+          field.Name = "StoragePageObjPtr";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(StoragePageObjPtr);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.Left) {
+          field.Name = "Left";
+          field.Type = TType.I16;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(Left);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.Top) {
+          field.Name = "Top";
+          field.Type = TType.I16;
+          field.ID = 3;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI16(Top);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("DropdownItem_args(");
+        sb.Append("StoragePageObjPtr: ");
+        sb.Append(StoragePageObjPtr);
+        sb.Append(",Left: ");
+        sb.Append(Left);
+        sb.Append(",Top: ");
+        sb.Append(Top);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class DropdownItem_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public DropdownItem_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("DropdownItem_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("DropdownItem_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class DropdownItemStack_args : TBase
+    {
+      private int _StoragePageObjPtr;
+      private int _TargetServiceID;
+
+      public int StoragePageObjPtr
+      {
+        get
+        {
+          return _StoragePageObjPtr;
+        }
+        set
+        {
+          __isset.StoragePageObjPtr = true;
+          this._StoragePageObjPtr = value;
+        }
+      }
+
+      public int TargetServiceID
+      {
+        get
+        {
+          return _TargetServiceID;
+        }
+        set
+        {
+          __isset.TargetServiceID = true;
+          this._TargetServiceID = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool StoragePageObjPtr;
+        public bool TargetServiceID;
+      }
+
+      public DropdownItemStack_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                StoragePageObjPtr = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I32) {
+                TargetServiceID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("DropdownItemStack_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.StoragePageObjPtr) {
+          field.Name = "StoragePageObjPtr";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(StoragePageObjPtr);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.TargetServiceID) {
+          field.Name = "TargetServiceID";
+          field.Type = TType.I32;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(TargetServiceID);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("DropdownItemStack_args(");
+        sb.Append("StoragePageObjPtr: ");
+        sb.Append(StoragePageObjPtr);
+        sb.Append(",TargetServiceID: ");
+        sb.Append(TargetServiceID);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class DropdownItemStack_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public DropdownItemStack_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("DropdownItemStack_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("DropdownItemStack_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ActiveStoragePageInfo_args : TBase
+    {
+      private int _PageNum;
+
+      public int PageNum
+      {
+        get
+        {
+          return _PageNum;
+        }
+        set
+        {
+          __isset.PageNum = true;
+          this._PageNum = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool PageNum;
+      }
+
+      public ActiveStoragePageInfo_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                PageNum = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ActiveStoragePageInfo_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.PageNum) {
+          field.Name = "PageNum";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(PageNum);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ActiveStoragePageInfo_args(");
+        sb.Append("PageNum: ");
+        sb.Append(PageNum);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ActiveStoragePageInfo_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ActiveStoragePageInfo_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ActiveStoragePageInfo_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ActiveStoragePageInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetStoragePagePtr_args : TBase
+    {
+      private int _ContainerNum;
+
+      public int ContainerNum
+      {
+        get
+        {
+          return _ContainerNum;
+        }
+        set
+        {
+          __isset.ContainerNum = true;
+          this._ContainerNum = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool ContainerNum;
+      }
+
+      public GetStoragePagePtr_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                ContainerNum = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetStoragePagePtr_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.ContainerNum) {
+          field.Name = "ContainerNum";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ContainerNum);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetStoragePagePtr_args(");
+        sb.Append("ContainerNum: ");
+        sb.Append(ContainerNum);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetStoragePagePtr_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetStoragePagePtr_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetStoragePagePtr_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetStoragePagePtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class IdentityItem_args : TBase
+    {
+      private int _CurrencyServiceID;
+      private int _ArmorServiceID;
+
+      public int CurrencyServiceID
+      {
+        get
+        {
+          return _CurrencyServiceID;
+        }
+        set
+        {
+          __isset.CurrencyServiceID = true;
+          this._CurrencyServiceID = value;
+        }
+      }
+
+      public int ArmorServiceID
+      {
+        get
+        {
+          return _ArmorServiceID;
+        }
+        set
+        {
+          __isset.ArmorServiceID = true;
+          this._ArmorServiceID = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool CurrencyServiceID;
+        public bool ArmorServiceID;
+      }
+
+      public IdentityItem_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                CurrencyServiceID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I32) {
+                ArmorServiceID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("IdentityItem_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.CurrencyServiceID) {
+          field.Name = "CurrencyServiceID";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(CurrencyServiceID);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.ArmorServiceID) {
+          field.Name = "ArmorServiceID";
+          field.Type = TType.I32;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ArmorServiceID);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("IdentityItem_args(");
+        sb.Append("CurrencyServiceID: ");
+        sb.Append(CurrencyServiceID);
+        sb.Append(",ArmorServiceID: ");
+        sb.Append(ArmorServiceID);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class IdentityItem_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public IdentityItem_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("IdentityItem_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("IdentityItem_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class WaitCastComplete_args : TBase
+    {
+
+      public WaitCastComplete_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("WaitCastComplete_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("WaitCastComplete_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class WaitCastComplete_result : TBase
+    {
+
+      public WaitCastComplete_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("WaitCastComplete_result");
+        oprot.WriteStructBegin(struc);
+
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("WaitCastComplete_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReadStorageUIPTR_args : TBase
+    {
+      private int _PageNum;
+
+      public int PageNum
+      {
+        get
+        {
+          return _PageNum;
+        }
+        set
+        {
+          __isset.PageNum = true;
+          this._PageNum = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool PageNum;
+      }
+
+      public ReadStorageUIPTR_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                PageNum = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReadStorageUIPTR_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.PageNum) {
+          field.Name = "PageNum";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(PageNum);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReadStorageUIPTR_args(");
+        sb.Append("PageNum: ");
+        sb.Append(PageNum);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReadStorageUIPTR_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ReadStorageUIPTR_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReadStorageUIPTR_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReadStorageUIPTR_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReadStoragePageNum_args : TBase
+    {
+
+      public ReadStoragePageNum_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReadStoragePageNum_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReadStoragePageNum_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ReadStoragePageNum_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ReadStoragePageNum_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ReadStoragePageNum_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ReadStoragePageNum_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class HitKey_args : TBase
+    {
+      private int _Key;
+
+      public int Key
+      {
+        get
+        {
+          return _Key;
+        }
+        set
+        {
+          __isset.Key = true;
+          this._Key = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool Key;
+      }
+
+      public HitKey_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                Key = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("HitKey_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.Key) {
+          field.Name = "Key";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Key);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("HitKey_args(");
+        sb.Append("Key: ");
+        sb.Append(Key);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class HitKey_result : TBase
+    {
+
+      public HitKey_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("HitKey_result");
+        oprot.WriteStructBegin(struc);
+
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("HitKey_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class UpSkill_args : TBase
+    {
+
+      public UpSkill_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("UpSkill_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("UpSkill_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class UpSkill_result : TBase
+    {
+
+      public UpSkill_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("UpSkill_result");
+        oprot.WriteStructBegin(struc);
+
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("UpSkill_result(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class IsItemOnMouse_args : TBase
+    {
+
+      public IsItemOnMouse_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("IsItemOnMouse_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("IsItemOnMouse_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class IsItemOnMouse_result : TBase
+    {
+      private bool _success;
+
+      public bool Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public IsItemOnMouse_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.Bool) {
+                Success = iprot.ReadBool();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("IsItemOnMouse_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.Bool;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteBool(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("IsItemOnMouse_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class IsBuffExists_args : TBase
+    {
+      private int _skill;
+
+      public int Skill
+      {
+        get
+        {
+          return _skill;
+        }
+        set
+        {
+          __isset.skill = true;
+          this._skill = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool skill;
+      }
+
+      public IsBuffExists_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                Skill = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("IsBuffExists_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.skill) {
+          field.Name = "skill";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Skill);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("IsBuffExists_args(");
+        sb.Append("Skill: ");
+        sb.Append(Skill);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class IsBuffExists_result : TBase
+    {
+      private bool _success;
+
+      public bool Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public IsBuffExists_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.Bool) {
+                Success = iprot.ReadBool();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("IsBuffExists_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.Bool;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteBool(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("IsBuffExists_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetItemDescription_args : TBase
+    {
+      private int _ItemObjPtr;
+
+      public int ItemObjPtr
+      {
+        get
+        {
+          return _ItemObjPtr;
+        }
+        set
+        {
+          __isset.ItemObjPtr = true;
+          this._ItemObjPtr = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool ItemObjPtr;
+      }
+
+      public GetItemDescription_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                ItemObjPtr = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetItemDescription_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.ItemObjPtr) {
+          field.Name = "ItemObjPtr";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ItemObjPtr);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetItemDescription_args(");
+        sb.Append("ItemObjPtr: ");
+        sb.Append(ItemObjPtr);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetItemDescription_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetItemDescription_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetItemDescription_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetItemDescription_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetBagItemFullInfo_args : TBase
+    {
+
+      public GetBagItemFullInfo_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetBagItemFullInfo_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetBagItemFullInfo_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetBagItemFullInfo_result : TBase
+    {
+      private List<ItemFullInfo> _success;
+
+      public List<ItemFullInfo> Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetBagItemFullInfo_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.List) {
+                {
+                  Success = new List<ItemFullInfo>();
+                  TList _list80 = iprot.ReadListBegin();
+                  for( int _i81 = 0; _i81 < _list80.Count; ++_i81)
+                  {
+                    ItemFullInfo _elem82 = new ItemFullInfo();
+                    _elem82 = new ItemFullInfo();
+                    _elem82.Read(iprot);
+                    Success.Add(_elem82);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetBagItemFullInfo_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.List;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
+              foreach (ItemFullInfo _iter83 in Success)
+              {
+                _iter83.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetBagItemFullInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
         sb.Append(")");
         return sb.ToString();
       }
