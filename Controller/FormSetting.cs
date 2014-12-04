@@ -9,7 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-
+using Thrift.GameCall;
 namespace Controller
 {
     public partial class FormSetting : Form
@@ -118,9 +118,11 @@ namespace Controller
 
 
             cbDungeonModel.Checked = data.bDungeonModel;
-            cbReliveModel.Checked=data.bBattleRelive;
-            cbExplorePollutant.Checked=data.bExplorePollutant;
-            cbPriorityAttack.Checked=data.bPriorityAttack;
+            cbReliveModel.Checked = data.bBattleRelive;
+            cbExplorePollutant.Checked = data.bExplorePollutant;
+            cbPriorityAttack.Checked = data.bPriorityAttack;
+            cbUseHideHome.Checked = data.bDungeonHome;
+            cbFullHide.Checked = data.bFullHide;
             foreach (var item in data.MissionMapList)
             {
                 lbMissionMap.Items.Add(item);
@@ -129,11 +131,14 @@ namespace Controller
             //技能
             cbAutoUpSkill.Checked = data.bAutoUpSkill;
 
+            cbDefaultAttSpeed.Checked=data.bUseSafeAttSpeed;
+
             tbNorAttDis.Text=data.NorAttDis.ToString();
             if (data.nNorAttKey != -1)
             {
                 cbKeyLeft.Checked = true;
                 cbLeftSkill.SelectedIndex = 0;
+                tbLeftAttStep.Text = data.NorAttStep.ToString();
             }
 
             if(data.nGobackSkill != -1)
@@ -141,25 +146,23 @@ namespace Controller
                 cbKeyMid.Checked = true;
                 cbMidSkill.SelectedIndex = 0;
             }
-        //    tbNorAttStep.Text=data.NorAttStep.ToString();
 
-        //    cbUseSinAtt.Checked=data.bUseSinAtt;
             tbSinAttDis.Text=data.SinAttDis.ToString();
             if (data.nSinAttKey != -1)
             {
                 cbKeyQ.Checked = true;
                 cbQSkill.SelectedIndex = 0;
+                tbQAttStep.Text = data.SinAttStep.ToString();
             }
-        //    tbSinAttStep.Text=data.SinAttStep.ToString();
 
-       //     cbUseMulAtt.Checked=data.bUseMulAtt;
             tbMulAttDis.Text=data.MulAttDis.ToString();
             if(data.nMulAttKey!=-1)
             {
                 cbKeyW.Checked = true;
                 cbWSkill.SelectedIndex = 0;
+                tbWAttStep.Text = data.MulAttStep.ToString();
             }
-       //     tbMulAttStep.Text=data.MulAttStep.ToString();
+
 
             tbMultiCount.Text= data.MultiCount.ToString();
 
@@ -586,242 +589,7 @@ namespace Controller
                         break;
                 }
             }
-           //foreach(var item in data.HPKeyList)
-           //{
-           //    switch(item.Key)
-           //    {
-           //        case 1:
-           //            cbType1.SelectedIndex = 0;
-           //            tbType1.Text = item.HP.ToString();
-           //            tbStep1.Text = item.Step.ToString();
-           //            break;
-           //        case 2:
-           //            cbType2.SelectedIndex = 0;
-           //            tbType2.Text = item.HP.ToString();
-           //            tbStep2.Text = item.Step.ToString();
-           //            break;
-           //        case 3:
-           //            cbType3.SelectedIndex = 0;
-           //            tbType3.Text = item.HP.ToString();
-           //            tbStep3.Text = item.Step.ToString();
-           //            break;
-           //        case 4:
-           //            cbType4.SelectedIndex = 0;
-           //            tbType4.Text = item.HP.ToString();
-           //            tbStep4.Text = item.Step.ToString();
-           //            break;
-           //        case 5:
-           //            cbType5.SelectedIndex = 0;
-           //            tbType5.Text = item.HP.ToString();
-           //            tbStep5.Text = item.Step.ToString();
-           //            break;
-           //    }
-
-           //}
-           //foreach (var item in data.MPKeyList)
-           //{
-           //    switch (item.Key)
-           //    {
-           //        case 1:
-           //            cbType1.SelectedIndex = 1;
-           //            tbType1.Text = item.MP.ToString();
-           //            tbStep1.Text = item.Step.ToString();
-           //            break;
-           //        case 2:
-           //            cbType2.SelectedIndex = 1;
-           //            tbType2.Text = item.MP.ToString();
-           //            tbStep2.Text = item.Step.ToString();
-           //            break;
-           //        case 3:
-           //            cbType3.SelectedIndex = 1;
-           //            tbType3.Text = item.MP.ToString();
-           //            tbStep3.Text = item.Step.ToString();
-           //            break;
-           //        case 4:
-           //            cbType4.SelectedIndex = 1;
-           //            tbType4.Text = item.MP.ToString();
-           //            tbStep4.Text = item.Step.ToString();
-           //            break;
-           //        case 5:
-           //            cbType5.SelectedIndex = 1;
-           //            tbType5.Text = item.MP.ToString();
-           //            tbStep5.Text = item.Step.ToString();
-           //            break;
-           //    }
-           //}
-           //foreach (var item in data.ShieldKeyList)
-           //{
-           //    switch (item.Key)
-           //    {
-           //        case 1:
-           //            cbType1.SelectedIndex = 2;
-           //            tbType1.Text = item.Shield.ToString();
-           //            tbStep1.Text = item.Step.ToString();
-           //            break;
-           //        case 2:
-           //            cbType2.SelectedIndex = 2;
-           //            tbType2.Text = item.Shield.ToString();
-           //            tbStep2.Text = item.Step.ToString();
-           //            break;
-           //        case 3:
-           //            cbType3.SelectedIndex = 2;
-           //            tbType3.Text = item.Shield.ToString();
-           //            tbStep3.Text = item.Step.ToString();
-           //            break;
-           //        case 4:
-           //            cbType4.SelectedIndex = 2;
-           //            tbType4.Text = item.Shield.ToString();
-           //            tbStep4.Text = item.Step.ToString();
-           //            break;
-           //        case 5:
-           //            cbType5.SelectedIndex = 2;
-           //            tbType5.Text = item.Shield.ToString();
-           //            tbStep5.Text = item.Step.ToString();
-           //            break;
-           //    }
-           //}
-           //foreach (var item in data.SpeedKeyList)
-           //{
-           //    switch (item.Key)
-           //    {
-           //        case 1:
-           //            cbType1.SelectedIndex = 3;
-           //            tbStep1.Text = item.Step.ToString();
-           //            break;
-           //        case 2:
-           //            cbType2.SelectedIndex = 3;
-           //            tbStep2.Text = item.Step.ToString();
-           //            break;
-           //        case 3:
-           //            cbType3.SelectedIndex = 3;
-           //            tbStep3.Text = item.Step.ToString();
-           //            break;
-           //        case 4:
-           //            cbType4.SelectedIndex = 3;
-           //            tbStep4.Text = item.Step.ToString();
-           //            break;
-           //        case 5:
-           //            cbType5.SelectedIndex = 3;
-           //            tbStep5.Text = item.Step.ToString();
-           //            break;
-           //    }
-           //}
-            //tbKey1.Text = data.HPFlask.ToString();
-            //tbKey3.Text = data.MPFlask.ToString();
-            //tbKey2.Text = data.DirHPFlask.ToString();
-            //tbKey4.Text = data.DirMPFlask.ToString();
-
-            //tbKey1Step.Text = data.HPStep.ToString();
-            //tbKey2Step.Text = data.DirHPStep.ToString();
-            //tbKey3Step.Text = data.MPStep.ToString();
-            //tbKey4Step.Text = data.DirMPStep.ToString();
-            //tbKey5Step.Text = data.SpeedStep.ToString();
-           
-            //foreach(var item in data.HPKey)
-            //{ 
-            //    switch(item)
-            //    {
-            //        case 1:
-            //            cbKey1.SelectedIndex = 0;
-            //            break;
-            //        case 2:
-            //            cbKey2.SelectedIndex = 0;
-            //            break;
-            //        case 3:
-            //            cbKey3.SelectedIndex = 0;
-            //            break;
-            //        case 4:
-            //            cbKey4.SelectedIndex = 0;
-            //            break;
-            //        case 5:
-            //            cbKey5.SelectedIndex = 0;
-            //            break;
-            //    }
-            //}
-            //foreach (var item in data.DirHPKey)
-            //{
-            //    switch (item)
-            //    {
-            //        case 1:
-            //            cbKey1.SelectedIndex = 1;
-            //            break;
-            //        case 2:
-            //            cbKey2.SelectedIndex = 1;
-            //            break;
-            //        case 3:
-            //            cbKey3.SelectedIndex = 1;
-            //            break;
-            //        case 4:
-            //            cbKey4.SelectedIndex = 1;
-            //            break;
-            //        case 5:
-            //            cbKey5.SelectedIndex = 1;
-            //            break;
-            //    }
-            //}
-            //foreach (var item in data.MPKey)
-            //{
-            //    switch (item)
-            //    {
-            //        case 1:
-            //            cbKey1.SelectedIndex = 2;
-            //            break;
-            //        case 2:
-            //            cbKey2.SelectedIndex = 2;
-            //            break;
-            //        case 3:
-            //            cbKey3.SelectedIndex = 2;
-            //            break;
-            //        case 4:
-            //            cbKey4.SelectedIndex = 2;
-            //            break;
-            //        case 5:
-            //            cbKey5.SelectedIndex = 2;
-            //            break;
-            //    }
-            //}
-            //foreach (var item in data.DirMPKey)
-            //{
-            //    switch (item)
-            //    {
-            //        case 1:
-            //            cbKey1.SelectedIndex = 3;
-            //            break;
-            //        case 2:
-            //            cbKey2.SelectedIndex = 3;
-            //            break;
-            //        case 3:
-            //            cbKey3.SelectedIndex = 3;
-            //            break;
-            //        case 4:
-            //            cbKey4.SelectedIndex = 3;
-            //            break;
-            //        case 5:
-            //            cbKey5.SelectedIndex = 3;
-            //            break;
-            //    }
-            //}
-            //foreach (var item in data.SpeedKey)
-            //{
-            //    switch (item)
-            //    {
-            //        case 1:
-            //            cbKey1.SelectedIndex = 4;
-            //            break;
-            //        case 2:
-            //            cbKey2.SelectedIndex = 4;
-            //            break;
-            //        case 3:
-            //            cbKey3.SelectedIndex = 4;
-            //            break;
-            //        case 4:
-            //            cbKey4.SelectedIndex = 4;
-            //            break;
-            //        case 5:
-            //            cbKey5.SelectedIndex = 4;
-            //            break;
-            //    }
-            //}
+       
 
             //拾取
             foreach (var item in data.LootTypeList)
@@ -1025,6 +793,12 @@ namespace Controller
             LootFile.Close();
             cbLootNameTypeFilter.SelectedIndex = 0;
             updateLootNameText();
+
+            foreach (var item in data.AllFilter)
+            {
+                lbAllFilter.Items.Add(item.strName);
+            }
+           // lbAllFilter.Items
             return ret;
         }
 
@@ -1132,6 +906,8 @@ namespace Controller
             data.bBattleRelive = cbReliveModel.Checked;
             data.bExplorePollutant = cbExplorePollutant.Checked;
             data.bPriorityAttack = cbPriorityAttack.Checked;
+            data.bDungeonHome = cbUseHideHome.Checked;
+            data.bFullHide = cbFullHide.Checked;
 
             data.MissionMapList.Clear();
             foreach (var item in lbMissionMap.Items)
@@ -1141,6 +917,8 @@ namespace Controller
             //技能
 
             data.bAutoUpSkill = cbAutoUpSkill.Checked;
+
+            data.bUseSafeAttSpeed = cbDefaultAttSpeed.Checked;
 
             float.TryParse(tbNorAttDis.Text, out data.NorAttDis);
           //  int.TryParse(tbNorAttStep.Text, out data.NorAttStep);
@@ -1171,6 +949,7 @@ namespace Controller
                 {
                     case 0://普通攻击
                         data.nNorAttKey = 0;
+                        int.TryParse(tbLeftAttStep.Text, out  data.NorAttStep);
                         break;
                     case 1: //光環技能
                         data.haloSkill.Add(0);
@@ -1344,6 +1123,7 @@ namespace Controller
                 {
                     case 0://单体攻击
                         data.nSinAttKey = 3;
+                        int.TryParse(tbQAttStep.Text, out  data.SinAttStep);
                         break;
                     case 1: //光環技能
                         data.haloSkill.Add(3);
@@ -1402,6 +1182,7 @@ namespace Controller
                 {
                     case 0://群体攻击
                         data.nMulAttKey = 4;
+                        int.TryParse(tbWAttStep.Text, out  data.MulAttStep);
                         break;
                     case 1: //光環技能
                         data.haloSkill.Add(4);
@@ -2470,8 +2251,7 @@ namespace Controller
                 return;
             }
             Program.gdata.LootName.Add(strLootName, nType);
-            //string strLootNameInfo = strLootName + "*" + nType.ToString();
-            //lbLootName.Items.Add(strLootNameInfo);
+
             updateLootNameText();
         }
 
@@ -2480,7 +2260,6 @@ namespace Controller
             string strKey=lbLootName.SelectedItem.ToString();
             Program.gdata.LootName.Remove(strKey);
             updateLootNameText();
-         //   lbLootName.Items.Remove(lbLootName.SelectedItem);
         }
         void updateLootNameText()
         {
@@ -2504,6 +2283,259 @@ namespace Controller
         private void cbLootNameTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             updateLootNameText();
+        }
+
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        string CurFilterName = null;
+        List<string> CurFilterStrings = new List<string>();
+        void FlashFilterItems()
+        {
+            lbFilter.Items.Clear();
+            foreach (var item in CurFilterStrings)
+            {
+                lbFilter.Items.Add(item);
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (CurFilterName == null)
+            {
+                MessageBox.Show("请选择或创建一个过滤器");
+                return;
+            }
+            int n = lbProperty.SelectedIndex;
+            if (n < 0)
+                return;
+            string strProperty = lbProperty.SelectedItem.ToString();
+            if (strProperty.Length < 1)
+                return;
+            if (CurFilterStrings.Contains(strProperty))
+            {
+                return;
+            }
+            CurFilterStrings.Add(strProperty);
+            FlashFilterItems();
+        }
+        List<Property> GenOneFilter(List<String> AllProperty)
+        {
+            HashSet<string> AddedKey = new HashSet<string>();
+            List<Property> DealProperty = new List<Property>();
+            //string[] AllProperty = strProperty.Split('|');
+            foreach (var OneProperty in AllProperty)
+            {
+                if (OneProperty.Length < 1)
+                    continue;
+                //提取数字
+                bool bNumbering = false;
+                Property OneDealProperty = new Property();
+                StringBuilder strNum = null;// new StringBuilder();
+                StringBuilder strKey = new StringBuilder();
+                foreach (var OneChar in OneProperty)
+                {
+                    if (Program.NumberChar.Contains(OneChar))//如果是数字
+                    {
+                        if (!bNumbering)
+                        {
+                            bNumbering = true;
+                            strKey.Append("*");
+                            strNum = new StringBuilder();
+                        }
+                        strNum.Append(OneChar);
+                    }
+                    else
+                    {
+                        if (bNumbering)
+                        {
+                            double dbTemp = 0;
+                            if (double.TryParse(strNum.ToString(), out dbTemp))
+                            {
+                                OneDealProperty.data.Add(dbTemp);
+                            }
+                         //   strNum.Clear();
+                        }
+                        bNumbering = false;
+                        strKey.Append(OneChar);
+                    }
+                }
+                if (bNumbering)
+                {
+                    double dbTemp = 0;
+                    if (double.TryParse(strNum.ToString(), out dbTemp))
+                    {
+                        OneDealProperty.data.Add(dbTemp);
+                    }
+                  //  strNum.Clear();
+                }
+                OneDealProperty.strInfo = strKey.ToString();
+                if (!AddedKey.Contains(OneDealProperty.strInfo))
+                {
+                    DealProperty.Add(OneDealProperty);
+                    AddedKey.Add(OneDealProperty.strInfo);
+                }
+            }
+            return DealProperty;
+        }
+        private void btnSaveCurFilter_Click(object sender, EventArgs e)
+        {
+            if (CurFilterName == null)
+            {
+                MessageBox.Show("请选择或创建一个过滤器");
+                return;
+            }
+            //保存当前过滤器
+
+            List<Property> NewRules = GenOneFilter(CurFilterStrings);
+
+            foreach (var item in data.AllFilter)
+            {
+                if (item.strName == CurFilterName)
+                {
+                    item.rules = NewRules;
+                    return;
+                }
+            }
+            MessageBox.Show("保存失敗,過濾器可能已被刪除");
+        }
+
+        private void btnDelProperty_Click(object sender, EventArgs e)
+        {
+            int n = lbFilter.SelectedIndex;
+            CurFilterStrings.Remove(CurFilterStrings[n]);
+            FlashFilterItems();
+        }
+
+        private void btnEditProperty_Click(object sender, EventArgs e)
+        {
+            int n = lbFilter.SelectedIndex;
+            if (n < 0)
+                return;
+          //  MessageBox.Show(CurFilterStrings[n]);
+
+            EditProperty dlg = new EditProperty();
+            dlg.SetPropertyString(CurFilterStrings[n]);
+            DialogResult ret = dlg.ShowDialog();
+            if (ret != DialogResult.OK)
+                return;
+            string strName = dlg.strProperty;
+            if (strName.Length < 1)
+                return;
+
+            CurFilterStrings[n] = strName;
+            FlashFilterItems();
+        }
+
+        void FlashAllFilterCtrl()
+        {
+            lbAllFilter.Items.Clear();
+            foreach (var item in data.AllFilter)
+            {
+                lbAllFilter.Items.Add(item.strName);
+            }
+        }
+        private void btnCreateFilter_Click(object sender, EventArgs e)
+        {
+            CreateFilter dlg = new CreateFilter();
+
+            DialogResult ret = dlg.ShowDialog();
+            if (ret != DialogResult.OK)
+                return;
+
+            string strName = dlg.FilterName;
+
+            if (strName.Length < 1)
+                return;
+            foreach (var item in data.AllFilter)
+            {
+                if (item.strName == strName)
+                {
+                    MessageBox.Show("此過濾器名稱已經存在");
+                    return;
+                }
+            }
+            Filter filter = new Filter();
+            filter.strName = strName;
+            data.AllFilter.Add(filter);
+            FlashAllFilterCtrl();
+        }
+
+        private void btnDelFilter_Click(object sender, EventArgs e)
+        {
+            int n = lbAllFilter.SelectedIndex;
+            if (n < 0)
+                return;
+            data.AllFilter.Remove(data.AllFilter[n]);
+            FlashAllFilterCtrl();
+        }
+
+        private void lbAllFilter_DoubleClick(object sender, EventArgs e)
+        {
+            int n = lbAllFilter.SelectedIndex;
+            if (n < 0)
+            {
+                return;
+            }
+            //if (CurFilterName != null)
+            //{
+            //    //询问是否保存旧的
+            //}
+            lbFilter.Items.Clear();
+            CurFilterName = lbAllFilter.SelectedItem.ToString();
+            lbCurFilterName.Text = CurFilterName;
+            CurFilterStrings.Clear();
+            StringBuilder temp = null;// new StringBuilder();
+           
+            foreach (var item in data.AllFilter[n].rules)
+            {
+                int i = 0;
+                temp = new StringBuilder();
+                foreach (var OneChar in item.strInfo)
+                {
+                    if (OneChar == '*')
+                    {
+                        temp.Append(item.data[i].ToString());
+                        ++i;
+                    }
+                    else
+                        temp.Append(OneChar);
+                }
+                CurFilterStrings.Add(temp.ToString());
+            }
+            FlashFilterItems();
+        }
+        List<ItemPropertyInfo> bag=null;
+        private void lbBag_DoubleClick(object sender, EventArgs e)
+        {
+            //将背包的物品的属性显示在属性列表里
+            int n=lbBag.SelectedIndex;
+            if (n < 0)
+                return;
+            lbProperty.Items.Clear();
+
+            sbyte[] bname = bag[n].Property.ToArray();
+            byte[] bytes = new byte[bname.Length];
+            Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+            string strProperty = Encoding.Unicode.GetString(bytes);
+            string[] SplitProperty=strProperty.Split('|');
+            foreach(var item in SplitProperty)
+            {
+                lbProperty.Items.Add(item);
+            }         
+        }
+
+        private void btnGetBagItemList_Click(object sender, EventArgs e)
+        {
+            lbBag.Items.Clear();
+            bag = Program.client.GetBagItemPropertyInfo();
+            foreach (var item in bag)
+            {
+                sbyte[] bname = item.Name.ToArray();
+                byte[] bytes = new byte[bname.Length];
+                Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                string strName = Encoding.Unicode.GetString(bytes);
+                lbBag.Items.Add(strName);
+            }
         }
     }
 }

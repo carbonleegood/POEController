@@ -189,10 +189,25 @@ namespace Thrift.GameCall
       IAsyncResult Begin_GetNearbyWaypointID(AsyncCallback callback, object state);
       int End_GetNearbyWaypointID(IAsyncResult asyncResult);
       #endif
+      int GetNearbyWaypointPos();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyWaypointPos(AsyncCallback callback, object state);
+      int End_GetNearbyWaypointPos(IAsyncResult asyncResult);
+      #endif
+      int GetNearbyWaypointObjPtr();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyWaypointObjPtr(AsyncCallback callback, object state);
+      int End_GetNearbyWaypointObjPtr(IAsyncResult asyncResult);
+      #endif
       int GetNearbySellNPCObjPtr(int NPCNum);
       #if SILVERLIGHT
       IAsyncResult Begin_GetNearbySellNPCObjPtr(AsyncCallback callback, object state, int NPCNum);
       int End_GetNearbySellNPCObjPtr(IAsyncResult asyncResult);
+      #endif
+      long GetNearbySellNPCPos();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbySellNPCPos(AsyncCallback callback, object state);
+      long End_GetNearbySellNPCPos(IAsyncResult asyncResult);
       #endif
       int GetNearbyGoCityTransferDoorObjPtr();
       #if SILVERLIGHT
@@ -209,6 +224,11 @@ namespace Thrift.GameCall
       IAsyncResult Begin_GetNearbyStorageObjPtr(AsyncCallback callback, object state);
       int End_GetNearbyStorageObjPtr(IAsyncResult asyncResult);
       #endif
+      int GetNearbyStoragePos();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyStoragePos(AsyncCallback callback, object state);
+      int End_GetNearbyStoragePos(IAsyncResult asyncResult);
+      #endif
       int GetNearbyCrossObjPtr();
       #if SILVERLIGHT
       IAsyncResult Begin_GetNearbyCrossObjPtr(AsyncCallback callback, object state);
@@ -218,6 +238,11 @@ namespace Thrift.GameCall
       #if SILVERLIGHT
       IAsyncResult Begin_GetNearbyPollutantGateObjPtr(AsyncCallback callback, object state);
       int End_GetNearbyPollutantGateObjPtr(IAsyncResult asyncResult);
+      #endif
+      int GetNearbyOutPollutantGatePos();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNearbyOutPollutantGatePos(AsyncCallback callback, object state);
+      int End_GetNearbyOutPollutantGatePos(IAsyncResult asyncResult);
       #endif
       int ReloadPollutantGateName();
       #if SILVERLIGHT
@@ -303,6 +328,26 @@ namespace Thrift.GameCall
       #if SILVERLIGHT
       IAsyncResult Begin_GetBagItemFullInfo(AsyncCallback callback, object state);
       List<ItemFullInfo> End_GetBagItemFullInfo(IAsyncResult asyncResult);
+      #endif
+      List<ItemPropertyInfo> GetBagItemPropertyInfo();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetBagItemPropertyInfo(AsyncCallback callback, object state);
+      List<ItemPropertyInfo> End_GetBagItemPropertyInfo(IAsyncResult asyncResult);
+      #endif
+      int TransHideHome();
+      #if SILVERLIGHT
+      IAsyncResult Begin_TransHideHome(AsyncCallback callback, object state);
+      int End_TransHideHome(IAsyncResult asyncResult);
+      #endif
+      List<NPCMenuInfo> GetNPCMenuInfo();
+      #if SILVERLIGHT
+      IAsyncResult Begin_GetNPCMenuInfo(AsyncCallback callback, object state);
+      List<NPCMenuInfo> End_GetNPCMenuInfo(IAsyncResult asyncResult);
+      #endif
+      int ClickNPCSellMenu();
+      #if SILVERLIGHT
+      IAsyncResult Begin_ClickNPCSellMenu(AsyncCallback callback, object state);
+      int End_ClickNPCSellMenu(IAsyncResult asyncResult);
       #endif
     }
 
@@ -2443,6 +2488,128 @@ namespace Thrift.GameCall
 
       
       #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyWaypointPos(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyWaypointPos(callback, state);
+      }
+
+      public int End_GetNearbyWaypointPos(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyWaypointPos();
+      }
+
+      #endif
+
+      public int GetNearbyWaypointPos()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyWaypointPos();
+        return recv_GetNearbyWaypointPos();
+
+        #else
+        var asyncResult = Begin_GetNearbyWaypointPos(null, null);
+        return End_GetNearbyWaypointPos(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyWaypointPos(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyWaypointPos()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyWaypointPos", TMessageType.Call, seqid_));
+        GetNearbyWaypointPos_args args = new GetNearbyWaypointPos_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyWaypointPos()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyWaypointPos_result result = new GetNearbyWaypointPos_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyWaypointPos failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyWaypointObjPtr(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyWaypointObjPtr(callback, state);
+      }
+
+      public int End_GetNearbyWaypointObjPtr(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyWaypointObjPtr();
+      }
+
+      #endif
+
+      public int GetNearbyWaypointObjPtr()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyWaypointObjPtr();
+        return recv_GetNearbyWaypointObjPtr();
+
+        #else
+        var asyncResult = Begin_GetNearbyWaypointObjPtr(null, null);
+        return End_GetNearbyWaypointObjPtr(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyWaypointObjPtr(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyWaypointObjPtr()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyWaypointObjPtr", TMessageType.Call, seqid_));
+        GetNearbyWaypointObjPtr_args args = new GetNearbyWaypointObjPtr_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyWaypointObjPtr()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyWaypointObjPtr_result result = new GetNearbyWaypointObjPtr_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyWaypointObjPtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
       public IAsyncResult Begin_GetNearbySellNPCObjPtr(AsyncCallback callback, object state, int NPCNum)
       {
         return send_GetNearbySellNPCObjPtr(callback, state, NPCNum);
@@ -2501,6 +2668,67 @@ namespace Thrift.GameCall
           return result.Success;
         }
         throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbySellNPCObjPtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbySellNPCPos(AsyncCallback callback, object state)
+      {
+        return send_GetNearbySellNPCPos(callback, state);
+      }
+
+      public long End_GetNearbySellNPCPos(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbySellNPCPos();
+      }
+
+      #endif
+
+      public long GetNearbySellNPCPos()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbySellNPCPos();
+        return recv_GetNearbySellNPCPos();
+
+        #else
+        var asyncResult = Begin_GetNearbySellNPCPos(null, null);
+        return End_GetNearbySellNPCPos(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbySellNPCPos(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbySellNPCPos()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbySellNPCPos", TMessageType.Call, seqid_));
+        GetNearbySellNPCPos_args args = new GetNearbySellNPCPos_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public long recv_GetNearbySellNPCPos()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbySellNPCPos_result result = new GetNearbySellNPCPos_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbySellNPCPos failed: unknown result");
       }
 
       
@@ -2688,6 +2916,67 @@ namespace Thrift.GameCall
 
       
       #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyStoragePos(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyStoragePos(callback, state);
+      }
+
+      public int End_GetNearbyStoragePos(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyStoragePos();
+      }
+
+      #endif
+
+      public int GetNearbyStoragePos()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyStoragePos();
+        return recv_GetNearbyStoragePos();
+
+        #else
+        var asyncResult = Begin_GetNearbyStoragePos(null, null);
+        return End_GetNearbyStoragePos(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyStoragePos(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyStoragePos()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyStoragePos", TMessageType.Call, seqid_));
+        GetNearbyStoragePos_args args = new GetNearbyStoragePos_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyStoragePos()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyStoragePos_result result = new GetNearbyStoragePos_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyStoragePos failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
       public IAsyncResult Begin_GetNearbyCrossObjPtr(AsyncCallback callback, object state)
       {
         return send_GetNearbyCrossObjPtr(callback, state);
@@ -2806,6 +3095,67 @@ namespace Thrift.GameCall
           return result.Success;
         }
         throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyPollutantGateObjPtr failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNearbyOutPollutantGatePos(AsyncCallback callback, object state)
+      {
+        return send_GetNearbyOutPollutantGatePos(callback, state);
+      }
+
+      public int End_GetNearbyOutPollutantGatePos(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNearbyOutPollutantGatePos();
+      }
+
+      #endif
+
+      public int GetNearbyOutPollutantGatePos()
+      {
+        #if !SILVERLIGHT
+        send_GetNearbyOutPollutantGatePos();
+        return recv_GetNearbyOutPollutantGatePos();
+
+        #else
+        var asyncResult = Begin_GetNearbyOutPollutantGatePos(null, null);
+        return End_GetNearbyOutPollutantGatePos(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNearbyOutPollutantGatePos(AsyncCallback callback, object state)
+      #else
+      public void send_GetNearbyOutPollutantGatePos()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNearbyOutPollutantGatePos", TMessageType.Call, seqid_));
+        GetNearbyOutPollutantGatePos_args args = new GetNearbyOutPollutantGatePos_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_GetNearbyOutPollutantGatePos()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNearbyOutPollutantGatePos_result result = new GetNearbyOutPollutantGatePos_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNearbyOutPollutantGatePos failed: unknown result");
       }
 
       
@@ -3851,6 +4201,250 @@ namespace Thrift.GameCall
         throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetBagItemFullInfo failed: unknown result");
       }
 
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetBagItemPropertyInfo(AsyncCallback callback, object state)
+      {
+        return send_GetBagItemPropertyInfo(callback, state);
+      }
+
+      public List<ItemPropertyInfo> End_GetBagItemPropertyInfo(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetBagItemPropertyInfo();
+      }
+
+      #endif
+
+      public List<ItemPropertyInfo> GetBagItemPropertyInfo()
+      {
+        #if !SILVERLIGHT
+        send_GetBagItemPropertyInfo();
+        return recv_GetBagItemPropertyInfo();
+
+        #else
+        var asyncResult = Begin_GetBagItemPropertyInfo(null, null);
+        return End_GetBagItemPropertyInfo(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetBagItemPropertyInfo(AsyncCallback callback, object state)
+      #else
+      public void send_GetBagItemPropertyInfo()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetBagItemPropertyInfo", TMessageType.Call, seqid_));
+        GetBagItemPropertyInfo_args args = new GetBagItemPropertyInfo_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public List<ItemPropertyInfo> recv_GetBagItemPropertyInfo()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetBagItemPropertyInfo_result result = new GetBagItemPropertyInfo_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetBagItemPropertyInfo failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_TransHideHome(AsyncCallback callback, object state)
+      {
+        return send_TransHideHome(callback, state);
+      }
+
+      public int End_TransHideHome(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_TransHideHome();
+      }
+
+      #endif
+
+      public int TransHideHome()
+      {
+        #if !SILVERLIGHT
+        send_TransHideHome();
+        return recv_TransHideHome();
+
+        #else
+        var asyncResult = Begin_TransHideHome(null, null);
+        return End_TransHideHome(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_TransHideHome(AsyncCallback callback, object state)
+      #else
+      public void send_TransHideHome()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("TransHideHome", TMessageType.Call, seqid_));
+        TransHideHome_args args = new TransHideHome_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_TransHideHome()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        TransHideHome_result result = new TransHideHome_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "TransHideHome failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_GetNPCMenuInfo(AsyncCallback callback, object state)
+      {
+        return send_GetNPCMenuInfo(callback, state);
+      }
+
+      public List<NPCMenuInfo> End_GetNPCMenuInfo(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_GetNPCMenuInfo();
+      }
+
+      #endif
+
+      public List<NPCMenuInfo> GetNPCMenuInfo()
+      {
+        #if !SILVERLIGHT
+        send_GetNPCMenuInfo();
+        return recv_GetNPCMenuInfo();
+
+        #else
+        var asyncResult = Begin_GetNPCMenuInfo(null, null);
+        return End_GetNPCMenuInfo(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_GetNPCMenuInfo(AsyncCallback callback, object state)
+      #else
+      public void send_GetNPCMenuInfo()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("GetNPCMenuInfo", TMessageType.Call, seqid_));
+        GetNPCMenuInfo_args args = new GetNPCMenuInfo_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public List<NPCMenuInfo> recv_GetNPCMenuInfo()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        GetNPCMenuInfo_result result = new GetNPCMenuInfo_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "GetNPCMenuInfo failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_ClickNPCSellMenu(AsyncCallback callback, object state)
+      {
+        return send_ClickNPCSellMenu(callback, state);
+      }
+
+      public int End_ClickNPCSellMenu(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_ClickNPCSellMenu();
+      }
+
+      #endif
+
+      public int ClickNPCSellMenu()
+      {
+        #if !SILVERLIGHT
+        send_ClickNPCSellMenu();
+        return recv_ClickNPCSellMenu();
+
+        #else
+        var asyncResult = Begin_ClickNPCSellMenu(null, null);
+        return End_ClickNPCSellMenu(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_ClickNPCSellMenu(AsyncCallback callback, object state)
+      #else
+      public void send_ClickNPCSellMenu()
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("ClickNPCSellMenu", TMessageType.Call, seqid_));
+        ClickNPCSellMenu_args args = new ClickNPCSellMenu_args();
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_ClickNPCSellMenu()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        ClickNPCSellMenu_result result = new ClickNPCSellMenu_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ClickNPCSellMenu failed: unknown result");
+      }
+
     }
     public class Processor : TProcessor {
       public Processor(Iface iface)
@@ -3890,12 +4484,17 @@ namespace Thrift.GameCall
         processMap_["ReturnChoseRole"] = ReturnChoseRole_Process;
         processMap_["Relive"] = Relive_Process;
         processMap_["GetNearbyWaypointID"] = GetNearbyWaypointID_Process;
+        processMap_["GetNearbyWaypointPos"] = GetNearbyWaypointPos_Process;
+        processMap_["GetNearbyWaypointObjPtr"] = GetNearbyWaypointObjPtr_Process;
         processMap_["GetNearbySellNPCObjPtr"] = GetNearbySellNPCObjPtr_Process;
+        processMap_["GetNearbySellNPCPos"] = GetNearbySellNPCPos_Process;
         processMap_["GetNearbyGoCityTransferDoorObjPtr"] = GetNearbyGoCityTransferDoorObjPtr_Process;
         processMap_["GetNearbyGoBattleTransfetDoorObjPtr"] = GetNearbyGoBattleTransfetDoorObjPtr_Process;
         processMap_["GetNearbyStorageObjPtr"] = GetNearbyStorageObjPtr_Process;
+        processMap_["GetNearbyStoragePos"] = GetNearbyStoragePos_Process;
         processMap_["GetNearbyCrossObjPtr"] = GetNearbyCrossObjPtr_Process;
         processMap_["GetNearbyPollutantGateObjPtr"] = GetNearbyPollutantGateObjPtr_Process;
+        processMap_["GetNearbyOutPollutantGatePos"] = GetNearbyOutPollutantGatePos_Process;
         processMap_["ReloadPollutantGateName"] = ReloadPollutantGateName_Process;
         processMap_["LogGateName"] = LogGateName_Process;
         processMap_["PickupItem"] = PickupItem_Process;
@@ -3913,6 +4512,10 @@ namespace Thrift.GameCall
         processMap_["IsBuffExists"] = IsBuffExists_Process;
         processMap_["GetItemDescription"] = GetItemDescription_Process;
         processMap_["GetBagItemFullInfo"] = GetBagItemFullInfo_Process;
+        processMap_["GetBagItemPropertyInfo"] = GetBagItemPropertyInfo_Process;
+        processMap_["TransHideHome"] = TransHideHome_Process;
+        processMap_["GetNPCMenuInfo"] = GetNPCMenuInfo_Process;
+        processMap_["ClickNPCSellMenu"] = ClickNPCSellMenu_Process;
       }
 
       protected delegate void ProcessFunction(int seqid, TProtocol iprot, TProtocol oprot);
@@ -4387,6 +4990,32 @@ namespace Thrift.GameCall
         oprot.Transport.Flush();
       }
 
+      public void GetNearbyWaypointPos_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyWaypointPos_args args = new GetNearbyWaypointPos_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyWaypointPos_result result = new GetNearbyWaypointPos_result();
+        result.Success = iface_.GetNearbyWaypointPos();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyWaypointPos", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbyWaypointObjPtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyWaypointObjPtr_args args = new GetNearbyWaypointObjPtr_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyWaypointObjPtr_result result = new GetNearbyWaypointObjPtr_result();
+        result.Success = iface_.GetNearbyWaypointObjPtr();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyWaypointObjPtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
       public void GetNearbySellNPCObjPtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
       {
         GetNearbySellNPCObjPtr_args args = new GetNearbySellNPCObjPtr_args();
@@ -4395,6 +5024,19 @@ namespace Thrift.GameCall
         GetNearbySellNPCObjPtr_result result = new GetNearbySellNPCObjPtr_result();
         result.Success = iface_.GetNearbySellNPCObjPtr(args.NPCNum);
         oprot.WriteMessageBegin(new TMessage("GetNearbySellNPCObjPtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbySellNPCPos_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbySellNPCPos_args args = new GetNearbySellNPCPos_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbySellNPCPos_result result = new GetNearbySellNPCPos_result();
+        result.Success = iface_.GetNearbySellNPCPos();
+        oprot.WriteMessageBegin(new TMessage("GetNearbySellNPCPos", TMessageType.Reply, seqid)); 
         result.Write(oprot);
         oprot.WriteMessageEnd();
         oprot.Transport.Flush();
@@ -4439,6 +5081,19 @@ namespace Thrift.GameCall
         oprot.Transport.Flush();
       }
 
+      public void GetNearbyStoragePos_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyStoragePos_args args = new GetNearbyStoragePos_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyStoragePos_result result = new GetNearbyStoragePos_result();
+        result.Success = iface_.GetNearbyStoragePos();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyStoragePos", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
       public void GetNearbyCrossObjPtr_Process(int seqid, TProtocol iprot, TProtocol oprot)
       {
         GetNearbyCrossObjPtr_args args = new GetNearbyCrossObjPtr_args();
@@ -4460,6 +5115,19 @@ namespace Thrift.GameCall
         GetNearbyPollutantGateObjPtr_result result = new GetNearbyPollutantGateObjPtr_result();
         result.Success = iface_.GetNearbyPollutantGateObjPtr();
         oprot.WriteMessageBegin(new TMessage("GetNearbyPollutantGateObjPtr", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNearbyOutPollutantGatePos_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNearbyOutPollutantGatePos_args args = new GetNearbyOutPollutantGatePos_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNearbyOutPollutantGatePos_result result = new GetNearbyOutPollutantGatePos_result();
+        result.Success = iface_.GetNearbyOutPollutantGatePos();
+        oprot.WriteMessageBegin(new TMessage("GetNearbyOutPollutantGatePos", TMessageType.Reply, seqid)); 
         result.Write(oprot);
         oprot.WriteMessageEnd();
         oprot.Transport.Flush();
@@ -4681,6 +5349,58 @@ namespace Thrift.GameCall
         GetBagItemFullInfo_result result = new GetBagItemFullInfo_result();
         result.Success = iface_.GetBagItemFullInfo();
         oprot.WriteMessageBegin(new TMessage("GetBagItemFullInfo", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetBagItemPropertyInfo_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetBagItemPropertyInfo_args args = new GetBagItemPropertyInfo_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetBagItemPropertyInfo_result result = new GetBagItemPropertyInfo_result();
+        result.Success = iface_.GetBagItemPropertyInfo();
+        oprot.WriteMessageBegin(new TMessage("GetBagItemPropertyInfo", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void TransHideHome_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        TransHideHome_args args = new TransHideHome_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        TransHideHome_result result = new TransHideHome_result();
+        result.Success = iface_.TransHideHome();
+        oprot.WriteMessageBegin(new TMessage("TransHideHome", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void GetNPCMenuInfo_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        GetNPCMenuInfo_args args = new GetNPCMenuInfo_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        GetNPCMenuInfo_result result = new GetNPCMenuInfo_result();
+        result.Success = iface_.GetNPCMenuInfo();
+        oprot.WriteMessageBegin(new TMessage("GetNPCMenuInfo", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void ClickNPCSellMenu_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        ClickNPCSellMenu_args args = new ClickNPCSellMenu_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        ClickNPCSellMenu_result result = new ClickNPCSellMenu_result();
+        result.Success = iface_.ClickNPCSellMenu();
+        oprot.WriteMessageBegin(new TMessage("ClickNPCSellMenu", TMessageType.Reply, seqid)); 
         result.Write(oprot);
         oprot.WriteMessageEnd();
         oprot.Transport.Flush();
@@ -6175,13 +6895,13 @@ namespace Thrift.GameCall
               if (field.Type == TType.List) {
                 {
                   Success = new List<ObjInfo>();
-                  TList _list48 = iprot.ReadListBegin();
-                  for( int _i49 = 0; _i49 < _list48.Count; ++_i49)
+                  TList _list60 = iprot.ReadListBegin();
+                  for( int _i61 = 0; _i61 < _list60.Count; ++_i61)
                   {
-                    ObjInfo _elem50 = new ObjInfo();
-                    _elem50 = new ObjInfo();
-                    _elem50.Read(iprot);
-                    Success.Add(_elem50);
+                    ObjInfo _elem62 = new ObjInfo();
+                    _elem62 = new ObjInfo();
+                    _elem62.Read(iprot);
+                    Success.Add(_elem62);
                   }
                   iprot.ReadListEnd();
                 }
@@ -6211,9 +6931,9 @@ namespace Thrift.GameCall
             oprot.WriteFieldBegin(field);
             {
               oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
-              foreach (ObjInfo _iter51 in Success)
+              foreach (ObjInfo _iter63 in Success)
               {
-                _iter51.Write(oprot);
+                _iter63.Write(oprot);
               }
               oprot.WriteListEnd();
             }
@@ -6329,13 +7049,13 @@ namespace Thrift.GameCall
               if (field.Type == TType.List) {
                 {
                   Success = new List<ObjInfo>();
-                  TList _list52 = iprot.ReadListBegin();
-                  for( int _i53 = 0; _i53 < _list52.Count; ++_i53)
+                  TList _list64 = iprot.ReadListBegin();
+                  for( int _i65 = 0; _i65 < _list64.Count; ++_i65)
                   {
-                    ObjInfo _elem54 = new ObjInfo();
-                    _elem54 = new ObjInfo();
-                    _elem54.Read(iprot);
-                    Success.Add(_elem54);
+                    ObjInfo _elem66 = new ObjInfo();
+                    _elem66 = new ObjInfo();
+                    _elem66.Read(iprot);
+                    Success.Add(_elem66);
                   }
                   iprot.ReadListEnd();
                 }
@@ -6365,9 +7085,9 @@ namespace Thrift.GameCall
             oprot.WriteFieldBegin(field);
             {
               oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
-              foreach (ObjInfo _iter55 in Success)
+              foreach (ObjInfo _iter67 in Success)
               {
-                _iter55.Write(oprot);
+                _iter67.Write(oprot);
               }
               oprot.WriteListEnd();
             }
@@ -6984,13 +7704,13 @@ namespace Thrift.GameCall
               if (field.Type == TType.List) {
                 {
                   Success = new List<WaypointInfo>();
-                  TList _list56 = iprot.ReadListBegin();
-                  for( int _i57 = 0; _i57 < _list56.Count; ++_i57)
+                  TList _list68 = iprot.ReadListBegin();
+                  for( int _i69 = 0; _i69 < _list68.Count; ++_i69)
                   {
-                    WaypointInfo _elem58 = new WaypointInfo();
-                    _elem58 = new WaypointInfo();
-                    _elem58.Read(iprot);
-                    Success.Add(_elem58);
+                    WaypointInfo _elem70 = new WaypointInfo();
+                    _elem70 = new WaypointInfo();
+                    _elem70.Read(iprot);
+                    Success.Add(_elem70);
                   }
                   iprot.ReadListEnd();
                 }
@@ -7020,9 +7740,9 @@ namespace Thrift.GameCall
             oprot.WriteFieldBegin(field);
             {
               oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
-              foreach (WaypointInfo _iter59 in Success)
+              foreach (WaypointInfo _iter71 in Success)
               {
-                _iter59.Write(oprot);
+                _iter71.Write(oprot);
               }
               oprot.WriteListEnd();
             }
@@ -7377,13 +8097,13 @@ namespace Thrift.GameCall
               if (field.Type == TType.List) {
                 {
                   Success = new List<ItemInfo>();
-                  TList _list60 = iprot.ReadListBegin();
-                  for( int _i61 = 0; _i61 < _list60.Count; ++_i61)
+                  TList _list72 = iprot.ReadListBegin();
+                  for( int _i73 = 0; _i73 < _list72.Count; ++_i73)
                   {
-                    ItemInfo _elem62 = new ItemInfo();
-                    _elem62 = new ItemInfo();
-                    _elem62.Read(iprot);
-                    Success.Add(_elem62);
+                    ItemInfo _elem74 = new ItemInfo();
+                    _elem74 = new ItemInfo();
+                    _elem74.Read(iprot);
+                    Success.Add(_elem74);
                   }
                   iprot.ReadListEnd();
                 }
@@ -7413,9 +8133,9 @@ namespace Thrift.GameCall
             oprot.WriteFieldBegin(field);
             {
               oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
-              foreach (ItemInfo _iter63 in Success)
+              foreach (ItemInfo _iter75 in Success)
               {
-                _iter63.Write(oprot);
+                _iter75.Write(oprot);
               }
               oprot.WriteListEnd();
             }
@@ -7531,13 +8251,13 @@ namespace Thrift.GameCall
               if (field.Type == TType.List) {
                 {
                   Success = new List<ItemSpaceInfo>();
-                  TList _list64 = iprot.ReadListBegin();
-                  for( int _i65 = 0; _i65 < _list64.Count; ++_i65)
+                  TList _list76 = iprot.ReadListBegin();
+                  for( int _i77 = 0; _i77 < _list76.Count; ++_i77)
                   {
-                    ItemSpaceInfo _elem66 = new ItemSpaceInfo();
-                    _elem66 = new ItemSpaceInfo();
-                    _elem66.Read(iprot);
-                    Success.Add(_elem66);
+                    ItemSpaceInfo _elem78 = new ItemSpaceInfo();
+                    _elem78 = new ItemSpaceInfo();
+                    _elem78.Read(iprot);
+                    Success.Add(_elem78);
                   }
                   iprot.ReadListEnd();
                 }
@@ -7567,9 +8287,9 @@ namespace Thrift.GameCall
             oprot.WriteFieldBegin(field);
             {
               oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
-              foreach (ItemSpaceInfo _iter67 in Success)
+              foreach (ItemSpaceInfo _iter79 in Success)
               {
-                _iter67.Write(oprot);
+                _iter79.Write(oprot);
               }
               oprot.WriteListEnd();
             }
@@ -8148,13 +8868,13 @@ namespace Thrift.GameCall
               if (field.Type == TType.List) {
                 {
                   LootList = new List<LootType>();
-                  TList _list68 = iprot.ReadListBegin();
-                  for( int _i69 = 0; _i69 < _list68.Count; ++_i69)
+                  TList _list80 = iprot.ReadListBegin();
+                  for( int _i81 = 0; _i81 < _list80.Count; ++_i81)
                   {
-                    LootType _elem70 = new LootType();
-                    _elem70 = new LootType();
-                    _elem70.Read(iprot);
-                    LootList.Add(_elem70);
+                    LootType _elem82 = new LootType();
+                    _elem82 = new LootType();
+                    _elem82.Read(iprot);
+                    LootList.Add(_elem82);
                   }
                   iprot.ReadListEnd();
                 }
@@ -8210,9 +8930,9 @@ namespace Thrift.GameCall
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, LootList.Count));
-            foreach (LootType _iter71 in LootList)
+            foreach (LootType _iter83 in LootList)
             {
-              _iter71.Write(oprot);
+              _iter83.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -8543,13 +9263,13 @@ namespace Thrift.GameCall
               if (field.Type == TType.List) {
                 {
                   TrophyIDList = new List<TrophyBaseInfo>();
-                  TList _list72 = iprot.ReadListBegin();
-                  for( int _i73 = 0; _i73 < _list72.Count; ++_i73)
+                  TList _list84 = iprot.ReadListBegin();
+                  for( int _i85 = 0; _i85 < _list84.Count; ++_i85)
                   {
-                    TrophyBaseInfo _elem74 = new TrophyBaseInfo();
-                    _elem74 = new TrophyBaseInfo();
-                    _elem74.Read(iprot);
-                    TrophyIDList.Add(_elem74);
+                    TrophyBaseInfo _elem86 = new TrophyBaseInfo();
+                    _elem86 = new TrophyBaseInfo();
+                    _elem86.Read(iprot);
+                    TrophyIDList.Add(_elem86);
                   }
                   iprot.ReadListEnd();
                 }
@@ -8577,9 +9297,9 @@ namespace Thrift.GameCall
           oprot.WriteFieldBegin(field);
           {
             oprot.WriteListBegin(new TList(TType.Struct, TrophyIDList.Count));
-            foreach (TrophyBaseInfo _iter75 in TrophyIDList)
+            foreach (TrophyBaseInfo _iter87 in TrophyIDList)
             {
-              _iter75.Write(oprot);
+              _iter87.Write(oprot);
             }
             oprot.WriteListEnd();
           }
@@ -8648,13 +9368,13 @@ namespace Thrift.GameCall
               if (field.Type == TType.List) {
                 {
                   Success = new List<TrophyInfo>();
-                  TList _list76 = iprot.ReadListBegin();
-                  for( int _i77 = 0; _i77 < _list76.Count; ++_i77)
+                  TList _list88 = iprot.ReadListBegin();
+                  for( int _i89 = 0; _i89 < _list88.Count; ++_i89)
                   {
-                    TrophyInfo _elem78 = new TrophyInfo();
-                    _elem78 = new TrophyInfo();
-                    _elem78.Read(iprot);
-                    Success.Add(_elem78);
+                    TrophyInfo _elem90 = new TrophyInfo();
+                    _elem90 = new TrophyInfo();
+                    _elem90.Read(iprot);
+                    Success.Add(_elem90);
                   }
                   iprot.ReadListEnd();
                 }
@@ -8684,9 +9404,9 @@ namespace Thrift.GameCall
             oprot.WriteFieldBegin(field);
             {
               oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
-              foreach (TrophyInfo _iter79 in Success)
+              foreach (TrophyInfo _iter91 in Success)
               {
-                _iter79.Write(oprot);
+                _iter91.Write(oprot);
               }
               oprot.WriteListEnd();
             }
@@ -10209,6 +10929,274 @@ namespace Thrift.GameCall
     #if !SILVERLIGHT
     [Serializable]
     #endif
+    public partial class GetNearbyWaypointPos_args : TBase
+    {
+
+      public GetNearbyWaypointPos_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyWaypointPos_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyWaypointPos_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyWaypointPos_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyWaypointPos_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyWaypointPos_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyWaypointPos_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyWaypointObjPtr_args : TBase
+    {
+
+      public GetNearbyWaypointObjPtr_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyWaypointObjPtr_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyWaypointObjPtr_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyWaypointObjPtr_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyWaypointObjPtr_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyWaypointObjPtr_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyWaypointObjPtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
     public partial class GetNearbySellNPCObjPtr_args : TBase
     {
       private int _NPCNum;
@@ -10372,6 +11360,140 @@ namespace Thrift.GameCall
 
       public override string ToString() {
         StringBuilder sb = new StringBuilder("GetNearbySellNPCObjPtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbySellNPCPos_args : TBase
+    {
+
+      public GetNearbySellNPCPos_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbySellNPCPos_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbySellNPCPos_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbySellNPCPos_result : TBase
+    {
+      private long _success;
+
+      public long Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbySellNPCPos_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I64) {
+                Success = iprot.ReadI64();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbySellNPCPos_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I64;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI64(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbySellNPCPos_result(");
         sb.Append("Success: ");
         sb.Append(Success);
         sb.Append(")");
@@ -10786,6 +11908,140 @@ namespace Thrift.GameCall
     #if !SILVERLIGHT
     [Serializable]
     #endif
+    public partial class GetNearbyStoragePos_args : TBase
+    {
+
+      public GetNearbyStoragePos_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyStoragePos_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyStoragePos_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyStoragePos_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyStoragePos_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyStoragePos_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyStoragePos_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
     public partial class GetNearbyCrossObjPtr_args : TBase
     {
 
@@ -11042,6 +12298,140 @@ namespace Thrift.GameCall
 
       public override string ToString() {
         StringBuilder sb = new StringBuilder("GetNearbyPollutantGateObjPtr_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyOutPollutantGatePos_args : TBase
+    {
+
+      public GetNearbyOutPollutantGatePos_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyOutPollutantGatePos_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyOutPollutantGatePos_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNearbyOutPollutantGatePos_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNearbyOutPollutantGatePos_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNearbyOutPollutantGatePos_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNearbyOutPollutantGatePos_result(");
         sb.Append("Success: ");
         sb.Append(Success);
         sb.Append(")");
@@ -13736,13 +15126,13 @@ namespace Thrift.GameCall
               if (field.Type == TType.List) {
                 {
                   Success = new List<ItemFullInfo>();
-                  TList _list80 = iprot.ReadListBegin();
-                  for( int _i81 = 0; _i81 < _list80.Count; ++_i81)
+                  TList _list92 = iprot.ReadListBegin();
+                  for( int _i93 = 0; _i93 < _list92.Count; ++_i93)
                   {
-                    ItemFullInfo _elem82 = new ItemFullInfo();
-                    _elem82 = new ItemFullInfo();
-                    _elem82.Read(iprot);
-                    Success.Add(_elem82);
+                    ItemFullInfo _elem94 = new ItemFullInfo();
+                    _elem94 = new ItemFullInfo();
+                    _elem94.Read(iprot);
+                    Success.Add(_elem94);
                   }
                   iprot.ReadListEnd();
                 }
@@ -13772,9 +15162,9 @@ namespace Thrift.GameCall
             oprot.WriteFieldBegin(field);
             {
               oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
-              foreach (ItemFullInfo _iter83 in Success)
+              foreach (ItemFullInfo _iter95 in Success)
               {
-                _iter83.Write(oprot);
+                _iter95.Write(oprot);
               }
               oprot.WriteListEnd();
             }
@@ -13787,6 +15177,582 @@ namespace Thrift.GameCall
 
       public override string ToString() {
         StringBuilder sb = new StringBuilder("GetBagItemFullInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetBagItemPropertyInfo_args : TBase
+    {
+
+      public GetBagItemPropertyInfo_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetBagItemPropertyInfo_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetBagItemPropertyInfo_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetBagItemPropertyInfo_result : TBase
+    {
+      private List<ItemPropertyInfo> _success;
+
+      public List<ItemPropertyInfo> Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetBagItemPropertyInfo_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.List) {
+                {
+                  Success = new List<ItemPropertyInfo>();
+                  TList _list96 = iprot.ReadListBegin();
+                  for( int _i97 = 0; _i97 < _list96.Count; ++_i97)
+                  {
+                    ItemPropertyInfo _elem98 = new ItemPropertyInfo();
+                    _elem98 = new ItemPropertyInfo();
+                    _elem98.Read(iprot);
+                    Success.Add(_elem98);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetBagItemPropertyInfo_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.List;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
+              foreach (ItemPropertyInfo _iter99 in Success)
+              {
+                _iter99.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetBagItemPropertyInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class TransHideHome_args : TBase
+    {
+
+      public TransHideHome_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("TransHideHome_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("TransHideHome_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class TransHideHome_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public TransHideHome_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("TransHideHome_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("TransHideHome_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNPCMenuInfo_args : TBase
+    {
+
+      public GetNPCMenuInfo_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNPCMenuInfo_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNPCMenuInfo_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class GetNPCMenuInfo_result : TBase
+    {
+      private List<NPCMenuInfo> _success;
+
+      public List<NPCMenuInfo> Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public GetNPCMenuInfo_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.List) {
+                {
+                  Success = new List<NPCMenuInfo>();
+                  TList _list100 = iprot.ReadListBegin();
+                  for( int _i101 = 0; _i101 < _list100.Count; ++_i101)
+                  {
+                    NPCMenuInfo _elem102 = new NPCMenuInfo();
+                    _elem102 = new NPCMenuInfo();
+                    _elem102.Read(iprot);
+                    Success.Add(_elem102);
+                  }
+                  iprot.ReadListEnd();
+                }
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("GetNPCMenuInfo_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          if (Success != null) {
+            field.Name = "Success";
+            field.Type = TType.List;
+            field.ID = 0;
+            oprot.WriteFieldBegin(field);
+            {
+              oprot.WriteListBegin(new TList(TType.Struct, Success.Count));
+              foreach (NPCMenuInfo _iter103 in Success)
+              {
+                _iter103.Write(oprot);
+              }
+              oprot.WriteListEnd();
+            }
+            oprot.WriteFieldEnd();
+          }
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("GetNPCMenuInfo_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ClickNPCSellMenu_args : TBase
+    {
+
+      public ClickNPCSellMenu_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ClickNPCSellMenu_args");
+        oprot.WriteStructBegin(struc);
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ClickNPCSellMenu_args(");
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class ClickNPCSellMenu_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public ClickNPCSellMenu_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("ClickNPCSellMenu_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("ClickNPCSellMenu_result(");
         sb.Append("Success: ");
         sb.Append(Success);
         sb.Append(")");

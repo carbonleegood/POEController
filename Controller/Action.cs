@@ -34,21 +34,27 @@ namespace Controller
         //        Program.client.CastUntargetSkill((short)pos.x, (short)pos.y, 0, 8);
         //    nSleepTime = 600;
         //}
-        void ActKillMonsterNew(GPoint pos, int Skill, int TargetID)
+        void ActKillMonsterNew(GPoint pos, int Skill, int TargetID, int nAttackSpeed)
         {
             if (TargetID == 0)
             {
                 Program.client.CastUntargetSkill((short)pos.x, (short)pos.y,(short) Skill, 8);
-                Program.client.WaitCastComplete();
+                if (Program.config.bUseSafeAttSpeed || nAttackSpeed == 0)
+                    Program.client.WaitCastComplete();
+                else
+                    Thread.Sleep(nAttackSpeed);
             }
             else
             {
                 Program.client.CastTargetSkill(TargetID, (short)Skill, 8);
-                Program.client.WaitCastComplete();
+                if (Program.config.bUseSafeAttSpeed || nAttackSpeed==0)
+                    Program.client.WaitCastComplete();
+                else
+                    Thread.Sleep(nAttackSpeed);
             }
             nSleepTime = 0;
         }
-        void ActKillMonster(GPoint pos, double dis, int Skill, int TargetID)
+        void ActKillMonster(GPoint pos, double dis, int Skill, int TargetID, int nAttackSpeed)
         {
             double SkillDis = 0;
             int SleepTime = 0;
@@ -79,13 +85,19 @@ namespace Controller
             if (TargetID == 0)
             {
                 Program.client.CastUntargetSkill((short)pos.x, (short)pos.y, (short)Skill, 8);
-                Program.client.WaitCastComplete();
+                if (Program.config.bUseSafeAttSpeed || nAttackSpeed == 0)
+                    Program.client.WaitCastComplete();
+                else
+                    Thread.Sleep(nAttackSpeed);
                 SleepTime = 0;
             }
             else
             {
                 Program.client.CastTargetSkill(TargetID, (short)Skill, 8);
-                Program.client.WaitCastComplete();
+                if (Program.config.bUseSafeAttSpeed || nAttackSpeed == 0)
+                    Program.client.WaitCastComplete();
+                else
+                    Thread.Sleep(nAttackSpeed);
                 SleepTime = 0;
             }
             nSleepTime = SleepTime;
@@ -109,11 +121,11 @@ namespace Controller
                 //        }
                 //    }
                 //}
-                ActKillMonster(pos, dis, Program.config.nSinAttKey, TargetID);
+                ActKillMonster(pos, dis, Program.config.nSinAttKey, TargetID, Program.config.SinAttStep);
             }
             else if (Program.config.nNorAttKey != -1)//使用普通单体攻击
             {
-                ActKillMonster(pos, dis, Program.config.nNorAttKey, TargetID);
+                ActKillMonster(pos, dis, Program.config.nNorAttKey, TargetID, Program.config.NorAttStep);
             }
             else
                 Thread.Sleep(200);
@@ -124,11 +136,11 @@ namespace Controller
         {
             if(NearbyMonster.Count>1&&Program.config.nMulAttKey!=-1)
             {
-                ActKillMonsterNew(player.Pos, Program.config.nMulAttKey, 0);
+                ActKillMonsterNew(player.Pos, Program.config.nMulAttKey, 0, Program.config.MulAttStep);
             }
             else 
             {
-                ActKillMonsterNew(player.Pos, Program.config.nSinAttKey, NearbyMonster[0].ID);
+                ActKillMonsterNew(player.Pos, Program.config.nSinAttKey, NearbyMonster[0].ID, Program.config.SinAttStep);
             }
         }
         void SingleAttackNew(GPoint pos, int TargetID)
@@ -138,11 +150,11 @@ namespace Controller
             {
                 int curTime = System.Environment.TickCount; ;
                 //如果有陷阱类魔法,放陷阱
-                ActKillMonsterNew(pos, Program.config.nSinAttKey, TargetID);
+                ActKillMonsterNew(pos, Program.config.nSinAttKey, TargetID, Program.config.SinAttStep);
             }
             else if (Program.config.nNorAttKey != -1)//使用普通单体攻击
             {
-                ActKillMonsterNew(pos, Program.config.nNorAttKey, TargetID);
+                ActKillMonsterNew(pos, Program.config.nNorAttKey, TargetID, Program.config.NorAttStep);
             }
             else
                 Thread.Sleep(200);
@@ -157,16 +169,16 @@ namespace Controller
             {
                 for (int i = 0; i < item.CastTime.Count; ++i)
                 {
-                    if ((curTime - item.CastTime[i]) > (item.Step * 1000))
+                    if ((curTime - item.CastTime[i]) > (item.Step))
                     {
                         item.CastTime[i] = curTime;
-                        ActKillMonsterNew(pos, (short)item.Key, 0);
+                        ActKillMonsterNew(pos, (short)item.Key, 0,0);
                         return;
                     }
                 }
             }
             //直接使用群攻
-            ActKillMonsterNew(pos, Program.config.nMulAttKey, 0);
+            ActKillMonsterNew(pos, Program.config.nMulAttKey, 0, Program.config.MulAttStep);
             return;
         }
         void MultiAttack(GPoint pos, double dis)
@@ -177,16 +189,16 @@ namespace Controller
             {
                 for (int i = 0; i < item.CastTime.Count; ++i)
                 {
-                    if ((curTime - item.CastTime[i]) > (item.Step * 1000))
+                    if ((curTime - item.CastTime[i]) > (item.Step))
                     {
                         item.CastTime[i] = curTime;
-                        ActKillMonster(pos, dis, (short)item.Key, 0);
+                        ActKillMonster(pos, dis, (short)item.Key, 0,0);
                         return;
                     }
                 }
             }
             //直接使用群攻
-            ActKillMonster(pos, dis, Program.config.nMulAttKey, 0);
+            ActKillMonster(pos, dis, Program.config.nMulAttKey, 0, Program.config.MulAttStep);
             return;
         }
 
@@ -223,7 +235,6 @@ namespace Controller
                 safeBlockCount = 0;
                 //小退
                 ReturnRolePolicy();
-               // bEnterPollutanting = false;
             }
 
         }
@@ -237,7 +248,7 @@ namespace Controller
                     switch (item.Key)
                     {
                         case 0:
-                            if ((item.Step * 1000) < (curTickCount - LastLeftSkillCastTime))
+                            if ((item.Step) < (curTickCount - LastLeftSkillCastTime))
                             {
                                 LastLeftSkillCastTime = curTickCount;
                                 Program.client.CastUntargetSkill((short)player.Pos.x, (short)player.Pos.y, 0, 8);
@@ -247,7 +258,7 @@ namespace Controller
                             }
                             break;
                         case 1:
-                            if ((item.Step * 1000) < (curTickCount - LastMidSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastMidSkillCastTime))
                             {
                                 LastMidSkillCastTime = curTickCount;
                                 Program.client.CastUntargetSkill((short)player.Pos.x, (short)player.Pos.y, 1, 8);
@@ -257,7 +268,7 @@ namespace Controller
                             }
                             break;
                         case 2:
-                            if ((item.Step * 1000) < (curTickCount - LastRightSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastRightSkillCastTime))
                             {
                                 LastRightSkillCastTime = curTickCount;
                                 Program.client.CastUntargetSkill((short)player.Pos.x, (short)player.Pos.y, 2, 8);
@@ -267,7 +278,7 @@ namespace Controller
                             }
                             break;
                         case 3:
-                            if ((item.Step * 1000) < (curTickCount - LastQSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastQSkillCastTime))
                             {
                                 LastQSkillCastTime = curTickCount;
                                 Program.client.CastUntargetSkill((short)player.Pos.x, (short)player.Pos.y, 3, 8);
@@ -277,7 +288,7 @@ namespace Controller
                             }
                             break;
                         case 4:
-                            if ((item.Step * 1000) < (curTickCount - LastWSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastWSkillCastTime))
                             {
                                 LastWSkillCastTime = curTickCount;
                                 Program.client.CastUntargetSkill((short)player.Pos.x, (short)player.Pos.y, 4, 8);
@@ -287,7 +298,7 @@ namespace Controller
                             }
                             break;
                         case 5:
-                            if ((item.Step * 1000) < (curTickCount - LastESkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastESkillCastTime))
                             {
                                 LastESkillCastTime = curTickCount;
                                 Program.client.CastUntargetSkill((short)player.Pos.x, (short)player.Pos.y, 5, 8);
@@ -298,7 +309,7 @@ namespace Controller
                             }
                             break;
                         case 6:
-                            if ((item.Step * 1000) < (curTickCount - LastRSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastRSkillCastTime))
                             {
                                 LastRSkillCastTime = curTickCount;
                                 Program.client.CastUntargetSkill((short)player.Pos.x, (short)player.Pos.y, 6, 8);
@@ -309,7 +320,7 @@ namespace Controller
                             }
                             break;
                         case 7:
-                            if ((item.Step * 1000) < (curTickCount - LastTSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastTSkillCastTime))
                             {
                                 LastTSkillCastTime = curTickCount;
                                 Program.client.CastUntargetSkill((short)player.Pos.x, (short)player.Pos.y, 7, 8);
@@ -388,7 +399,7 @@ namespace Controller
                     switch (item.Key)
                     {
                         case 0:
-                            if ((item.Step * 1000) < (curTickCount - LastLeftSkillCastTime))
+                            if ((item.Step) < (curTickCount - LastLeftSkillCastTime))
                             {
                                 if (item.NeedCorpse)
                                 {
@@ -427,7 +438,7 @@ namespace Controller
                             }
                             break;
                         case 1:
-                            if ((item.Step * 1000) < (curTickCount - LastMidSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastMidSkillCastTime))
                             {
                                 if (item.NeedCorpse)
                                 {
@@ -467,7 +478,7 @@ namespace Controller
                             }
                             break;
                         case 2:
-                            if ((item.Step * 1000) < (curTickCount - LastRightSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastRightSkillCastTime))
                             {
                                 if (item.NeedCorpse)
                                 {
@@ -507,7 +518,7 @@ namespace Controller
                             }
                             break;
                         case 3:
-                            if ((item.Step * 1000) < (curTickCount - LastQSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastQSkillCastTime))
                             {
                                 if (item.NeedCorpse)
                                 {
@@ -547,7 +558,7 @@ namespace Controller
                             }
                             break;
                         case 4:
-                            if ((item.Step * 1000) < (curTickCount - LastWSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastWSkillCastTime))
                             {
                                 if (item.NeedCorpse)
                                 {
@@ -587,7 +598,7 @@ namespace Controller
                             }
                             break;
                         case 5:
-                            if ((item.Step * 1000) < (curTickCount - LastESkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastESkillCastTime))
                             {
                                 if (item.NeedCorpse)
                                 {
@@ -627,7 +638,7 @@ namespace Controller
                             }
                             break;
                         case 6:
-                            if ((item.Step * 1000) < (curTickCount - LastRSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastRSkillCastTime))
                             {
                                 if (item.NeedCorpse)
                                 {
@@ -667,7 +678,7 @@ namespace Controller
                             }
                             break;
                         case 7:
-                            if ((item.Step * 1000) < (curTickCount - LastTSkillCastTime))
+                            if ((item.Step) < (curTickCount - LastTSkillCastTime))
                             {
                                 if (item.NeedCorpse)
                                 {
@@ -722,7 +733,7 @@ namespace Controller
                     switch (item.Key)
                     {
                         case 0:
-                            if ((item.Step * 1000) < (curTickCount - LastLeftSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastLeftSkillCastTime))
                             {
                                 LastLeftSkillCastTime = curTickCount;
                                 for (int i = 0; i < item.Count; ++i)
@@ -736,7 +747,7 @@ namespace Controller
                             }
                             break;
                         case 1:
-                            if ((item.Step * 1000) < (curTickCount - LastMidSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastMidSkillCastTime))
                             {
                                 LastMidSkillCastTime = curTickCount;
                                 for (int i = 0; i < item.Count; ++i)
@@ -750,7 +761,7 @@ namespace Controller
                             }
                             break;
                         case 2:
-                            if ((item.Step * 1000) < (curTickCount - LastRightSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastRightSkillCastTime))
                             {
                                 LastRightSkillCastTime = curTickCount;
                                 for (int i = 0; i < item.Count; ++i)
@@ -764,7 +775,7 @@ namespace Controller
                             }
                             break;
                         case 3:
-                            if ((item.Step * 1000) < (curTickCount - LastQSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastQSkillCastTime))
                             {
                                 LastQSkillCastTime = curTickCount;
                                 for (int i = 0; i < item.Count; ++i)
@@ -778,7 +789,7 @@ namespace Controller
                             }
                             break;
                         case 4:
-                            if ((item.Step * 1000) < (curTickCount - LastWSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastWSkillCastTime))
                             {
                                 LastWSkillCastTime = curTickCount;
                                 for (int i = 0; i < item.Count; ++i)
@@ -792,7 +803,7 @@ namespace Controller
                             }
                             break;
                         case 5:
-                            if ((item.Step * 1000) < (curTickCount - LastESkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastESkillCastTime))
                             {
                                 LastESkillCastTime = curTickCount;
                                 for (int i = 0; i < item.Count; ++i)
@@ -806,7 +817,7 @@ namespace Controller
                             }
                             break;
                         case 6:
-                            if ((item.Step * 1000) < (curTickCount - LastRSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastRSkillCastTime))
                             {
                                 LastRSkillCastTime = curTickCount;
                                 for (int i = 0; i < item.Count; ++i)
@@ -820,7 +831,7 @@ namespace Controller
                             }
                             break;
                         case 7:
-                            if ((item.Step * 1000) < (curTickCount - LastTSkillCastTime))
+                            if ((item.Step ) < (curTickCount - LastTSkillCastTime))
                             {
                                 LastTSkillCastTime = curTickCount;
                                 for (int i = 0; i < item.Count; ++i)
@@ -969,13 +980,14 @@ namespace Controller
                 ChangeToNextMissionMap();
                 curStatus = Status.GotoBack;
                 SetNeedGoBack();
-                bNeedResetBattleMapID = true;
+                bNeedResetBattleMapInfo = true;
+                //bNeedResetBattleMapID = true;
 
-                pollutantMapID=0;//污染地穴地图ID
-                LoadPollutantMapID = 0;
-                pollutantGatePos = null;//门位置
-                pollutantComplete=false;//已经刷完
-                bEnterPollutanting = false;//正在进入污染地穴
+                //pollutantMapID=0;//污染地穴地图ID
+                //LoadPollutantMapID = 0;
+                //pollutantGatePos = null;//门位置
+                //pollutantComplete=false;//已经刷完
+                //bEnterPollutanting = false;//正在进入污染地穴
             }
             else if (nRet == 2)
                 nSleepTime = 50;
@@ -1019,7 +1031,8 @@ namespace Controller
              //  ChangeToNextMissionMap();
                 curStatus = Status.GotoBack;
                 SetNeedGoBack();
-                bNeedResetBattleMapID = true;
+                bNeedResetBattleMapInfo = true;
+               // bNeedResetBattleMapID = true;
             }
             else if (nRet == 2)
                 nSleepTime = 50;
@@ -1693,16 +1706,6 @@ namespace Controller
             if (0 == CastShieldSkill(curTickCount))
                 return 0;
 
-            //优先单体
-            //优先一群
-
-            //普通单体
-
-            //普通一群
-
-            //近身群体
-            //近身单体
-
             //先判断目标是单体还是群体,
             if ((Program.config.nMulAttKey != -1) && targetMonsterRoundCount > Program.config.MultiCount && (player.MP > 20))//如果有群攻技能,且目标是群体
             {
@@ -1734,7 +1737,7 @@ namespace Controller
             }
             else//使用单体技能
             {
-                if (dis > Program.config.MulAttDis)
+                if (dis > Program.config.SinAttDis)
                 {
                     //如果阻塞,干身边的怪
                     if (CalcDis(AttMonsterPos, player.Pos) < 8.0)
@@ -1776,6 +1779,28 @@ namespace Controller
             //进入,等待获取ID
             bEnterPollutanting = true;
             bNeedCastBattleOnceSkill = true;
+
+            bNeedSearchOutPollutantGate = true;
+            return 0;
+        }
+
+        //使用回城卷回城或者小退回城
+        int ActGotoTown()
+        {
+
+            if (UseBagTransDoor())
+            {
+                Thread.Sleep(1000);
+                int nObj = Program.client.GetNearbyGoCityTransferDoorObjPtr();
+                if (nObj != 0)
+                {
+                    Thread.Sleep(1000);
+                    Program.client.ActiveTarget(nObj);
+                    Thread.Sleep(1000 * 2);
+                    return 0;
+                }
+            }
+            ReturnRolePolicy();//小退回城
             return 0;
         }
     }

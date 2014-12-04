@@ -16,6 +16,59 @@ namespace Controller
             if (CurMapID != CurMissionMap.MapID && CurMapID != pollutantMapID)
             {
                 //如果在城里,如果需要去传送门,则去传送门,否则去传送点
+                //
+                if(InDungeonHome())
+                {
+                    //搜索传送阵
+                    int Pos = Program.client.GetNearbyWaypointPos();
+                    if (Pos != 0)
+                    {
+                        short x = (short)(Pos>>16);
+                        short y = (short)(Pos&65535);
+                        //如果距离近,则传送到战场
+                        double dis = CalcDis(player.Pos, x,y);
+                        if (dis <= 13.5)
+                        {
+                            int nID = Program.client.GetNearbyWaypointID();
+                            if (nID != 0)
+                            {
+                                int nMapID = GetTargetMissionMapID();
+                                Thread.Sleep(1000);
+                                if (Program.config.bDungeonModel)
+                                {
+                                    Program.client.Transport(nMapID, nID, 1);
+                                    bNeedSearchBattleWaypoint = true;
+
+                                    LoadBattleMapID = 0;
+
+                                    bCrossing = false;
+                                    curGroup = -1;
+
+                                    ResetBattleMapInfo();
+                                    //pollutantMapID = 0;//污染地穴地图ID
+                                    //LoadPollutantMapID = 0;
+                                    //pollutantGatePos = null;//门位置
+                                    //pollutantComplete = false;//已经刷完
+                                    //bEnterPollutanting = false;//正在进入污染地穴
+
+                                }
+                                else
+                                {
+                                    Program.client.Transport(nMapID, nID, 0);
+                                    bNeedSearchBattleWaypoint = true;
+                                }
+                                Thread.Sleep(1000 * 3);
+                            }
+                        }
+                        else
+                        {
+                            Program.client.Move(x,y);
+                        }
+                    }
+                    else
+                        ReturnRolePolicy();
+                    return 0;
+                }
                 if (InTown())
                 {
                     bEnterPollutanting = false;
@@ -48,7 +101,6 @@ namespace Controller
                             CurTownMap.StoragePos.x,
                             CurTownMap.StoragePos.y);
                         LoadTownMapID = CurMapID;
-                        //    Thread.Sleep(1000);
                     }
                     if (UseTransDoor)//传送门
                     {
@@ -75,33 +127,39 @@ namespace Controller
                         double dis = CalcDis(player.Pos, pos);
                         if (dis <= 16.5)
                         {
-                            //  if (dis < 10.0)
+                            int ObjPtr = Program.client.GetNearbyWaypointObjPtr();
+                            Program.client.ActiveTarget(ObjPtr);
+                            Thread.Sleep(500);
+                            int nID = Program.client.GetNearbyWaypointID();
+                            if (nID != 0)
                             {
-                                int nID = Program.client.GetNearbyWaypointID();
-                                if (nID != 0)
+                                int nMapID = GetTargetMissionMapID();
+                                Thread.Sleep(1000);
+                                if (Program.config.bDungeonModel)
                                 {
-                                    int nMapID = GetTargetMissionMapID();
-                                    Thread.Sleep(1000);
-                                    if (Program.config.bDungeonModel)
-                                    {
-                                        Program.client.Transport(nMapID, nID, 1);
-                                        LoadBattleMapID = 0;
+                                    Program.client.Transport(nMapID, nID, 1);
+                                    bNeedSearchBattleWaypoint = true;
 
-                                        bCrossing = false;
-                                        curGroup = -1;
+                                    LoadBattleMapID = 0;
 
-                                        pollutantMapID = 0;//污染地穴地图ID
-                                        LoadPollutantMapID = 0;
-                                        pollutantGatePos = null;//门位置
-                                        pollutantComplete = false;//已经刷完
-                                        bEnterPollutanting = false;//正在进入污染地穴
+                                    bCrossing = false;
+                                    curGroup = -1;
+                                    ResetBattleMapInfo();
+                                    //pollutantMapID = 0;//污染地穴地图ID
+                                    //LoadPollutantMapID = 0;
+                                    //pollutantGatePos = null;//门位置
+                                    //pollutantComplete = false;//已经刷完
+                                    //bEnterPollutanting = false;//正在进入污染地穴
 
-                                    }
-                                    else
-                                        Program.client.Transport(nMapID, nID, 0);
-                                    Thread.Sleep(1000 * 3);
                                 }
+                                else
+                                {
+                                    Program.client.Transport(nMapID, nID, 0);
+                                    bNeedSearchBattleWaypoint = true;
+                                }
+                                Thread.Sleep(1000 * 3);
                             }
+
                         }
 
                         else
@@ -202,14 +260,14 @@ namespace Controller
                         LogoutCount = 0;
                         curStatus = Status.GotoBack;
                         SetNeedGoBack();
-                        bNeedResetBattleMapID = true;
+                        bNeedResetBattleMapInfo = true;
                         ChangeToNextMissionMap();
 
-                        pollutantMapID = 0;//污染地穴地图ID
-                        LoadPollutantMapID = 0;
-                        pollutantGatePos = null;//门位置
-                        pollutantComplete = false;//已经刷完
-                        bEnterPollutanting = false;//正在进入污染地穴
+                        //pollutantMapID = 0;//污染地穴地图ID
+                        //LoadPollutantMapID = 0;
+                        //pollutantGatePos = null;//门位置
+                        //pollutantComplete = false;//已经刷完
+                        //bEnterPollutanting = false;//正在进入污染地穴
                     }
                     Thread.Sleep(1000);
                     return 0;
@@ -235,14 +293,15 @@ namespace Controller
                         LogoutCount = 0;
                         curStatus = Status.GotoBack;
                         SetNeedGoBack();
-                        bNeedResetBattleMapID = true;
                         ChangeToNextMissionMap();
+                        bNeedResetBattleMapInfo = true;
 
-                        pollutantMapID = 0;//污染地穴地图ID
-                        LoadPollutantMapID = 0;
-                        pollutantGatePos = null;//门位置
-                        pollutantComplete = false;//已经刷完
-                        bEnterPollutanting = false;//正在进入污染地穴
+                        //bNeedResetBattleMapID = true;
+                        //pollutantMapID = 0;//污染地穴地图ID
+                        //LoadPollutantMapID = 0;
+                        //pollutantGatePos = null;//门位置
+                        //pollutantComplete = false;//已经刷完
+                        //bEnterPollutanting = false;//正在进入污染地穴
                     }
                     Thread.Sleep(1000);
                     return 0;
@@ -268,7 +327,7 @@ namespace Controller
         {
             int nMonsterCount = 0;
             List<SMonsterInfo> NearbyMonster = null;
-            if (Program.config.bPriorityAttack)
+            if (Program.config.bPriorityAttack)//优先攻击策略
             {
                 SMonsterInfo targetMonster = SearchMonsterAndLootNew(out nMonsterCount, out NearbyMonster);
                 if (targetMonster != null)
@@ -400,13 +459,14 @@ namespace Controller
                 ChangeToNextMissionMap();
                 curStatus = Status.GotoBack;
                 SetNeedGoBack();
-                bNeedResetBattleMapID = true;
+                bNeedResetBattleMapInfo = true;
 
-                pollutantMapID = 0;//污染地穴地图ID
-                LoadPollutantMapID = 0;
-                pollutantGatePos = null;//门位置
-                pollutantComplete = false;//已经刷完
-                bEnterPollutanting = false;//正在进入污染地穴
+                //bNeedResetBattleMapID = true;
+                //pollutantMapID = 0;//污染地穴地图ID
+                //LoadPollutantMapID = 0;
+                //pollutantGatePos = null;//门位置
+                //pollutantComplete = false;//已经刷完
+                //bEnterPollutanting = false;//正在进入污染地穴
                 //小退回城
                 ReturnRolePolicy();
                 Thread.Sleep(3000);

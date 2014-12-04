@@ -8,6 +8,19 @@ using Thrift.GameCall;
 
 namespace Controller
 {
+     [Serializable]
+    class Property
+    {
+        public string strInfo = null;
+        public List<double> data = new List<double>();
+    }
+     [Serializable]
+    class Filter
+    {
+        public string strName;
+        public List<Property> rules = new List<Property>();
+    }
+
     [Serializable]
     public class TTSkill
     {
@@ -93,7 +106,7 @@ namespace Controller
 
      //   public bool bUseMulAtt=true;
         public float MulAttDis = 35.0F;
-        public int MulAttStep = 700;
+        public int MulAttStep = 8000;
         public int MultiCount = 2;
         public int nMulAttKey = -1;
         //技能
@@ -151,8 +164,16 @@ namespace Controller
         public bool bNoIdentifyAmulet = false;
         public bool bNoIdentifyBelt = false;
 
-        public bool bExplorePollutant = true;
-        public bool bPriorityAttack = false;
+        public bool bExplorePollutant = true;//探索污染地穴
+        public bool bPriorityAttack = false;//优先攻击
+
+        public bool bDungeonHome = false;//是否使用藏身处模式
+        public bool bFullHide = false;//全部隐藏模式,从传送点回藏身处,不回城
+
+        public bool bUseSafeAttSpeed = true;//使用安全攻击速度
+
+        //高級存倉
+        public List<Filter> AllFilter = new List<Filter>();
     }
     class GlobeData//持久数据,地图,任务等使用
     {
@@ -160,7 +181,10 @@ namespace Controller
         public Dictionary<string, BattleMapInfo> AllBattleMap=new Dictionary<string,BattleMapInfo>();
         public Dictionary<int, TownMapInfo> AllTownMap=new Dictionary<int,TownMapInfo>();
         public HashSet<int> AllTownMapID = new HashSet<int>();
+        public HashSet<int> AllDungeonMapID = new HashSet<int>();
         public Dictionary<string, int> LootName = new Dictionary<string, int>();
+        //索引过滤器
+        public Dictionary<string, List<List<Property>>> IndexFilter = new Dictionary<string, List<List<Property>>>();
         //GlobeData()
         //{
         //    //持久化读取数据
@@ -501,13 +525,14 @@ namespace Controller
 
       //  bool bNeedGoback = false;
         bool UseTransDoor = false;
-        bool bNeedResetBattleMapID = false;
+    //    bool bNeedResetBattleMapID = false;
         bool bNeedSell = false;
         bool Selling = false;
         bool Saveing = false;
         bool bNeedSave = false;
         bool bNeedIdentity = false;
 
+        
 
         int CurMapID = 0;
      //   int TargetMissionMapID = 0;
@@ -554,11 +579,21 @@ namespace Controller
         int LastCheckHaloTime=0;
         int LastInTownTime = 0;//最后在城里的时间
 
+
+        //战斗地图数据
+        bool bNeedResetBattleMapInfo = false;
+        
+
+        //野外地图传送阵位置
+        bool bNeedSearchBattleWaypoint = false;
+        GPoint BattleWaypointPos = null;//野外传送点的位置
         //那个啥,污染地穴
        // int BaseMapID;//所在地图ID
         int pollutantMapID;//污染地穴地图ID
         int LoadPollutantMapID=0;
-        GPoint pollutantGatePos=null;//门位置
+        GPoint pollutantGatePos=null;//污染地穴门位置
+        bool bNeedSearchOutPollutantGate = false;
+        GPoint pollutantOutGatePos = null;//污染地穴到普通地图的门位置
         bool pollutantComplete=false;//已经刷完
         bool bEnterPollutanting = false;//正在进入污染地穴
 

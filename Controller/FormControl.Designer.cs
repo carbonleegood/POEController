@@ -114,12 +114,20 @@ namespace Controller
             this.button43 = new System.Windows.Forms.Button();
             this.button42 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button77 = new System.Windows.Forms.Button();
+            this.button76 = new System.Windows.Forms.Button();
+            this.button75 = new System.Windows.Forms.Button();
+            this.button74 = new System.Windows.Forms.Button();
+            this.button73 = new System.Windows.Forms.Button();
+            this.button72 = new System.Windows.Forms.Button();
+            this.button71 = new System.Windows.Forms.Button();
             this.button69 = new System.Windows.Forms.Button();
             this.button68 = new System.Windows.Forms.Button();
             this.button67 = new System.Windows.Forms.Button();
             this.button66 = new System.Windows.Forms.Button();
             this.button51 = new System.Windows.Forms.Button();
             this.button70 = new System.Windows.Forms.Button();
+            this.button78 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -958,6 +966,14 @@ namespace Controller
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button78);
+            this.tabPage4.Controls.Add(this.button77);
+            this.tabPage4.Controls.Add(this.button76);
+            this.tabPage4.Controls.Add(this.button75);
+            this.tabPage4.Controls.Add(this.button74);
+            this.tabPage4.Controls.Add(this.button73);
+            this.tabPage4.Controls.Add(this.button72);
+            this.tabPage4.Controls.Add(this.button71);
             this.tabPage4.Controls.Add(this.button69);
             this.tabPage4.Controls.Add(this.button68);
             this.tabPage4.Controls.Add(this.button67);
@@ -969,6 +985,75 @@ namespace Controller
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button77
+            // 
+            this.button77.Location = new System.Drawing.Point(310, 124);
+            this.button77.Name = "button77";
+            this.button77.Size = new System.Drawing.Size(75, 23);
+            this.button77.TabIndex = 10;
+            this.button77.Text = "点售卖菜单";
+            this.button77.UseVisualStyleBackColor = true;
+            this.button77.Click += new System.EventHandler(this.button77_Click);
+            // 
+            // button76
+            // 
+            this.button76.Location = new System.Drawing.Point(310, 95);
+            this.button76.Name = "button76";
+            this.button76.Size = new System.Drawing.Size(75, 23);
+            this.button76.TabIndex = 9;
+            this.button76.Text = "附近仓库位置";
+            this.button76.UseVisualStyleBackColor = true;
+            this.button76.Click += new System.EventHandler(this.button76_Click);
+            // 
+            // button75
+            // 
+            this.button75.Location = new System.Drawing.Point(310, 66);
+            this.button75.Name = "button75";
+            this.button75.Size = new System.Drawing.Size(75, 23);
+            this.button75.TabIndex = 8;
+            this.button75.Text = "附近NPC";
+            this.button75.UseVisualStyleBackColor = true;
+            this.button75.Click += new System.EventHandler(this.button75_Click);
+            // 
+            // button74
+            // 
+            this.button74.Location = new System.Drawing.Point(189, 163);
+            this.button74.Name = "button74";
+            this.button74.Size = new System.Drawing.Size(145, 23);
+            this.button74.TabIndex = 7;
+            this.button74.Text = "附近污染地穴门坐标";
+            this.button74.UseVisualStyleBackColor = true;
+            // 
+            // button73
+            // 
+            this.button73.Location = new System.Drawing.Point(40, 164);
+            this.button73.Name = "button73";
+            this.button73.Size = new System.Drawing.Size(112, 23);
+            this.button73.TabIndex = 6;
+            this.button73.Text = "附近传送点坐标";
+            this.button73.UseVisualStyleBackColor = true;
+            this.button73.Click += new System.EventHandler(this.button73_Click);
+            // 
+            // button72
+            // 
+            this.button72.Location = new System.Drawing.Point(162, 114);
+            this.button72.Name = "button72";
+            this.button72.Size = new System.Drawing.Size(75, 23);
+            this.button72.TabIndex = 5;
+            this.button72.Text = "传送到藏身处";
+            this.button72.UseVisualStyleBackColor = true;
+            this.button72.Click += new System.EventHandler(this.button72_Click);
+            // 
+            // button71
+            // 
+            this.button71.Location = new System.Drawing.Point(40, 114);
+            this.button71.Name = "button71";
+            this.button71.Size = new System.Drawing.Size(75, 23);
+            this.button71.TabIndex = 4;
+            this.button71.Text = "NPC菜单列表";
+            this.button71.UseVisualStyleBackColor = true;
+            this.button71.Click += new System.EventHandler(this.button71_Click);
             // 
             // button69
             // 
@@ -1029,6 +1114,16 @@ namespace Controller
             this.button70.Text = "背包全信息";
             this.button70.UseVisualStyleBackColor = true;
             this.button70.Click += new System.EventHandler(this.button70_Click);
+            // 
+            // button78
+            // 
+            this.button78.Location = new System.Drawing.Point(29, 66);
+            this.button78.Name = "button78";
+            this.button78.Size = new System.Drawing.Size(97, 23);
+            this.button78.TabIndex = 11;
+            this.button78.Text = "是否在藏身处";
+            this.button78.UseVisualStyleBackColor = true;
+            this.button78.Click += new System.EventHandler(this.button78_Click);
             // 
             // FormControl
             // 
@@ -1155,6 +1250,14 @@ namespace Controller
         private System.Windows.Forms.Button button67;
         private System.Windows.Forms.Button button69;
         private System.Windows.Forms.Button button70;
+        private System.Windows.Forms.Button button72;
+        private System.Windows.Forms.Button button71;
+        private System.Windows.Forms.Button button74;
+        private System.Windows.Forms.Button button73;
+        private System.Windows.Forms.Button button76;
+        private System.Windows.Forms.Button button75;
+        private System.Windows.Forms.Button button77;
+        private System.Windows.Forms.Button button78;
     }
 #endif
 }

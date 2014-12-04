@@ -617,9 +617,7 @@ namespace Controller
         int ExploreCurGroup()
         {
             //如果取不到当前组的点,取下一组
-            //    if(0==GetGroupExplorePoint())//能取到则探索
-            //    {
-            //
+
             if (curGroup == -1)
                 curGroup = GetCurGroup(player.Pos.x, player.Pos.y);
 
@@ -652,17 +650,7 @@ namespace Controller
                 ActMove(TargetPoint);
                 return 0;
             }
-            //else if (nRet == -1)//本组找不到点了
-            //{
-            //    ChangeToNextMissionMap();
-            //    curStatus = Status.GotoBack;
-            //    bSaledComplete = false;
-            //    bNeedSave = true;
-            //    bNeedResetBattleMapID = true;
 
-            //    return 0;
-            //    //分组信息也要清空
-            //}
             else if (nRet == -2)//寻找下一个点,本次找的不可达
             {
                 nSleepTime = 50;
@@ -677,14 +665,15 @@ namespace Controller
                 ChangeToNextMissionMap();
                 curStatus = Status.GotoBack;
                 SetNeedGoBack();
-                bNeedResetBattleMapID = true;
+                bNeedResetBattleMapInfo = true;
+             //   bNeedResetBattleMapID = true;
                 curGroup = -1;
 
-                pollutantMapID = 0;//污染地穴地图ID
-                LoadPollutantMapID = 0;
-                pollutantGatePos = null;//门位置
-                pollutantComplete = false;//已经刷完
-                bEnterPollutanting = false;//正在进入污染地穴
+                //pollutantMapID = 0;//污染地穴地图ID
+                //LoadPollutantMapID = 0;
+                //pollutantGatePos = null;//门位置
+                //pollutantComplete = false;//已经刷完
+                //bEnterPollutanting = false;//正在进入污染地穴
             }
             else
             {
@@ -830,25 +819,15 @@ namespace Controller
                ChangeToNextMissionMap();
                curStatus = Status.GotoBack;
                SetNeedGoBack();
-               bNeedResetBattleMapID = true;
-
-               pollutantMapID = 0;//污染地穴地图ID
-               LoadPollutantMapID = 0;
-               pollutantGatePos = null;//门位置
-               pollutantComplete = false;//已经刷完
-               bEnterPollutanting = false;//正在进入污染地穴
-               //MessageBox.Show("获取不到点了");
-               //bWorking = false;
-               //设置任务点为下一个地图
-              
-               //curStatus = Status.GotoBack;
-
-
-               //pollutantComplete = false;
-               //bSaledComplete = false;
-               //bNeedSave = true;
-               //bNeedIdentity = true;
+               bNeedResetBattleMapInfo = true;
                //bNeedResetBattleMapID = true;
+
+              // pollutantMapID = 0;//污染地穴地图ID
+               //LoadPollutantMapID = 0;
+               //pollutantGatePos = null;//门位置
+               //pollutantComplete = false;//已经刷完
+               //bEnterPollutanting = false;//正在进入污染地穴
+               //MessageBox.Show("获取不到点了");
            }
            else if (nRet == 2)
                nSleepTime = 50;

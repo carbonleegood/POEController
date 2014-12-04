@@ -87,6 +87,18 @@
   <ItemGroup>
     <Compile Include="Action.cs" />
     <Compile Include="Analysis.cs" />
+    <Compile Include="CreateFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateFilter.Designer.cs">
+      <DependentUpon>CreateFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditProperty.Designer.cs">
+      <DependentUpon>EditProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="PolicyGobackAnalysis.cs" />
     <Compile Include="PolicyMissionAnalysis.cs" />
     <Compile Include="Controller.cs">
@@ -127,9 +139,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Thrift结构\ItemFullInfo.cs" />
     <Compile Include="Thrift结构\ItemInfo.cs" />
+    <Compile Include="Thrift结构\ItemPropertyInfo.cs" />
     <Compile Include="Thrift结构\ItemSpaceInfo.cs" />
     <Compile Include="Thrift结构\LootType.cs" />
     <Compile Include="Thrift结构\MapInfo.cs" />
+    <Compile Include="Thrift结构\NPCMenuInfo.cs" />
     <Compile Include="Thrift结构\ObjInfo.cs" />
     <Compile Include="Thrift结构\PlayerInfo.cs" />
     <Compile Include="Thrift结构\Pos.cs" />
@@ -145,6 +159,12 @@
     <Compile Include="Worker.cs" />
     <EmbeddedResource Include="Controller.resx">
       <DependentUpon>Controller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateFilter.resx">
+      <DependentUpon>CreateFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditProperty.resx">
+      <DependentUpon>EditProperty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCFGName.resx">
       <DependentUpon>FormCFGName.cs</DependentUpon>

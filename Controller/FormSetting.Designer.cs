@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.map = new System.Windows.Forms.TabPage();
+            this.cbFullHide = new System.Windows.Forms.CheckBox();
+            this.cbUseHideHome = new System.Windows.Forms.CheckBox();
             this.cbPriorityAttack = new System.Windows.Forms.CheckBox();
             this.cbExplorePollutant = new System.Windows.Forms.CheckBox();
             this.cbReliveModel = new System.Windows.Forms.CheckBox();
@@ -46,6 +48,7 @@
             this.lbAllMap = new System.Windows.Forms.ListBox();
             this.lbMissionMap = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cbDefaultAttSpeed = new System.Windows.Forms.CheckBox();
             this.cbAutoUpSkill = new System.Windows.Forms.CheckBox();
             this.tbMulAttDis = new System.Windows.Forms.TextBox();
             this.label56 = new System.Windows.Forms.Label();
@@ -168,6 +171,17 @@
             this.tbType1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tpLoot = new System.Windows.Forms.TabPage();
+            this.label65 = new System.Windows.Forms.Label();
+            this.tbSkillQuality = new System.Windows.Forms.TextBox();
+            this.cbLootNameType = new System.Windows.Forms.ComboBox();
+            this.cbLootNameTypeFilter = new System.Windows.Forms.ComboBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.tbLootName = new System.Windows.Forms.TextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.btnDelLootName = new System.Windows.Forms.Button();
+            this.btnAddLootName = new System.Windows.Forms.Button();
+            this.lbLootName = new System.Windows.Forms.ListBox();
             this.cmLootMaps = new System.Windows.Forms.ComboBox();
             this.cbLootMoney = new System.Windows.Forms.CheckBox();
             this.cmOpenBoxColor = new System.Windows.Forms.ComboBox();
@@ -250,19 +264,24 @@
             this.btnDelMonster = new System.Windows.Forms.Button();
             this.btnAddMonster = new System.Windows.Forms.Button();
             this.lbPriorMonster = new System.Windows.Forms.ListBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnGetBagItemList = new System.Windows.Forms.Button();
+            this.label68 = new System.Windows.Forms.Label();
+            this.btnDelFilter = new System.Windows.Forms.Button();
+            this.btnCreateFilter = new System.Windows.Forms.Button();
+            this.btnSaveCurFilter = new System.Windows.Forms.Button();
+            this.btnEditProperty = new System.Windows.Forms.Button();
+            this.btnDelProperty = new System.Windows.Forms.Button();
+            this.lbCurFilterName = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lbAllFilter = new System.Windows.Forms.ListBox();
+            this.lbFilter = new System.Windows.Forms.ListBox();
+            this.lbProperty = new System.Windows.Forms.ListBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.lbBag = new System.Windows.Forms.ListBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lbLootName = new System.Windows.Forms.ListBox();
-            this.btnDelLootName = new System.Windows.Forms.Button();
-            this.btnAddLootName = new System.Windows.Forms.Button();
-            this.label62 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.tbLootName = new System.Windows.Forms.TextBox();
-            this.cbLootNameTypeFilter = new System.Windows.Forms.ComboBox();
-            this.cbLootNameType = new System.Windows.Forms.ComboBox();
-            this.tbSkillQuality = new System.Windows.Forms.TextBox();
-            this.label65 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.map.SuspendLayout();
             this.gbLevel.SuspendLayout();
@@ -272,6 +291,7 @@
             this.tpSell.SuspendLayout();
             this.tpSave.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -283,6 +303,7 @@
             this.tabControl1.Controls.Add(this.tpSell);
             this.tabControl1.Controls.Add(this.tpSave);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(-1, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -291,6 +312,8 @@
             // 
             // map
             // 
+            this.map.Controls.Add(this.cbFullHide);
+            this.map.Controls.Add(this.cbUseHideHome);
             this.map.Controls.Add(this.cbPriorityAttack);
             this.map.Controls.Add(this.cbExplorePollutant);
             this.map.Controls.Add(this.cbReliveModel);
@@ -311,6 +334,26 @@
             this.map.Text = "地圖";
             this.map.UseVisualStyleBackColor = true;
             // 
+            // cbFullHide
+            // 
+            this.cbFullHide.AutoSize = true;
+            this.cbFullHide.Location = new System.Drawing.Point(214, 74);
+            this.cbFullHide.Name = "cbFullHide";
+            this.cbFullHide.Size = new System.Drawing.Size(72, 16);
+            this.cbFullHide.TabIndex = 16;
+            this.cbFullHide.Text = "完全隱藏";
+            this.cbFullHide.UseVisualStyleBackColor = true;
+            // 
+            // cbUseHideHome
+            // 
+            this.cbUseHideHome.AutoSize = true;
+            this.cbUseHideHome.Location = new System.Drawing.Point(61, 72);
+            this.cbUseHideHome.Name = "cbUseHideHome";
+            this.cbUseHideHome.Size = new System.Drawing.Size(84, 16);
+            this.cbUseHideHome.TabIndex = 15;
+            this.cbUseHideHome.Text = "使用藏身處";
+            this.cbUseHideHome.UseVisualStyleBackColor = true;
+            // 
             // cbPriorityAttack
             // 
             this.cbPriorityAttack.AutoSize = true;
@@ -324,7 +367,7 @@
             // cbExplorePollutant
             // 
             this.cbExplorePollutant.AutoSize = true;
-            this.cbExplorePollutant.Location = new System.Drawing.Point(61, 41);
+            this.cbExplorePollutant.Location = new System.Drawing.Point(61, 40);
             this.cbExplorePollutant.Name = "cbExplorePollutant";
             this.cbExplorePollutant.Size = new System.Drawing.Size(84, 16);
             this.cbExplorePollutant.TabIndex = 13;
@@ -344,7 +387,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(348, 66);
+            this.label7.Location = new System.Drawing.Point(348, 97);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 12);
             this.label7.TabIndex = 11;
@@ -358,7 +401,7 @@
             "第一章",
             "第二章",
             "第三章"});
-            this.cbGroup.Location = new System.Drawing.Point(389, 63);
+            this.cbGroup.Location = new System.Drawing.Point(389, 94);
             this.cbGroup.Name = "cbGroup";
             this.cbGroup.Size = new System.Drawing.Size(114, 20);
             this.cbGroup.TabIndex = 10;
@@ -377,7 +420,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(57, 75);
+            this.label1.Location = new System.Drawing.Point(57, 106);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 8;
@@ -388,7 +431,7 @@
             this.gbLevel.Controls.Add(this.rbLevel1);
             this.gbLevel.Controls.Add(this.rbLevel3);
             this.gbLevel.Controls.Add(this.rbLevel2);
-            this.gbLevel.Location = new System.Drawing.Point(344, 6);
+            this.gbLevel.Location = new System.Drawing.Point(344, 35);
             this.gbLevel.Name = "gbLevel";
             this.gbLevel.Size = new System.Drawing.Size(162, 42);
             this.gbLevel.TabIndex = 7;
@@ -433,7 +476,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(252, 170);
+            this.btnRemove.Location = new System.Drawing.Point(252, 201);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 3;
@@ -443,7 +486,7 @@
             // 
             // g
             // 
-            this.g.Location = new System.Drawing.Point(252, 126);
+            this.g.Location = new System.Drawing.Point(252, 157);
             this.g.Name = "g";
             this.g.Size = new System.Drawing.Size(75, 23);
             this.g.TabIndex = 2;
@@ -455,7 +498,7 @@
             // 
             this.lbAllMap.FormattingEnabled = true;
             this.lbAllMap.ItemHeight = 12;
-            this.lbAllMap.Location = new System.Drawing.Point(344, 107);
+            this.lbAllMap.Location = new System.Drawing.Point(344, 138);
             this.lbAllMap.Name = "lbAllMap";
             this.lbAllMap.Size = new System.Drawing.Size(162, 184);
             this.lbAllMap.TabIndex = 1;
@@ -464,13 +507,14 @@
             // 
             this.lbMissionMap.FormattingEnabled = true;
             this.lbMissionMap.ItemHeight = 12;
-            this.lbMissionMap.Location = new System.Drawing.Point(59, 107);
+            this.lbMissionMap.Location = new System.Drawing.Point(59, 138);
             this.lbMissionMap.Name = "lbMissionMap";
             this.lbMissionMap.Size = new System.Drawing.Size(160, 184);
             this.lbMissionMap.TabIndex = 0;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cbDefaultAttSpeed);
             this.tabPage2.Controls.Add(this.cbAutoUpSkill);
             this.tabPage2.Controls.Add(this.tbMulAttDis);
             this.tabPage2.Controls.Add(this.label56);
@@ -549,10 +593,20 @@
             this.tabPage2.Text = "技能";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // cbDefaultAttSpeed
+            // 
+            this.cbDefaultAttSpeed.AutoSize = true;
+            this.cbDefaultAttSpeed.Location = new System.Drawing.Point(30, 47);
+            this.cbDefaultAttSpeed.Name = "cbDefaultAttSpeed";
+            this.cbDefaultAttSpeed.Size = new System.Drawing.Size(96, 16);
+            this.cbDefaultAttSpeed.TabIndex = 90;
+            this.cbDefaultAttSpeed.Text = "使用內置攻速";
+            this.cbDefaultAttSpeed.UseVisualStyleBackColor = true;
+            // 
             // cbAutoUpSkill
             // 
             this.cbAutoUpSkill.AutoSize = true;
-            this.cbAutoUpSkill.Location = new System.Drawing.Point(30, 32);
+            this.cbAutoUpSkill.Location = new System.Drawing.Point(30, 24);
             this.cbAutoUpSkill.Name = "cbAutoUpSkill";
             this.cbAutoUpSkill.Size = new System.Drawing.Size(96, 16);
             this.cbAutoUpSkill.TabIndex = 89;
@@ -633,9 +687,9 @@
             this.label52.AutoSize = true;
             this.label52.Location = new System.Drawing.Point(341, 223);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(77, 12);
+            this.label52.Size = new System.Drawing.Size(89, 12);
             this.label52.TabIndex = 80;
-            this.label52.Text = "秒,釋放次數:";
+            this.label52.Text = "毫秒,釋放次數:";
             // 
             // label53
             // 
@@ -649,7 +703,7 @@
             // tbWAttStep
             // 
             this.tbWAttStep.Location = new System.Drawing.Point(270, 219);
-            this.tbWAttStep.MaxLength = 5;
+            this.tbWAttStep.MaxLength = 8;
             this.tbWAttStep.Name = "tbWAttStep";
             this.tbWAttStep.Size = new System.Drawing.Size(65, 21);
             this.tbWAttStep.TabIndex = 78;
@@ -703,9 +757,9 @@
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(341, 193);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(77, 12);
+            this.label32.Size = new System.Drawing.Size(89, 12);
             this.label32.TabIndex = 73;
-            this.label32.Text = "秒,釋放次數:";
+            this.label32.Text = "毫秒,釋放次數:";
             // 
             // label33
             // 
@@ -719,7 +773,7 @@
             // tbQAttStep
             // 
             this.tbQAttStep.Location = new System.Drawing.Point(270, 189);
-            this.tbQAttStep.MaxLength = 5;
+            this.tbQAttStep.MaxLength = 8;
             this.tbQAttStep.Name = "tbQAttStep";
             this.tbQAttStep.Size = new System.Drawing.Size(65, 21);
             this.tbQAttStep.TabIndex = 71;
@@ -773,9 +827,9 @@
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(341, 163);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(77, 12);
+            this.label28.Size = new System.Drawing.Size(89, 12);
             this.label28.TabIndex = 66;
-            this.label28.Text = "秒,釋放次數:";
+            this.label28.Text = "毫秒,釋放次數:";
             // 
             // label29
             // 
@@ -789,7 +843,7 @@
             // tbRightAttStep
             // 
             this.tbRightAttStep.Location = new System.Drawing.Point(270, 159);
-            this.tbRightAttStep.MaxLength = 5;
+            this.tbRightAttStep.MaxLength = 8;
             this.tbRightAttStep.Name = "tbRightAttStep";
             this.tbRightAttStep.Size = new System.Drawing.Size(65, 21);
             this.tbRightAttStep.TabIndex = 64;
@@ -843,9 +897,9 @@
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(341, 103);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(77, 12);
+            this.label26.Size = new System.Drawing.Size(89, 12);
             this.label26.TabIndex = 59;
-            this.label26.Text = "秒,釋放次數:";
+            this.label26.Text = "毫秒,釋放次數:";
             // 
             // label27
             // 
@@ -859,7 +913,7 @@
             // tbLeftAttStep
             // 
             this.tbLeftAttStep.Location = new System.Drawing.Point(270, 99);
-            this.tbLeftAttStep.MaxLength = 5;
+            this.tbLeftAttStep.MaxLength = 8;
             this.tbLeftAttStep.Name = "tbLeftAttStep";
             this.tbLeftAttStep.Size = new System.Drawing.Size(65, 21);
             this.tbLeftAttStep.TabIndex = 57;
@@ -943,9 +997,9 @@
             this.label40.AutoSize = true;
             this.label40.Location = new System.Drawing.Point(341, 133);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(77, 12);
+            this.label40.Size = new System.Drawing.Size(89, 12);
             this.label40.TabIndex = 42;
-            this.label40.Text = "秒,釋放次數:";
+            this.label40.Text = "毫秒,釋放次數:";
             // 
             // label41
             // 
@@ -959,7 +1013,7 @@
             // tbMidAttStep
             // 
             this.tbMidAttStep.Location = new System.Drawing.Point(270, 129);
-            this.tbMidAttStep.MaxLength = 5;
+            this.tbMidAttStep.MaxLength = 8;
             this.tbMidAttStep.Name = "tbMidAttStep";
             this.tbMidAttStep.Size = new System.Drawing.Size(65, 21);
             this.tbMidAttStep.TabIndex = 40;
@@ -1026,7 +1080,7 @@
             // tbTAttStep
             // 
             this.tbTAttStep.Location = new System.Drawing.Point(270, 309);
-            this.tbTAttStep.MaxLength = 5;
+            this.tbTAttStep.MaxLength = 8;
             this.tbTAttStep.Name = "tbTAttStep";
             this.tbTAttStep.Size = new System.Drawing.Size(65, 21);
             this.tbTAttStep.TabIndex = 35;
@@ -1034,7 +1088,7 @@
             // tbRAttStep
             // 
             this.tbRAttStep.Location = new System.Drawing.Point(270, 279);
-            this.tbRAttStep.MaxLength = 5;
+            this.tbRAttStep.MaxLength = 8;
             this.tbRAttStep.Name = "tbRAttStep";
             this.tbRAttStep.Size = new System.Drawing.Size(65, 21);
             this.tbRAttStep.TabIndex = 34;
@@ -1058,18 +1112,18 @@
             this.label39.AutoSize = true;
             this.label39.Location = new System.Drawing.Point(341, 313);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(77, 12);
+            this.label39.Size = new System.Drawing.Size(89, 12);
             this.label39.TabIndex = 31;
-            this.label39.Text = "秒,釋放次數:";
+            this.label39.Text = "毫秒,釋放次數:";
             // 
             // label38
             // 
             this.label38.AutoSize = true;
             this.label38.Location = new System.Drawing.Point(341, 283);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(77, 12);
+            this.label38.Size = new System.Drawing.Size(89, 12);
             this.label38.TabIndex = 30;
-            this.label38.Text = "秒,釋放次數:";
+            this.label38.Text = "毫秒,釋放次數:";
             // 
             // label37
             // 
@@ -1127,9 +1181,9 @@
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(341, 253);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(77, 12);
+            this.label31.Size = new System.Drawing.Size(89, 12);
             this.label31.TabIndex = 21;
-            this.label31.Text = "秒,釋放次數:";
+            this.label31.Text = "毫秒,釋放次數:";
             // 
             // label30
             // 
@@ -1143,7 +1197,7 @@
             // tbEAttStep
             // 
             this.tbEAttStep.Location = new System.Drawing.Point(270, 249);
-            this.tbEAttStep.MaxLength = 5;
+            this.tbEAttStep.MaxLength = 8;
             this.tbEAttStep.Name = "tbEAttStep";
             this.tbEAttStep.Size = new System.Drawing.Size(65, 21);
             this.tbEAttStep.TabIndex = 19;
@@ -1228,9 +1282,9 @@
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(28, 5);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(437, 12);
+            this.label23.Size = new System.Drawing.Size(317, 12);
             this.label23.TabIndex = 0;
-            this.label23.Text = "攻擊距離一般為10-30碼,因穩定性問題,釋放間隔暫時內置,後續版本會向用戶開放";
+            this.label23.Text = "攻擊距離一般為10-30碼,釋放間隔為毫秒,1000毫秒等於1秒";
             // 
             // tabPage1
             // 
@@ -1834,6 +1888,129 @@
             this.tpLoot.TabIndex = 3;
             this.tpLoot.Text = "拾取";
             this.tpLoot.UseVisualStyleBackColor = true;
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(110, 21);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(71, 12);
+            this.label65.TabIndex = 37;
+            this.label65.Text = "技能石品質:";
+            // 
+            // tbSkillQuality
+            // 
+            this.tbSkillQuality.Location = new System.Drawing.Point(187, 18);
+            this.tbSkillQuality.MaxLength = 2;
+            this.tbSkillQuality.Name = "tbSkillQuality";
+            this.tbSkillQuality.Size = new System.Drawing.Size(43, 21);
+            this.tbSkillQuality.TabIndex = 36;
+            // 
+            // cbLootNameType
+            // 
+            this.cbLootNameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLootNameType.FormattingEnabled = true;
+            this.cbLootNameType.Items.AddRange(new object[] {
+            "技能石",
+            "卷軸",
+            "通貨",
+            "地圖",
+            "藥劑",
+            "防具",
+            "武器",
+            "腰帶",
+            "戒指",
+            "項鏈"});
+            this.cbLootNameType.Location = new System.Drawing.Point(463, 248);
+            this.cbLootNameType.Name = "cbLootNameType";
+            this.cbLootNameType.Size = new System.Drawing.Size(98, 20);
+            this.cbLootNameType.TabIndex = 35;
+            // 
+            // cbLootNameTypeFilter
+            // 
+            this.cbLootNameTypeFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLootNameTypeFilter.FormattingEnabled = true;
+            this.cbLootNameTypeFilter.Items.AddRange(new object[] {
+            "全部",
+            "技能石",
+            "卷軸",
+            "通貨",
+            "地圖",
+            "藥劑",
+            "防具",
+            "武器",
+            "腰帶",
+            "戒指",
+            "項鏈"});
+            this.cbLootNameTypeFilter.Location = new System.Drawing.Point(259, 127);
+            this.cbLootNameTypeFilter.Name = "cbLootNameTypeFilter";
+            this.cbLootNameTypeFilter.Size = new System.Drawing.Size(114, 20);
+            this.cbLootNameTypeFilter.TabIndex = 34;
+            this.cbLootNameTypeFilter.SelectedIndexChanged += new System.EventHandler(this.cbLootNameTypeFilter_SelectedIndexChanged);
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(463, 228);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(29, 12);
+            this.label63.TabIndex = 33;
+            this.label63.Text = "類型";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(461, 174);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(53, 12);
+            this.label64.TabIndex = 32;
+            this.label64.Text = "物品名稱";
+            // 
+            // tbLootName
+            // 
+            this.tbLootName.Location = new System.Drawing.Point(463, 193);
+            this.tbLootName.MaxLength = 10;
+            this.tbLootName.Name = "tbLootName";
+            this.tbLootName.Size = new System.Drawing.Size(100, 21);
+            this.tbLootName.TabIndex = 30;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(257, 110);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(323, 12);
+            this.label62.TabIndex = 29;
+            this.label62.Text = "無視顏色按名稱拾取列表(此列表是所有配置共用,謹慎修改)";
+            // 
+            // btnDelLootName
+            // 
+            this.btnDelLootName.Location = new System.Drawing.Point(402, 245);
+            this.btnDelLootName.Name = "btnDelLootName";
+            this.btnDelLootName.Size = new System.Drawing.Size(55, 23);
+            this.btnDelLootName.TabIndex = 28;
+            this.btnDelLootName.Text = "刪除";
+            this.btnDelLootName.UseVisualStyleBackColor = true;
+            this.btnDelLootName.Click += new System.EventHandler(this.btnDelLootName_Click);
+            // 
+            // btnAddLootName
+            // 
+            this.btnAddLootName.Location = new System.Drawing.Point(402, 204);
+            this.btnAddLootName.Name = "btnAddLootName";
+            this.btnAddLootName.Size = new System.Drawing.Size(55, 23);
+            this.btnAddLootName.TabIndex = 27;
+            this.btnAddLootName.Text = "<<添加";
+            this.btnAddLootName.UseVisualStyleBackColor = true;
+            this.btnAddLootName.Click += new System.EventHandler(this.btnAddLootName_Click);
+            // 
+            // lbLootName
+            // 
+            this.lbLootName.FormattingEnabled = true;
+            this.lbLootName.ItemHeight = 12;
+            this.lbLootName.Location = new System.Drawing.Point(259, 153);
+            this.lbLootName.Name = "lbLootName";
+            this.lbLootName.Size = new System.Drawing.Size(137, 184);
+            this.lbLootName.TabIndex = 26;
             // 
             // cmLootMaps
             // 
@@ -2840,6 +3017,175 @@
             this.lbPriorMonster.Size = new System.Drawing.Size(160, 184);
             this.lbPriorMonster.TabIndex = 4;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.btnGetBagItemList);
+            this.tabPage4.Controls.Add(this.label68);
+            this.tabPage4.Controls.Add(this.btnDelFilter);
+            this.tabPage4.Controls.Add(this.btnCreateFilter);
+            this.tabPage4.Controls.Add(this.btnSaveCurFilter);
+            this.tabPage4.Controls.Add(this.btnEditProperty);
+            this.tabPage4.Controls.Add(this.btnDelProperty);
+            this.tabPage4.Controls.Add(this.lbCurFilterName);
+            this.tabPage4.Controls.Add(this.label67);
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.lbAllFilter);
+            this.tabPage4.Controls.Add(this.lbFilter);
+            this.tabPage4.Controls.Add(this.lbProperty);
+            this.tabPage4.Controls.Add(this.label66);
+            this.tabPage4.Controls.Add(this.lbBag);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(584, 350);
+            this.tabPage4.TabIndex = 7;
+            this.tabPage4.Text = "高級存倉";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnGetBagItemList
+            // 
+            this.btnGetBagItemList.Location = new System.Drawing.Point(19, 265);
+            this.btnGetBagItemList.Name = "btnGetBagItemList";
+            this.btnGetBagItemList.Size = new System.Drawing.Size(111, 23);
+            this.btnGetBagItemList.TabIndex = 14;
+            this.btnGetBagItemList.Text = "更新背包物品";
+            this.btnGetBagItemList.UseVisualStyleBackColor = true;
+            this.btnGetBagItemList.Click += new System.EventHandler(this.btnGetBagItemList_Click);
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(149, 40);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(53, 12);
+            this.label68.TabIndex = 13;
+            this.label68.Text = "物品属性";
+            // 
+            // btnDelFilter
+            // 
+            this.btnDelFilter.Location = new System.Drawing.Point(457, 296);
+            this.btnDelFilter.Name = "btnDelFilter";
+            this.btnDelFilter.Size = new System.Drawing.Size(111, 23);
+            this.btnDelFilter.TabIndex = 12;
+            this.btnDelFilter.Text = "删除过滤器";
+            this.btnDelFilter.UseVisualStyleBackColor = true;
+            this.btnDelFilter.Click += new System.EventHandler(this.btnDelFilter_Click);
+            // 
+            // btnCreateFilter
+            // 
+            this.btnCreateFilter.Location = new System.Drawing.Point(457, 267);
+            this.btnCreateFilter.Name = "btnCreateFilter";
+            this.btnCreateFilter.Size = new System.Drawing.Size(111, 23);
+            this.btnCreateFilter.TabIndex = 11;
+            this.btnCreateFilter.Text = "新建过滤器";
+            this.btnCreateFilter.UseVisualStyleBackColor = true;
+            this.btnCreateFilter.Click += new System.EventHandler(this.btnCreateFilter_Click);
+            // 
+            // btnSaveCurFilter
+            // 
+            this.btnSaveCurFilter.Location = new System.Drawing.Point(327, 296);
+            this.btnSaveCurFilter.Name = "btnSaveCurFilter";
+            this.btnSaveCurFilter.Size = new System.Drawing.Size(111, 23);
+            this.btnSaveCurFilter.TabIndex = 10;
+            this.btnSaveCurFilter.Text = "保存";
+            this.btnSaveCurFilter.UseVisualStyleBackColor = true;
+            this.btnSaveCurFilter.Click += new System.EventHandler(this.btnSaveCurFilter_Click);
+            // 
+            // btnEditProperty
+            // 
+            this.btnEditProperty.Location = new System.Drawing.Point(327, 267);
+            this.btnEditProperty.Name = "btnEditProperty";
+            this.btnEditProperty.Size = new System.Drawing.Size(111, 23);
+            this.btnEditProperty.TabIndex = 9;
+            this.btnEditProperty.Text = "編輯";
+            this.btnEditProperty.UseVisualStyleBackColor = true;
+            this.btnEditProperty.Click += new System.EventHandler(this.btnEditProperty_Click);
+            // 
+            // btnDelProperty
+            // 
+            this.btnDelProperty.Location = new System.Drawing.Point(327, 324);
+            this.btnDelProperty.Name = "btnDelProperty";
+            this.btnDelProperty.Size = new System.Drawing.Size(111, 23);
+            this.btnDelProperty.TabIndex = 8;
+            this.btnDelProperty.Text = "刪除";
+            this.btnDelProperty.UseVisualStyleBackColor = true;
+            this.btnDelProperty.Click += new System.EventHandler(this.btnDelProperty_Click);
+            // 
+            // lbCurFilterName
+            // 
+            this.lbCurFilterName.AutoSize = true;
+            this.lbCurFilterName.Location = new System.Drawing.Point(325, 40);
+            this.lbCurFilterName.Name = "lbCurFilterName";
+            this.lbCurFilterName.Size = new System.Drawing.Size(65, 12);
+            this.lbCurFilterName.TabIndex = 7;
+            this.lbCurFilterName.Text = "过滤器名称";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(464, 40);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(65, 12);
+            this.label67.TabIndex = 6;
+            this.label67.Text = "全部过滤器";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(268, 122);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = ">>";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lbAllFilter
+            // 
+            this.lbAllFilter.FormattingEnabled = true;
+            this.lbAllFilter.ItemHeight = 12;
+            this.lbAllFilter.Location = new System.Drawing.Point(457, 75);
+            this.lbAllFilter.Name = "lbAllFilter";
+            this.lbAllFilter.Size = new System.Drawing.Size(111, 184);
+            this.lbAllFilter.TabIndex = 4;
+            this.lbAllFilter.DoubleClick += new System.EventHandler(this.lbAllFilter_DoubleClick);
+            // 
+            // lbFilter
+            // 
+            this.lbFilter.FormattingEnabled = true;
+            this.lbFilter.ItemHeight = 12;
+            this.lbFilter.Location = new System.Drawing.Point(327, 75);
+            this.lbFilter.Name = "lbFilter";
+            this.lbFilter.Size = new System.Drawing.Size(111, 184);
+            this.lbFilter.TabIndex = 3;
+            // 
+            // lbProperty
+            // 
+            this.lbProperty.FormattingEnabled = true;
+            this.lbProperty.ItemHeight = 12;
+            this.lbProperty.Location = new System.Drawing.Point(151, 75);
+            this.lbProperty.Name = "lbProperty";
+            this.lbProperty.Size = new System.Drawing.Size(111, 184);
+            this.lbProperty.TabIndex = 2;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(17, 40);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(53, 12);
+            this.label66.TabIndex = 1;
+            this.label66.Text = "背包物品";
+            // 
+            // lbBag
+            // 
+            this.lbBag.FormattingEnabled = true;
+            this.lbBag.ItemHeight = 12;
+            this.lbBag.Location = new System.Drawing.Point(19, 75);
+            this.lbBag.Name = "lbBag";
+            this.lbBag.Size = new System.Drawing.Size(111, 184);
+            this.lbBag.TabIndex = 0;
+            this.lbBag.DoubleClick += new System.EventHandler(this.lbBag_DoubleClick);
+            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(58, 394);
@@ -2859,129 +3205,6 @@
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // lbLootName
-            // 
-            this.lbLootName.FormattingEnabled = true;
-            this.lbLootName.ItemHeight = 12;
-            this.lbLootName.Location = new System.Drawing.Point(259, 153);
-            this.lbLootName.Name = "lbLootName";
-            this.lbLootName.Size = new System.Drawing.Size(137, 184);
-            this.lbLootName.TabIndex = 26;
-            // 
-            // btnDelLootName
-            // 
-            this.btnDelLootName.Location = new System.Drawing.Point(402, 245);
-            this.btnDelLootName.Name = "btnDelLootName";
-            this.btnDelLootName.Size = new System.Drawing.Size(55, 23);
-            this.btnDelLootName.TabIndex = 28;
-            this.btnDelLootName.Text = "刪除";
-            this.btnDelLootName.UseVisualStyleBackColor = true;
-            this.btnDelLootName.Click += new System.EventHandler(this.btnDelLootName_Click);
-            // 
-            // btnAddLootName
-            // 
-            this.btnAddLootName.Location = new System.Drawing.Point(402, 204);
-            this.btnAddLootName.Name = "btnAddLootName";
-            this.btnAddLootName.Size = new System.Drawing.Size(55, 23);
-            this.btnAddLootName.TabIndex = 27;
-            this.btnAddLootName.Text = "<<添加";
-            this.btnAddLootName.UseVisualStyleBackColor = true;
-            this.btnAddLootName.Click += new System.EventHandler(this.btnAddLootName_Click);
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(257, 110);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(323, 12);
-            this.label62.TabIndex = 29;
-            this.label62.Text = "無視顏色按名稱拾取列表(此列表是所有配置共用,謹慎修改)";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(463, 228);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(29, 12);
-            this.label63.TabIndex = 33;
-            this.label63.Text = "類型";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(461, 174);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(53, 12);
-            this.label64.TabIndex = 32;
-            this.label64.Text = "物品名稱";
-            // 
-            // tbLootName
-            // 
-            this.tbLootName.Location = new System.Drawing.Point(463, 193);
-            this.tbLootName.MaxLength = 10;
-            this.tbLootName.Name = "tbLootName";
-            this.tbLootName.Size = new System.Drawing.Size(100, 21);
-            this.tbLootName.TabIndex = 30;
-            // 
-            // cbLootNameTypeFilter
-            // 
-            this.cbLootNameTypeFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLootNameTypeFilter.FormattingEnabled = true;
-            this.cbLootNameTypeFilter.Items.AddRange(new object[] {
-            "全部",
-            "技能石",
-            "卷軸",
-            "通貨",
-            "地圖",
-            "藥劑",
-            "防具",
-            "武器",
-            "腰帶",
-            "戒指",
-            "項鏈"});
-            this.cbLootNameTypeFilter.Location = new System.Drawing.Point(259, 127);
-            this.cbLootNameTypeFilter.Name = "cbLootNameTypeFilter";
-            this.cbLootNameTypeFilter.Size = new System.Drawing.Size(114, 20);
-            this.cbLootNameTypeFilter.TabIndex = 34;
-            this.cbLootNameTypeFilter.SelectedIndexChanged += new System.EventHandler(this.cbLootNameTypeFilter_SelectedIndexChanged);
-            // 
-            // cbLootNameType
-            // 
-            this.cbLootNameType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLootNameType.FormattingEnabled = true;
-            this.cbLootNameType.Items.AddRange(new object[] {
-            "技能石",
-            "卷軸",
-            "通貨",
-            "地圖",
-            "藥劑",
-            "防具",
-            "武器",
-            "腰帶",
-            "戒指",
-            "項鏈"});
-            this.cbLootNameType.Location = new System.Drawing.Point(463, 248);
-            this.cbLootNameType.Name = "cbLootNameType";
-            this.cbLootNameType.Size = new System.Drawing.Size(98, 20);
-            this.cbLootNameType.TabIndex = 35;
-            // 
-            // tbSkillQuality
-            // 
-            this.tbSkillQuality.Location = new System.Drawing.Point(187, 18);
-            this.tbSkillQuality.MaxLength = 2;
-            this.tbSkillQuality.Name = "tbSkillQuality";
-            this.tbSkillQuality.Size = new System.Drawing.Size(43, 21);
-            this.tbSkillQuality.TabIndex = 36;
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(110, 21);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(71, 12);
-            this.label65.TabIndex = 37;
-            this.label65.Text = "技能石品質:";
             // 
             // FormSetting
             // 
@@ -3010,6 +3233,8 @@
             this.tpSave.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3251,5 +3476,24 @@
         private System.Windows.Forms.ComboBox cbLootNameTypeFilter;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.TextBox tbSkillQuality;
+        private System.Windows.Forms.CheckBox cbFullHide;
+        private System.Windows.Forms.CheckBox cbUseHideHome;
+        private System.Windows.Forms.CheckBox cbDefaultAttSpeed;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button btnDelFilter;
+        private System.Windows.Forms.Button btnCreateFilter;
+        private System.Windows.Forms.Button btnSaveCurFilter;
+        private System.Windows.Forms.Button btnEditProperty;
+        private System.Windows.Forms.Button btnDelProperty;
+        private System.Windows.Forms.Label lbCurFilterName;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox lbAllFilter;
+        private System.Windows.Forms.ListBox lbFilter;
+        private System.Windows.Forms.ListBox lbProperty;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.ListBox lbBag;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Button btnGetBagItemList;
     }
 }

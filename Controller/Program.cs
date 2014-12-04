@@ -24,9 +24,22 @@ namespace Controller
         public static RunTimeData runtime = null;
         public static GlobeData gdata = new GlobeData();
         public static Controller UI = null;
+        public static HashSet<char> NumberChar = new HashSet<char>();
         [STAThread]
         static void Main()
         {
+            NumberChar.Add('.');
+            NumberChar.Add('0');
+            NumberChar.Add('1');
+            NumberChar.Add('2');
+            NumberChar.Add('3');
+            NumberChar.Add('4');
+            NumberChar.Add('5');
+            NumberChar.Add('6');
+            NumberChar.Add('7');
+            NumberChar.Add('8');
+            NumberChar.Add('9');
+
           //  String commandLineString = System.Environment.CommandLine;
             String[] args = System.Environment.GetCommandLineArgs();
             string StartParam=null;
@@ -35,7 +48,6 @@ namespace Controller
             if(n>1)
             {
                 StartParam = args[1];
-                
             }
             
           //  aaa();
@@ -49,13 +61,13 @@ namespace Controller
            Login login = new Login();
 
            if (StartParam != null)
-                login.bAutoLogin=true;
+               login.bAutoLogin = true;
 
            DialogResult ret = login.ShowDialog();
            if (ret == DialogResult.Cancel)
                return;
           //  Application.Run(new Trance());
-          //Application.Run(new FormControl());
+        //  Application.Run(new FormControl());
            UI = new Controller();
            if (StartParam != null)
            {
@@ -63,18 +75,64 @@ namespace Controller
                UI.AutoConfig = StartParam;
            }
           Application.Run(UI);
-        }//
-        //static void monite()
-        //{
-        //    if(UI!=null)
-        //    {
-        //        UI.cbConfig.Items.Clear();
-        //        UI.cbConfig.Items.Add("aaa");
-        //        UI.cbConfig.SelectedIndex = 0;
-        //    }
-        //}
+        }
+
+
         static void bbb()
         {
+            Program.gdata.AllDungeonMapID.Add(0x9225);
+            Program.gdata.AllDungeonMapID.Add(0x70C6);
+            Program.gdata.AllDungeonMapID.Add(0xCA19);
+            Program.gdata.AllDungeonMapID.Add(0xD747);
+            Program.gdata.AllDungeonMapID.Add(0xC11F);
+            Program.gdata.AllDungeonMapID.Add(0xDD87);
+            Program.gdata.AllDungeonMapID.Add(0xEF29);
+            Program.gdata.AllDungeonMapID.Add(0x7441);
+            Program.gdata.AllDungeonMapID.Add(0xB593);
+            Program.gdata.AllDungeonMapID.Add(0x93F5);
+            Program.gdata.AllDungeonMapID.Add(0xF17F);
+            Program.gdata.AllDungeonMapID.Add(0x8F82);
+            Program.gdata.AllDungeonMapID.Add(0x1420);
+            Program.gdata.AllDungeonMapID.Add(0x43F7);
+            Program.gdata.AllDungeonMapID.Add(0xB469);
+            Program.gdata.AllDungeonMapID.Add(0x9155);
+            Program.gdata.AllDungeonMapID.Add(0x8F4);
+            Program.gdata.AllDungeonMapID.Add(0x43B4);
+            Program.gdata.AllDungeonMapID.Add(0xE5C);
+            Program.gdata.AllDungeonMapID.Add(0x3BA1);
+            Program.gdata.AllDungeonMapID.Add(0x296B);
+            Program.gdata.AllDungeonMapID.Add(0xAD52);
+            Program.gdata.AllDungeonMapID.Add(0xCB66);
+            Program.gdata.AllDungeonMapID.Add(0x1920);
+            Program.gdata.AllDungeonMapID.Add(0xDBD9);
+            Program.gdata.AllDungeonMapID.Add(0x6BC9);
+            Program.gdata.AllDungeonMapID.Add(0x4CE0);
+            Program.gdata.AllDungeonMapID.Add(0x2259);
+            Program.gdata.AllDungeonMapID.Add(0x6FED);
+            Program.gdata.AllDungeonMapID.Add(0xA980);
+            Program.gdata.AllDungeonMapID.Add(0xFF7);
+            Program.gdata.AllDungeonMapID.Add(0x845);
+            Program.gdata.AllDungeonMapID.Add(0xB470);
+            Program.gdata.AllDungeonMapID.Add(0x2113);
+            Program.gdata.AllDungeonMapID.Add(0x3D0F);
+            Program.gdata.AllDungeonMapID.Add(0x6D7);
+            Program.gdata.AllDungeonMapID.Add(0xE98A);
+            Program.gdata.AllDungeonMapID.Add(0x3F68);
+            Program.gdata.AllDungeonMapID.Add(0xCB99);
+            Program.gdata.AllDungeonMapID.Add(0xD769);
+            Program.gdata.AllDungeonMapID.Add(0xCE5B);
+            Program.gdata.AllDungeonMapID.Add(0xBEDB);
+            Program.gdata.AllDungeonMapID.Add(0xF9B4);
+            Program.gdata.AllDungeonMapID.Add(0xA5B4);
+            Program.gdata.AllDungeonMapID.Add(0x7C9D);
+            Program.gdata.AllDungeonMapID.Add(0x637A);
+            Program.gdata.AllDungeonMapID.Add(0xD353);
+            Program.gdata.AllDungeonMapID.Add(0xCE7);
+            Program.gdata.AllDungeonMapID.Add(0xF5EB);
+            Program.gdata.AllDungeonMapID.Add(0x80C4);
+            Program.gdata.AllDungeonMapID.Add(0x3D3C);
+            Program.gdata.AllDungeonMapID.Add(0xCB4B);
+            /////////////////////////////////////////////////////////////
             BattleMapInfo map = null;
          //   string filename = @"d:\llllllll.bat";
             string filename = @"llllllll.bat";
@@ -402,5 +460,144 @@ namespace Controller
             fStream.Close();
             ftownStream.Close();
         }
+
+        //static void GenIndexFilter()
+        //{
+        //    IndexFilter.Clear();
+        //    //建立索引过滤器
+        //    foreach (var OneFilter in AllFilter)
+        //    {
+        //        foreach (var OneProperty in OneFilter.rules)
+        //        {
+        //            List<List<Property>> GroupFilter = null;
+        //            bool bRet = IndexFilter.TryGetValue(OneProperty.strInfo, out GroupFilter);
+        //            if (bRet)//如果已经有了
+        //            {
+        //                GroupFilter.Add(OneFilter.rules);
+        //            }
+        //            else
+        //            {
+        //                GroupFilter = new List<List<Property>>();
+        //                GroupFilter.Add(OneFilter.rules);
+        //                IndexFilter.Add(OneProperty.strInfo, GroupFilter);
+        //            }
+        //        }
+        //    }
+        //}
+        //static void InitFilter()
+        //{
+        //    string filename = @"trophy.bat";
+        //    Stream fStream = null;
+        //    try
+        //    {
+        //        fStream = new FileStream(filename, FileMode.Open, FileAccess.ReadWrite);
+
+
+        //        BinaryFormatter binFormat = new BinaryFormatter();
+
+        //        AllFilter = (List<Filter>)binFormat.Deserialize(fStream);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        if (fStream != null)
+        //            fStream.Close();
+        //        return;
+        //    }
+        //    fStream.Close();
+        //    //从文件读取过滤器
+        //    GenIndexFilter();
+        //}
+        //static void AddFilter(string strName, string strProperty)
+        //{
+        //    //保存过滤器
+        //    List<Property> data = GenOneFilter(strProperty);
+        //    Filter filter = new Filter();
+        //    filter.strName = strName;
+        //    filter.rules = data;
+        //    AllFilter.Add(filter);
+        //}
+        //static void RemoveFilter(string strName)
+        //{
+        //    bool bContinue = false;
+        //    do
+        //    {
+        //        bContinue = false;
+        //        foreach (var item in AllFilter)
+        //        {
+        //            if (item.strName == strName)
+        //            {
+        //                AllFilter.Remove(item);
+        //                bContinue = true;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    while (bContinue);
+        //}
+        //static void SaveAllFilter()
+        //{
+        //    string filename = @"trophy.bat";
+        //    Stream fStream = null;
+        //    try
+        //    {
+        //        fStream = new FileStream(filename, FileMode.Open, FileAccess.ReadWrite);
+
+        //        BinaryFormatter binFormat = new BinaryFormatter();
+
+        //        binFormat.Serialize(fStream, AllFilter);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        if (fStream != null)
+        //            fStream.Close();
+        //        return;
+        //    }
+        //    fStream.Close();
+        //}
+        //List<List<Property>> SearchFilter(Dictionary<string, List<double>> TrophyProperty)
+        //{
+        //    List<List<Property>> GroupFilter = null;
+        //    foreach (var item in TrophyProperty)
+        //    {
+        //        bool bRet = IndexFilter.TryGetValue(item.Key, out GroupFilter);
+        //        if (bRet)
+        //            break;
+        //        GroupFilter = null;
+        //    }
+        //    return GroupFilter;
+        //}
+        //bool CompareProperty(Dictionary<string, List<double>> TrophyProperty, List<Property> Filter)
+        //{
+        //    //判断过滤器中的每一条,是否都在目标中
+        //    foreach (var FilterItem in Filter)
+        //    {
+        //        List<double> tempData = null;
+        //        bool bRet = TrophyProperty.TryGetValue(FilterItem.strInfo, out tempData);
+        //        if (bRet == false)
+        //            return false;
+        //        if (tempData.Count != FilterItem.data.Count)
+        //            return false;
+        //        for (int i = 0; i < tempData.Count; ++i)
+        //        {
+        //            if (tempData[i] < FilterItem.data[i])
+        //                return false;
+        //        }
+        //    }
+        //    return true;
+        //}
+        //bool IsFilterTrophy(string strProperty)
+        //{
+        //    Dictionary<string, List<double>> TrophyProperty = GenTrophyProperty(strProperty);
+        //    List<List<Property>> GroupFilter = SearchFilter(TrophyProperty);
+        //    if (GroupFilter == null)
+        //        return false;
+        //    foreach (var item in GroupFilter)
+        //    {
+        //        bool bRet = CompareProperty(TrophyProperty, item);
+        //        if (bRet == true)
+        //            return true;
+        //    }
+        //    return false;
+        //}
     }
 }

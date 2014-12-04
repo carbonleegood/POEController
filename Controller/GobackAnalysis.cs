@@ -9,17 +9,6 @@ namespace Controller
 {
      public partial class Worker
      {
-         //const short byTrophy_SkillStone = 1;//技能石
-         //const short byTrophy_Currency = 2;//卷轴宝石
-         //const short byTrophy_Flask = 3;//血瓶
-         //const short byTrophy_Armour = 4;//装备
-         //const short byTrophy_Ring = 5;//戒指
-         //const short byTrophy_Amulet = 6;//项链
-         //const short byTrophy_Weapon = 7;//武器
-         //const short byTrophy_QuestItem = 8;//任务物品
-         //const short byTrophy_Belt = 9;//腰带
-         //const short byTrophy_Quiver = 10;//箭包
-
          const short byTrophy_SkillStone = 1;//技能石
          const short byTrophy_Currency = 2;//卷轴
          const short byTrophy_Flask = 3;//血瓶
@@ -287,13 +276,30 @@ namespace Controller
                  return true;
              return false;
          }
+         bool InPollutant()
+         {
+             if (CurMapID == pollutantMapID)
+                 return true;
+             else
+                 return false;
+         }
+         bool InBattleArea()
+         {
+             if (CurMapID == CurMissionMap.MapID)
+                 return true;
+             else
+                 return false;
+         }
          bool InTown()
          {
              //获取当前地图ID,判断是否是
-          //   int nCurMapID = Program.client.GetCurrentMapID();
              return Program.gdata.AllTownMapID.Contains(CurMapID);
          }
-         int SaveItem(ItemInfo item)//0成功,1没有空间,2放下失败,右键有物品
+         bool InDungeonHome()//是否在藏身处
+         {
+             return Program.gdata.AllDungeonMapID.Contains(CurMapID);
+         }
+         int SaveItem(ItemFullInfo item)//0成功,1没有空间,2放下失败,右键有物品
          {
          //    int FailCount = 0;
 
@@ -361,12 +367,135 @@ namespace Controller
              //成功返回0
              return 0;
          }
-         ItemInfo SearchSaveItem()
+         Dictionary<string, List<double>> GenTrophyProperty(string strProperty)
          {
-             ItemInfo NeedSaveItem = null;
-             ItemInfo MaxGobackCurrency = null;
-             ItemInfo MaxIdentityCurrency = null;
-             List<ItemInfo> bag = Program.client.GetContainerItemList(0);
+             Dictionary<string, List<double>> DealProperty = new Dictionary<string, List<double>>();
+             string[] AllProperty = strProperty.Split('|');
+             foreach (var OneProperty in AllProperty)
+             {
+                 if (OneProperty.Length < 1)
+                     continue;
+                 //提取数字
+                 bool bNumbering = false;
+                 StringBuilder strNum = null;// new StringBuilder();
+                 StringBuilder strKey = new StringBuilder();
+                 List<double> data = new List<double>();
+                 foreach (var OneChar in OneProperty)
+                 {
+                     if (Program.NumberChar.Contains(OneChar))//如果是数字
+                     {
+                         if (!bNumbering)
+                         {
+                             bNumbering = true;
+                             strKey.Append("*");
+                             strNum = new StringBuilder();
+                         }
+                         strNum.Append(OneChar);
+                     }
+                     else
+                     {
+                         if (bNumbering)
+                         {
+                             double dbTemp = 0;
+                             if (double.TryParse(strNum.ToString(), out dbTemp))
+                             {
+                                 data.Add(dbTemp);
+                             }
+                            // strNum.Clear();
+                         }
+                         bNumbering = false;
+                         strKey.Append(OneChar);
+                     }
+                 }
+                 if (bNumbering)
+                 {
+                     double dbTemp = 0;
+                     if (double.TryParse(strNum.ToString(), out dbTemp))
+                     {
+                         data.Add(dbTemp);
+                     }
+                   //  strNum.Clear();
+                 }
+                 List<double> ExistData = null;
+                 bool bExist = DealProperty.TryGetValue(strKey.ToString(), out ExistData);
+                 if (bExist)
+                 {
+                     for (int i = 0; i < data.Count; ++i)
+                     {
+                         if (data[i] > ExistData[i])
+                         {
+                             for (int j = 0; j < data.Count; ++j)
+                             {
+                                 ExistData[j] = data[j];
+                             }
+                             break;
+                         }
+                         else if (data[i] < ExistData[i])
+                         {
+                             break;
+                         }
+                     }
+                 }
+                 else
+                     DealProperty.Add(strKey.ToString(), data);
+             }
+             return DealProperty;
+         }
+         List<List<Property>> SearchFilter(Dictionary<string, List<double>> TrophyProperty)
+         {
+             List<List<Property>> GroupFilter = null;
+             foreach (var item in TrophyProperty)
+             {
+                 bool bRet = Program.gdata.IndexFilter.TryGetValue(item.Key, out GroupFilter);
+                 if (bRet)
+                     break;
+                 GroupFilter = null;
+             }
+             return GroupFilter;
+         }
+         bool CompareProperty(Dictionary<string, List<double>> TrophyProperty, List<Property> Filter)
+         {
+             //判断过滤器中的每一条,是否都在目标中
+             foreach (var FilterItem in Filter)
+             {
+                 List<double> tempData = null;
+                 bool bRet = TrophyProperty.TryGetValue(FilterItem.strInfo, out tempData);
+                 if (bRet == false)
+                     return false;
+                 if (tempData.Count != FilterItem.data.Count)
+                     return false;
+                 for (int i = 0; i < tempData.Count; ++i)
+                 {
+                     if (tempData[i] < FilterItem.data[i])
+                         return false;
+                 }
+             }
+             return true;
+         }
+         bool IsFilterTrophy(ItemFullInfo trophy)
+         {
+             sbyte[] bname = trophy.DescribInfo.ToArray();
+             byte[] bytes = new byte[bname.Length];
+             Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+             string strProperty = Encoding.Unicode.GetString(bytes);
+             Dictionary<string, List<double>> TrophyProperty = GenTrophyProperty(strProperty);
+             List<List<Property>> GroupFilter = SearchFilter(TrophyProperty);
+             if (GroupFilter == null)
+                 return false;
+             foreach (var item in GroupFilter)
+             {
+                 bool bRet = CompareProperty(TrophyProperty, item);
+                 if (bRet == true)
+                     return true;
+             }
+             return false;
+         }
+         ItemFullInfo SearchSaveItem()
+         {
+             ItemFullInfo NeedSaveItem = null;
+             ItemFullInfo MaxGobackCurrency = null;
+             ItemFullInfo MaxIdentityCurrency = null;
+             List<ItemFullInfo> bag = Program.client.GetBagItemFullInfo();
 
              foreach (var item in bag)
              {
@@ -420,9 +549,15 @@ namespace Controller
                                  break;
                              }
                          }
-                         
                      }
                  }
+                 //如果符合过滤要求的,直接返回
+                 //if (IsFilterTrophy(item))
+                 //{
+                 //    NeedSaveItem = item;
+                 //    break;
+                 //}
+                 //如果符合名字的,也直接返回
                  if (item.Type != byTrophy_Armour && item.Type != byTrophy_Weapon)//没孔没槽的
                  {
                      if (Program.config.SaveTypeList.TryGetValue(item.Type, out FilterColor) == false)

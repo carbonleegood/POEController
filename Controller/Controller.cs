@@ -74,6 +74,8 @@ namespace Controller
 
                     Program.runtime = new RunTimeData();
                     lbMap.SelectedIndex = 0;
+
+                    InitSaveIndexFilter(Program.config);
                     Program.runtime.reset();
                     lbNotice.Text = "使用中配置:" + cbConfig.Text + ",如果您修改了該配置方案或選擇了其他配置方案,請點擊重載配置.";
                 }
@@ -119,7 +121,30 @@ namespace Controller
             if (0 == setting.LoadData(cbConfig.Text))
                 setting.ShowDialog();
         }
-
+        void InitSaveIndexFilter(ConfigData cfg)
+        {
+            return;
+            Program.gdata.IndexFilter.Clear();
+            //建立索引过滤器
+            foreach (var OneFilter in cfg.AllFilter)
+            {
+                foreach (var OneProperty in OneFilter.rules)
+                {
+                    List<List<Property>> GroupFilter = null;
+                    bool bRet = Program.gdata.IndexFilter.TryGetValue(OneProperty.strInfo, out GroupFilter);
+                    if (bRet)//如果已经有了
+                    {
+                        GroupFilter.Add(OneFilter.rules);
+                    }
+                    else
+                    {
+                        GroupFilter = new List<List<Property>>();
+                        GroupFilter.Add(OneFilter.rules);
+                        Program.gdata.IndexFilter.Add(OneProperty.strInfo, GroupFilter);
+                    }
+                }
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (bWorking)
@@ -166,6 +191,8 @@ namespace Controller
 
                 Program.runtime = new RunTimeData();
                 lbMap.SelectedIndex = 0;
+
+                InitSaveIndexFilter(Program.config);
              //   Program.runtime.curMissionMapIndex = 0;
                 lbNotice.Text = "使用中配置:" + cbConfig.Text + ",如果您修改了該配置方案或選擇了其他配置方案,請點擊重載配置.";
             }

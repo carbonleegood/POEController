@@ -327,15 +327,15 @@ namespace Controller
                 string strName = Encoding.Unicode.GetString(bytes);
                 SubItem.SubItems.Add(strName);
 
-               
+
                 SubItem.SubItems.Add(item.ObjPtr.ToString());
                 SubItem.SubItems.Add(item.X.ToString());
                 SubItem.SubItems.Add(item.Y.ToString());
 
-                 bname = item.TypeName.ToArray();
-                 bytes = new byte[bname.Length];
-                 Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
-                 strName = Encoding.Unicode.GetString(bytes);
+                bname = item.TypeName.ToArray();
+                bytes = new byte[bname.Length];
+                Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                strName = Encoding.Unicode.GetString(bytes);
                 SubItem.SubItems.Add(strName);
 
                 SubItem.SubItems.Add(item.EnemyID.ToString());
@@ -1674,6 +1674,81 @@ namespace Controller
                 SubItem.SubItems.Add(item.WinID.ToString());
                 SubItem.SubItems.Add(item.BagObjPtr.ToString());
             }
+        }
+
+        private void button71_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+
+            listView1.Columns.Clear();
+            listView1.Columns.Add("ID");
+            listView1.Columns.Add("Text");
+            
+             List<NPCMenuInfo> menu =Program.client.GetNPCMenuInfo();
+            foreach(var item in menu)
+            {
+                ListViewItem SubItem=listView1.Items.Add(item.ID.ToString());
+
+                sbyte[] bname = item.Text.ToArray();
+                byte[] bytes = new byte[bname.Length];
+                Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                string strName = Encoding.Unicode.GetString(bytes);
+                SubItem.SubItems.Add(strName);
+            }
+        }
+
+        private void button72_Click(object sender, EventArgs e)
+        {
+            int nID = Program.client.GetNearbyWaypointObjPtr();
+            Program.client.ActiveTarget(nID);
+            Thread.Sleep(1000);
+            Program.client.TransHideHome();
+            //Program.client.TransHideHome();
+        }
+
+        private void button73_Click(object sender, EventArgs e)
+        {
+           int Pos= Program.client.GetNearbyWaypointPos();
+           int X = Pos >> 16;
+            int Y=Pos&65535;
+            textBox1.Text = X.ToString();
+            textBox2.Text = Y.ToString();
+        }
+
+        private void button75_Click(object sender, EventArgs e)
+        {
+            long Pos = Program.client.GetNearbySellNPCPos();
+            long nPos = Program.client.GetNearbySellNPCPos();
+            int NPCNum = (int)(nPos >> 32);
+            short x = (short)((nPos >> 16) & 65535);
+            short y = (short)(nPos & 65535); 
+            textBox1.Text = x.ToString();
+            textBox2.Text = y.ToString();
+            textBox3.Text = NPCNum.ToString();
+        }
+
+        private void button76_Click(object sender, EventArgs e)
+        {
+            int Pos = Program.client.GetNearbyStoragePos();
+            int X = Pos >> 16;
+            int Y = Pos & 65535;
+            textBox1.Text = X.ToString();
+            textBox2.Text = Y.ToString();
+        }
+
+        private void button77_Click(object sender, EventArgs e)
+        {
+            Program.client.ClickNPCSellMenu();
+        }
+        bool InDungeonHome()//是否在藏身处
+        {
+            int CurMapID=Program.client.GetCurrentMapID();
+            return Program.gdata.AllDungeonMapID.Contains(CurMapID);
+        }
+        private void button78_Click(object sender, EventArgs e)
+        {
+            bool bRet=InDungeonHome();
+            textBox1.Text = bRet.ToString();
         }
     }
 #endif
