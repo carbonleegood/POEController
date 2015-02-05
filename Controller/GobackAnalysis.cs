@@ -265,11 +265,16 @@ namespace Controller
          }
          bool UseBagTransDoor()
          {
-             if(Program.config.nGobackSkill!=-1)
+             if (Program.config.nGobackSkill != -1)
              {
-                 Program.client.CastUntargetSkill((short)player.Pos.x,(short) player.Pos.y,(short) Program.config.nGobackSkill, 8);
-                 Thread.Sleep(3000);
-                 return true;
+                 int curTickCount = System.Environment.TickCount;
+                 if ((curTickCount - LastMidSkillCastTime)>1000*60)
+                 {
+                     Program.client.CastUntargetSkill((short)player.Pos.x, (short)player.Pos.y, (short)Program.config.nGobackSkill, 8);
+                     LastMidSkillCastTime = curTickCount;
+                     Thread.Sleep(3000);
+                     return true;
+                 }
              }
              int nRet=Program.client.UseTransDoor();
              if (nRet == 0)
@@ -303,16 +308,17 @@ namespace Controller
          {
          //    int FailCount = 0;
 
-             StorageSpace spc = null;
-             spc = SearchSpaceInStorage(item.Width, item.Height);
+            // StorageSpace spc = null;
+            // spc = SearchSpaceInStorage(item.Width, item.Height);
              //搜索空间,找到则直接放
+             //string strName =null;
              //if (item.Type == byTrophy_Currency || item.Type == byTrophy_Money)
              //{
              //    sbyte[] bname = item.Name.ToArray();
              //    byte[] bytes = new byte[bname.Length];
              //    Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
-             //    string strName = Encoding.Unicode.GetString(bytes);
-             //    spc = SearchSpaceInStorageWithCount(item.Width, item.Height, strName, item.Count);
+             //    strName = Encoding.Unicode.GetString(bytes);
+             //    //spc = SearchSpaceInStorageWithCount(item.Width, item.Height, strName, item.Count);
 
              //}
              //else
@@ -320,13 +326,19 @@ namespace Controller
                  //   StorageSpace spc=SearchSpaceInStorage(item.Width,item.Height);
 
              //失败怎么办
-             if (spc == null)
-             {
-                 return 1;
-             }
+           //  if (spc == null)
+           //  {
+           //      return 1;
+           //  }
 
-             Program.client.PickupItem(item.BagObjPtr, item.ServiceID);
-             Thread.Sleep(500);
+             int nStorageSpace = SearchSpaceInStorageWithCount(item.Width, item.Height, item.Count);
+
+             if (nStorageSpace < 0)
+                 return 1;
+
+             Program.client.SaveToStorage(nStorageSpace, item.ServiceID);
+             //Program.client.PickupItem(item.BagObjPtr, item.ServiceID);
+             //Thread.Sleep(500);
              //if (spc.StackObjPtr != 0)
              //{
 
@@ -349,8 +361,8 @@ namespace Controller
              //}
              //else
              //{
-                 Program.client.DropdownItem(spc.ContainerObjPtr, spc.Left, spc.Top);
-                 Thread.Sleep(500);
+               //  Program.client.DropdownItem(spc.ContainerObjPtr, spc.Left, spc.Top);
+               //  Thread.Sleep(500);
 
                  //if (Program.client.IsItemOnMouse())
                  //{
@@ -362,14 +374,14 @@ namespace Controller
 
         //     }
              // Thread.Sleep(500);
-             if (Program.client.IsItemOnMouse())
-                 return 2;
+            // if (Program.client.IsItemOnMouse())
+            //     return 2;
              //成功返回0
              return 0;
          }
-         Dictionary<string, List<double>> GenTrophyProperty(string strProperty)
+         Dictionary<string, List<short>> GenTrophyProperty(string strProperty)
          {
-             Dictionary<string, List<double>> DealProperty = new Dictionary<string, List<double>>();
+             Dictionary<string, List<short>> DealProperty = new Dictionary<string, List<short>>();
              string[] AllProperty = strProperty.Split('|');
              foreach (var OneProperty in AllProperty)
              {
@@ -379,7 +391,7 @@ namespace Controller
                  bool bNumbering = false;
                  StringBuilder strNum = null;// new StringBuilder();
                  StringBuilder strKey = new StringBuilder();
-                 List<double> data = new List<double>();
+                 List<short> data = new List<short>();
                  foreach (var OneChar in OneProperty)
                  {
                      if (Program.NumberChar.Contains(OneChar))//如果是数字
@@ -387,7 +399,7 @@ namespace Controller
                          if (!bNumbering)
                          {
                              bNumbering = true;
-                             strKey.Append("*");
+                             strKey.Append("n");
                              strNum = new StringBuilder();
                          }
                          strNum.Append(OneChar);
@@ -396,8 +408,8 @@ namespace Controller
                      {
                          if (bNumbering)
                          {
-                             double dbTemp = 0;
-                             if (double.TryParse(strNum.ToString(), out dbTemp))
+                             short dbTemp = 0;
+                             if (short.TryParse(strNum.ToString(), out dbTemp))
                              {
                                  data.Add(dbTemp);
                              }
@@ -409,14 +421,14 @@ namespace Controller
                  }
                  if (bNumbering)
                  {
-                     double dbTemp = 0;
-                     if (double.TryParse(strNum.ToString(), out dbTemp))
+                     short dbTemp = 0;
+                     if (short.TryParse(strNum.ToString(), out dbTemp))
                      {
                          data.Add(dbTemp);
                      }
                    //  strNum.Clear();
                  }
-                 List<double> ExistData = null;
+                 List<short> ExistData = null;
                  bool bExist = DealProperty.TryGetValue(strKey.ToString(), out ExistData);
                  if (bExist)
                  {
@@ -441,9 +453,9 @@ namespace Controller
              }
              return DealProperty;
          }
-         List<List<Property>> SearchFilter(Dictionary<string, List<double>> TrophyProperty)
+         List<SaveFilter> SearchFilter(Dictionary<string, List<short>> TrophyProperty)
          {
-             List<List<Property>> GroupFilter = null;
+             List<SaveFilter> GroupFilter = null;
              foreach (var item in TrophyProperty)
              {
                  bool bRet = Program.gdata.IndexFilter.TryGetValue(item.Key, out GroupFilter);
@@ -453,40 +465,71 @@ namespace Controller
              }
              return GroupFilter;
          }
-         bool CompareProperty(Dictionary<string, List<double>> TrophyProperty, List<Property> Filter)
+         bool CompareProperty(Dictionary<string, List<short>> TrophyProperty,SaveFilter Filter)
          {
              //判断过滤器中的每一条,是否都在目标中
-             foreach (var FilterItem in Filter)
+             foreach (var FilterItem in Filter.rules)
              {
-                 List<double> tempData = null;
+                 List<short> tempData = null;
                  bool bRet = TrophyProperty.TryGetValue(FilterItem.strInfo, out tempData);
                  if (bRet == false)
                      return false;
-                 if (tempData.Count != FilterItem.data.Count)
-                     return false;
-                 for (int i = 0; i < tempData.Count; ++i)
+                 if (tempData.Count > 0)
                  {
-                     if (tempData[i] < FilterItem.data[i])
-                         return false;
+                     if (FilterItem.n1 >= 0)
+                     {
+                         if (FilterItem.n1 > tempData[0])
+                             return false;
+                     }
+                 }
+                 if (tempData.Count > 1)
+                 {
+                     if (FilterItem.n2 >= 0)
+                     {
+                         if (FilterItem.n2 > tempData[1])
+                             return false;
+                     }
                  }
              }
              return true;
          }
          bool IsFilterTrophy(ItemFullInfo trophy)
          {
-             sbyte[] bname = trophy.DescribInfo.ToArray();
-             byte[] bytes = new byte[bname.Length];
-             Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
-             string strProperty = Encoding.Unicode.GetString(bytes);
-             Dictionary<string, List<double>> TrophyProperty = GenTrophyProperty(strProperty);
-             List<List<Property>> GroupFilter = SearchFilter(TrophyProperty);
-             if (GroupFilter == null)
-                 return false;
-             foreach (var item in GroupFilter)
+             try
              {
-                 bool bRet = CompareProperty(TrophyProperty, item);
-                 if (bRet == true)
+                 sbyte[] bname = trophy.Name.ToArray();
+                 byte[] bytes = new byte[bname.Length];
+                 Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                 string strName = Encoding.Unicode.GetString(bytes);
+                 if (Program.config.NameSaveList.Contains(strName))
                      return true;
+
+                 ///////////////////////////////////////////////////////////////////////
+                 bname = trophy.DescribInfo.ToArray();
+                 bytes = new byte[bname.Length];
+                 Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                 string strProperty = Encoding.Unicode.GetString(bytes);
+                 Dictionary<string, List<short>> TrophyProperty = GenTrophyProperty(strProperty);
+                 List<SaveFilter> GroupFilter = SearchFilter(TrophyProperty);
+                 if (GroupFilter == null)
+                     return false;
+                 foreach (var item in GroupFilter)
+                 {
+                     if (trophy.Type != item.type)
+                         continue;
+                     bool bRet = CompareProperty(TrophyProperty, item);
+                     if (bRet == true)
+                         return true;
+                 }
+             }
+             catch (Exception e)
+             {
+                 sbyte[] bname = trophy.Name.ToArray();
+                 byte[] bytes = new byte[bname.Length];
+                 Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                 string strName = Encoding.Unicode.GetString(bytes);
+
+                 System.Windows.Forms.MessageBox.Show("程式崩潰,請截圖聯繫管理員:"+strName);
              }
              return false;
          }
@@ -552,14 +595,25 @@ namespace Controller
                      }
                  }
                  //如果符合过滤要求的,直接返回
-                 //if (IsFilterTrophy(item))
-                 //{
-                 //    NeedSaveItem = item;
-                 //    break;
-                 //}
+                 if (IsFilterTrophy(item))
+                 {
+                     NeedSaveItem = item;
+                     break;
+                 }
                  //如果符合名字的,也直接返回
                  if (item.Type != byTrophy_Armour && item.Type != byTrophy_Weapon)//没孔没槽的
                  {
+                     if (item.Type == byTrophy_Money)
+                     {
+                         sbyte[] bname = item.Name.ToArray();
+                         byte[] bytes = new byte[bname.Length];
+                         Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                         string strName = Encoding.Unicode.GetString(bytes);
+                         if (strName == "改造石碎片" || strName == "蛻變石碎片"
+                             || strName == "點金石碎片" || strName == "卷軸碎片")
+                             continue;
+
+                     }
                      if (Program.config.SaveTypeList.TryGetValue(item.Type, out FilterColor) == false)
                          continue;
                      if (FilterColor > item.Color)
@@ -770,48 +824,57 @@ namespace Controller
          //     }
          //     return FailCount;
          //}
-         StorageSpace SearchSpaceInStorageWithCount(short width, short height,string strName,int nCount)
+         void InitStorage()
          {
-             StorageSpace ret = null;
+             //激活所有仓库页
+             int PageCount = Program.client.ReadStoragePageNum();
+             for (int bp = 0; bp < PageCount; ++bp)
+             {
+                 Program.client.ActiveStoragePageInfo(bp);
+                 Thread.Sleep(500);
+             }
+
+             //绑定
+         }
+         int SearchSpaceInStorageWithCount(short width, short height, int nCount)
+         {
+             int retStoragePage = -1;
              //FZ_ReadStorageUIPTR(i);//读取仓库页码]
              int PageCount = Program.client.ReadStoragePageNum();
              for (int bp = 0; bp < PageCount; ++bp)
              {
-                 //激活仓库页
-                 Program.client.ActiveStoragePageInfo(bp);
-                 Thread.Sleep(1000);
                  ////////////////////////////////////////计算空间
-                 ret = null;
-                 List<ItemInfo> Storage = Program.client.GetContainerItemList(bp+10);
-                 //if(Storage.Count<1)
-                 //    System.Windows.Forms.MessageBox.Show("bag error!");
+                 retStoragePage = -1;
+                 List<ItemInfo> Storage = Program.client.GetContainerItemList(bp + 10);
+
                  //遍历仓库页物品占用的空间
                  byte[,] storageSpace = new byte[StorageWidth, StorageHeight];
                  foreach (var item in Storage)
                  {
-                     if (strName != null)
-                     {
-                         if (ret == null)
-                         {
-                             sbyte[] bname = item.Name.ToArray();
-                             byte[] bytes = new byte[bname.Length];
-                             Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
-                             string strItemName = Encoding.Unicode.GetString(bytes);
-                             if (strItemName == strName)
-                             {
-                                 if (item.Count < item.MaxCount)
-                                 {
-                                     ret = new StorageSpace();
-                                     ret.StackObjPtr = item.ServiceID;
-                                     ret.ContainerObjPtr = Program.client.GetStoragePagePtr(bp + 10);
-                                     if ((item.Count + nCount) <= item.MaxCount)
-                                     {
-                                         return ret;
-                                     }
-                                 }
-                             }
-                         }
-                     }
+                     //if (strName != null)
+                     //{
+                     //    if (retStoragePage == -1)
+                     //    {
+                     //        sbyte[] bname = item.Name.ToArray();
+                     //        byte[] bytes = new byte[bname.Length];
+                     //        Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                     //        string strItemName = Encoding.Unicode.GetString(bytes);
+                     //        if (strItemName == strName)
+                     //        {
+                     //            if (item.Count < item.MaxCount)
+                     //            {
+                     //                //ret = new StorageSpace();
+                     //                //ret.StackObjPtr = item.ServiceID;
+                     //                //ret.ContainerObjPtr = Program.client.GetStoragePagePtr(bp + 10);
+                     //                retStoragePage=Program.client.ReadStorageUIPTR(bp);                  
+                     //                if ((item.Count + nCount) <= item.MaxCount)
+                     //                {
+                     //                    return retStoragePage;
+                     //                }
+                     //            }
+                     //        }
+                     //    }
+                     //}
                      for (int i = 0; i < item.Width; ++i)
                      {
                          for (int j = 0; j < item.Height; ++j)
@@ -841,18 +904,97 @@ namespace Controller
                          }
                          if (bFind)
                          {
-                             if (ret == null)
-                                 ret = new StorageSpace();
-                             ret.Left = i;
-                             ret.Top = j;
-                             ret.ContainerObjPtr = Program.client.GetStoragePagePtr(bp+10);
-                             return ret;
+                             retStoragePage = Program.client.ReadStorageUIPTR(bp);   
+                             return retStoragePage;
                          }
                      }
                  }
              }
-             return ret;
+             return retStoragePage;
          }
+         //StorageSpace SearchSpaceInStorageWithCount(short width, short height,string strName,int nCount)
+         //{
+         //    StorageSpace ret = null;
+         //    //FZ_ReadStorageUIPTR(i);//读取仓库页码]
+         //    int PageCount = Program.client.ReadStoragePageNum();
+         //    for (int bp = 0; bp < PageCount; ++bp)
+         //    {
+         //        //激活仓库页
+         //        Program.client.ActiveStoragePageInfo(bp);
+         //        Thread.Sleep(1000);
+         //        ////////////////////////////////////////计算空间
+         //        ret = null;
+         //        List<ItemInfo> Storage = Program.client.GetContainerItemList(bp+10);
+         //        //if(Storage.Count<1)
+         //        //    System.Windows.Forms.MessageBox.Show("bag error!");
+         //        //遍历仓库页物品占用的空间
+         //        byte[,] storageSpace = new byte[StorageWidth, StorageHeight];
+         //        foreach (var item in Storage)
+         //        {
+         //            if (strName != null)
+         //            {
+         //                if (ret == null)
+         //                {
+         //                    sbyte[] bname = item.Name.ToArray();
+         //                    byte[] bytes = new byte[bname.Length];
+         //                    Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+         //                    string strItemName = Encoding.Unicode.GetString(bytes);
+         //                    if (strItemName == strName)
+         //                    {
+         //                        if (item.Count < item.MaxCount)
+         //                        {
+         //                            ret = new StorageSpace();
+         //                            ret.StackObjPtr = item.ServiceID;
+         //                            ret.ContainerObjPtr = Program.client.GetStoragePagePtr(bp + 10);
+         //                            if ((item.Count + nCount) <= item.MaxCount)
+         //                            {
+         //                                return ret;
+         //                            }
+         //                        }
+         //                    }
+         //                }
+         //            }
+         //            for (int i = 0; i < item.Width; ++i)
+         //            {
+         //                for (int j = 0; j < item.Height; ++j)
+         //                {
+         //                    storageSpace[item.Left + i, item.Top + j] = 1;
+         //                }
+         //            }
+         //        }
+         //        //搜索空闲空间
+         //        for (short i = 0; i <= (StorageWidth - width); ++i)
+         //        {
+         //            for (short j = 0; j <= (StorageHeight - height); ++j)
+         //            {
+         //                bool bFind = true;
+         //                for (short m = 0; m < width; ++m)
+         //                {
+         //                    for (short n = 0; n < height; ++n)
+         //                    {
+         //                        if (storageSpace[i + m, j + n] == 1)
+         //                        {
+         //                            bFind = false;
+         //                            break;
+         //                        }
+         //                    }
+         //                    if (bFind == false)
+         //                        break;
+         //                }
+         //                if (bFind)
+         //                {
+         //                    if (ret == null)
+         //                        ret = new StorageSpace();
+         //                    ret.Left = i;
+         //                    ret.Top = j;
+         //                    ret.ContainerObjPtr = Program.client.GetStoragePagePtr(bp+10);
+         //                    return ret;
+         //                }
+         //            }
+         //        }
+         //    }
+         //    return ret;
+         //}
          StorageSpace SearchSpaceInStorage(short width, short height)
          {
              StorageSpace ret = null;
@@ -862,7 +1004,7 @@ namespace Controller
              {
                  //激活仓库页
                  Program.client.ActiveStoragePageInfo(bp);
-                 Thread.Sleep(1000);
+                 Thread.Sleep(500);
                  ////////////////////////////////////////计算空间
                  ret = null;
                  List<ItemInfo> Storage = Program.client.GetContainerItemList(bp + 10);
@@ -975,7 +1117,6 @@ namespace Controller
                  Program.client.PickupItem(item.StoragePtr, item.SourceServiceID);
                  Thread.Sleep(100);
                  //堆叠放
-
                  Program.client.DropdownItemStack(item.StoragePtr, item.TargetServiceID);
                  Thread.Sleep(100);
                  //是否需要放回原位置,需要的话再来个空间放
@@ -994,11 +1135,9 @@ namespace Controller
                          nRet = 0;
                          break;
                      }
-                     //   System.Windows.Forms.MessageBox.Show("drop error!");
+
                      nRet = 1;
                      Thread.Sleep(500);
-                     //     Program.client.ReturnChoseRole();
-                     // break;
                  }
                  //异常,搜索背包空间
                  if (nRet == 1)

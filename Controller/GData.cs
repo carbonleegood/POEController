@@ -12,12 +12,14 @@ namespace Controller
     class Property
     {
         public string strInfo = null;
-        public List<double> data = new List<double>();
+        public short n1 = -1;
+        public short n2 = -1;
     }
      [Serializable]
-    class Filter
+    class SaveFilter
     {
-        public string strName;
+        public string strName=null;
+        public short type = 0;
         public List<Property> rules = new List<Property>();
     }
 
@@ -109,16 +111,19 @@ namespace Controller
         public int MulAttStep = 8000;
         public int MultiCount = 2;
         public int nMulAttKey = -1;
+
+        public int MoveSkillStep = 5000;
+        public int MoveSkillKey = -1;
         //技能
         public bool bAutoUpSkill=false;
 
         public int nGobackSkill = -1;
        
-        public List<int> haloSkill = new List<int>();
-        public List<TTSkill> ttSkill = new List<TTSkill>();
-        public List<ShieldSkill> shieldSkill = new List<ShieldSkill>();
-        public List<int> battleOnceSkill = new List<int>();
-        public List<SummonerSkill> summonerSkill=new List<SummonerSkill>();//召唤
+        public List<int> haloSkill = new List<int>();//光环
+        public List<TTSkill> ttSkill = new List<TTSkill>();//图腾
+        public List<ShieldSkill> shieldSkill = new List<ShieldSkill>();//护盾
+        public List<int> battleOnceSkill = new List<int>();//BUFF
+        public List<SummonerSkill> summonerSkill=new List<SummonerSkill>();//召唤 
         public List<TrapSkill> singleTrapSkill = new List<TrapSkill>();
         public List<TrapSkill> multiTrapSkill = new List<TrapSkill>();
 
@@ -173,7 +178,8 @@ namespace Controller
         public bool bUseSafeAttSpeed = true;//使用安全攻击速度
 
         //高級存倉
-        public List<Filter> AllFilter = new List<Filter>();
+        public List<SaveFilter> AllFilter = new List<SaveFilter>();
+        public HashSet<string> NameSaveList = new HashSet<string>();
     }
     class GlobeData//持久数据,地图,任务等使用
     {
@@ -184,7 +190,7 @@ namespace Controller
         public HashSet<int> AllDungeonMapID = new HashSet<int>();
         public Dictionary<string, int> LootName = new Dictionary<string, int>();
         //索引过滤器
-        public Dictionary<string, List<List<Property>>> IndexFilter = new Dictionary<string, List<List<Property>>>();
+        public Dictionary<string, List<SaveFilter>> IndexFilter = new Dictionary<string, List<SaveFilter>>();
         //GlobeData()
         //{
         //    //持久化读取数据
@@ -491,7 +497,7 @@ namespace Controller
 
         GPoint TargetPoint = new GPoint();
    
-        GPoint AttMonsterPos = new GPoint();
+   //     GPoint AttMonsterPos = new GPoint();
 
         SBox TargetBox = new SBox();
      //   int NeedActiveDoorObjPtr = 0;
@@ -515,6 +521,7 @@ namespace Controller
         const double NEARBY_DIS = 15.0;
 
         int MonsterBlockCount = 0;
+        int AttackMoveBlockCount = 0;
         int LastTargetMonsterObjPtr = 0;
         int LastTargetMonsterHP = 0;
 

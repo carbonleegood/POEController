@@ -349,6 +349,16 @@ namespace Thrift.GameCall
       IAsyncResult Begin_ClickNPCSellMenu(AsyncCallback callback, object state);
       int End_ClickNPCSellMenu(IAsyncResult asyncResult);
       #endif
+      int LeftClickItem(int BagObjPtr, int ItemServiceID);
+      #if SILVERLIGHT
+      IAsyncResult Begin_LeftClickItem(AsyncCallback callback, object state, int BagObjPtr, int ItemServiceID);
+      int End_LeftClickItem(IAsyncResult asyncResult);
+      #endif
+      int SaveToStorage(int StoragePageNum, int ItemServiceID);
+      #if SILVERLIGHT
+      IAsyncResult Begin_SaveToStorage(AsyncCallback callback, object state, int StoragePageNum, int ItemServiceID);
+      int End_SaveToStorage(IAsyncResult asyncResult);
+      #endif
     }
 
     public class Client : IDisposable, Iface {
@@ -4445,6 +4455,132 @@ namespace Thrift.GameCall
         throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "ClickNPCSellMenu failed: unknown result");
       }
 
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_LeftClickItem(AsyncCallback callback, object state, int BagObjPtr, int ItemServiceID)
+      {
+        return send_LeftClickItem(callback, state, BagObjPtr, ItemServiceID);
+      }
+
+      public int End_LeftClickItem(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_LeftClickItem();
+      }
+
+      #endif
+
+      public int LeftClickItem(int BagObjPtr, int ItemServiceID)
+      {
+        #if !SILVERLIGHT
+        send_LeftClickItem(BagObjPtr, ItemServiceID);
+        return recv_LeftClickItem();
+
+        #else
+        var asyncResult = Begin_LeftClickItem(null, null, BagObjPtr, ItemServiceID);
+        return End_LeftClickItem(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_LeftClickItem(AsyncCallback callback, object state, int BagObjPtr, int ItemServiceID)
+      #else
+      public void send_LeftClickItem(int BagObjPtr, int ItemServiceID)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("LeftClickItem", TMessageType.Call, seqid_));
+        LeftClickItem_args args = new LeftClickItem_args();
+        args.BagObjPtr = BagObjPtr;
+        args.ItemServiceID = ItemServiceID;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_LeftClickItem()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        LeftClickItem_result result = new LeftClickItem_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "LeftClickItem failed: unknown result");
+      }
+
+      
+      #if SILVERLIGHT
+      public IAsyncResult Begin_SaveToStorage(AsyncCallback callback, object state, int StoragePageNum, int ItemServiceID)
+      {
+        return send_SaveToStorage(callback, state, StoragePageNum, ItemServiceID);
+      }
+
+      public int End_SaveToStorage(IAsyncResult asyncResult)
+      {
+        oprot_.Transport.EndFlush(asyncResult);
+        return recv_SaveToStorage();
+      }
+
+      #endif
+
+      public int SaveToStorage(int StoragePageNum, int ItemServiceID)
+      {
+        #if !SILVERLIGHT
+        send_SaveToStorage(StoragePageNum, ItemServiceID);
+        return recv_SaveToStorage();
+
+        #else
+        var asyncResult = Begin_SaveToStorage(null, null, StoragePageNum, ItemServiceID);
+        return End_SaveToStorage(asyncResult);
+
+        #endif
+      }
+      #if SILVERLIGHT
+      public IAsyncResult send_SaveToStorage(AsyncCallback callback, object state, int StoragePageNum, int ItemServiceID)
+      #else
+      public void send_SaveToStorage(int StoragePageNum, int ItemServiceID)
+      #endif
+      {
+        oprot_.WriteMessageBegin(new TMessage("SaveToStorage", TMessageType.Call, seqid_));
+        SaveToStorage_args args = new SaveToStorage_args();
+        args.StoragePageNum = StoragePageNum;
+        args.ItemServiceID = ItemServiceID;
+        args.Write(oprot_);
+        oprot_.WriteMessageEnd();
+        #if SILVERLIGHT
+        return oprot_.Transport.BeginFlush(callback, state);
+        #else
+        oprot_.Transport.Flush();
+        #endif
+      }
+
+      public int recv_SaveToStorage()
+      {
+        TMessage msg = iprot_.ReadMessageBegin();
+        if (msg.Type == TMessageType.Exception) {
+          TApplicationException x = TApplicationException.Read(iprot_);
+          iprot_.ReadMessageEnd();
+          throw x;
+        }
+        SaveToStorage_result result = new SaveToStorage_result();
+        result.Read(iprot_);
+        iprot_.ReadMessageEnd();
+        if (result.__isset.success) {
+          return result.Success;
+        }
+        throw new TApplicationException(TApplicationException.ExceptionType.MissingResult, "SaveToStorage failed: unknown result");
+      }
+
     }
     public class Processor : TProcessor {
       public Processor(Iface iface)
@@ -4516,6 +4652,8 @@ namespace Thrift.GameCall
         processMap_["TransHideHome"] = TransHideHome_Process;
         processMap_["GetNPCMenuInfo"] = GetNPCMenuInfo_Process;
         processMap_["ClickNPCSellMenu"] = ClickNPCSellMenu_Process;
+        processMap_["LeftClickItem"] = LeftClickItem_Process;
+        processMap_["SaveToStorage"] = SaveToStorage_Process;
       }
 
       protected delegate void ProcessFunction(int seqid, TProtocol iprot, TProtocol oprot);
@@ -5401,6 +5539,32 @@ namespace Thrift.GameCall
         ClickNPCSellMenu_result result = new ClickNPCSellMenu_result();
         result.Success = iface_.ClickNPCSellMenu();
         oprot.WriteMessageBegin(new TMessage("ClickNPCSellMenu", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void LeftClickItem_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        LeftClickItem_args args = new LeftClickItem_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        LeftClickItem_result result = new LeftClickItem_result();
+        result.Success = iface_.LeftClickItem(args.BagObjPtr, args.ItemServiceID);
+        oprot.WriteMessageBegin(new TMessage("LeftClickItem", TMessageType.Reply, seqid)); 
+        result.Write(oprot);
+        oprot.WriteMessageEnd();
+        oprot.Transport.Flush();
+      }
+
+      public void SaveToStorage_Process(int seqid, TProtocol iprot, TProtocol oprot)
+      {
+        SaveToStorage_args args = new SaveToStorage_args();
+        args.Read(iprot);
+        iprot.ReadMessageEnd();
+        SaveToStorage_result result = new SaveToStorage_result();
+        result.Success = iface_.SaveToStorage(args.StoragePageNum, args.ItemServiceID);
+        oprot.WriteMessageBegin(new TMessage("SaveToStorage", TMessageType.Reply, seqid)); 
         result.Write(oprot);
         oprot.WriteMessageEnd();
         oprot.Transport.Flush();
@@ -15753,6 +15917,420 @@ namespace Thrift.GameCall
 
       public override string ToString() {
         StringBuilder sb = new StringBuilder("ClickNPCSellMenu_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class LeftClickItem_args : TBase
+    {
+      private int _BagObjPtr;
+      private int _ItemServiceID;
+
+      public int BagObjPtr
+      {
+        get
+        {
+          return _BagObjPtr;
+        }
+        set
+        {
+          __isset.BagObjPtr = true;
+          this._BagObjPtr = value;
+        }
+      }
+
+      public int ItemServiceID
+      {
+        get
+        {
+          return _ItemServiceID;
+        }
+        set
+        {
+          __isset.ItemServiceID = true;
+          this._ItemServiceID = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool BagObjPtr;
+        public bool ItemServiceID;
+      }
+
+      public LeftClickItem_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                BagObjPtr = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I32) {
+                ItemServiceID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("LeftClickItem_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.BagObjPtr) {
+          field.Name = "BagObjPtr";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(BagObjPtr);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.ItemServiceID) {
+          field.Name = "ItemServiceID";
+          field.Type = TType.I32;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ItemServiceID);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("LeftClickItem_args(");
+        sb.Append("BagObjPtr: ");
+        sb.Append(BagObjPtr);
+        sb.Append(",ItemServiceID: ");
+        sb.Append(ItemServiceID);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class LeftClickItem_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public LeftClickItem_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("LeftClickItem_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("LeftClickItem_result(");
+        sb.Append("Success: ");
+        sb.Append(Success);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class SaveToStorage_args : TBase
+    {
+      private int _StoragePageNum;
+      private int _ItemServiceID;
+
+      public int StoragePageNum
+      {
+        get
+        {
+          return _StoragePageNum;
+        }
+        set
+        {
+          __isset.StoragePageNum = true;
+          this._StoragePageNum = value;
+        }
+      }
+
+      public int ItemServiceID
+      {
+        get
+        {
+          return _ItemServiceID;
+        }
+        set
+        {
+          __isset.ItemServiceID = true;
+          this._ItemServiceID = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool StoragePageNum;
+        public bool ItemServiceID;
+      }
+
+      public SaveToStorage_args() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 1:
+              if (field.Type == TType.I32) {
+                StoragePageNum = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            case 2:
+              if (field.Type == TType.I32) {
+                ItemServiceID = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("SaveToStorage_args");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+        if (__isset.StoragePageNum) {
+          field.Name = "StoragePageNum";
+          field.Type = TType.I32;
+          field.ID = 1;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(StoragePageNum);
+          oprot.WriteFieldEnd();
+        }
+        if (__isset.ItemServiceID) {
+          field.Name = "ItemServiceID";
+          field.Type = TType.I32;
+          field.ID = 2;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(ItemServiceID);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("SaveToStorage_args(");
+        sb.Append("StoragePageNum: ");
+        sb.Append(StoragePageNum);
+        sb.Append(",ItemServiceID: ");
+        sb.Append(ItemServiceID);
+        sb.Append(")");
+        return sb.ToString();
+      }
+
+    }
+
+
+    #if !SILVERLIGHT
+    [Serializable]
+    #endif
+    public partial class SaveToStorage_result : TBase
+    {
+      private int _success;
+
+      public int Success
+      {
+        get
+        {
+          return _success;
+        }
+        set
+        {
+          __isset.success = true;
+          this._success = value;
+        }
+      }
+
+
+      public Isset __isset;
+      #if !SILVERLIGHT
+      [Serializable]
+      #endif
+      public struct Isset {
+        public bool success;
+      }
+
+      public SaveToStorage_result() {
+      }
+
+      public void Read (TProtocol iprot)
+      {
+        TField field;
+        iprot.ReadStructBegin();
+        while (true)
+        {
+          field = iprot.ReadFieldBegin();
+          if (field.Type == TType.Stop) { 
+            break;
+          }
+          switch (field.ID)
+          {
+            case 0:
+              if (field.Type == TType.I32) {
+                Success = iprot.ReadI32();
+              } else { 
+                TProtocolUtil.Skip(iprot, field.Type);
+              }
+              break;
+            default: 
+              TProtocolUtil.Skip(iprot, field.Type);
+              break;
+          }
+          iprot.ReadFieldEnd();
+        }
+        iprot.ReadStructEnd();
+      }
+
+      public void Write(TProtocol oprot) {
+        TStruct struc = new TStruct("SaveToStorage_result");
+        oprot.WriteStructBegin(struc);
+        TField field = new TField();
+
+        if (this.__isset.success) {
+          field.Name = "Success";
+          field.Type = TType.I32;
+          field.ID = 0;
+          oprot.WriteFieldBegin(field);
+          oprot.WriteI32(Success);
+          oprot.WriteFieldEnd();
+        }
+        oprot.WriteFieldStop();
+        oprot.WriteStructEnd();
+      }
+
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder("SaveToStorage_result(");
         sb.Append("Success: ");
         sb.Append(Success);
         sb.Append(")");

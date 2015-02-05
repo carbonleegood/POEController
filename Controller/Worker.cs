@@ -141,7 +141,7 @@ namespace Controller
         public static extern Int32 MoveToTransferDoor(UInt16 x, UInt16 y);
 
         [DllImport("MapServer.dll", EntryPoint = "GGGGGG", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
-        public static extern Int32 StartCheck(string uid, string pwd);
+        public static extern Int32 StartCheck(string uid, string pwd, Int32 VersionID);
 
         [DllImport("MapServer.dll", EntryPoint = "GetGGPid", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern UInt32 GetGGPid(byte[] buff);
@@ -316,26 +316,6 @@ namespace Controller
         }
         void WorkThread(object o)
         {
-            //while (bWorking)
-            //{
-            //    int nLogin = Program.client.ReadLoginState();
-            //    if (nLogin == 3)//读图中
-            //    {
-            //        Thread.Sleep(1000);
-            //        continue;
-            //    }
-            //    else if (nLogin == 1)
-            //    {
-            //        // HitKey(6);
-            //        Program.client.HitKey(6);
-            //        Thread.Sleep(3000);
-            //        continue;
-            //    }
-            //    else
-            //        break;
-            //}
-            //if (bWorking == false)
-            //    return;
             //获取人物当前坐标
             //初始化TARGETPOINT
             Init();//启动一些后台检测线程,比如说任务是否完成等

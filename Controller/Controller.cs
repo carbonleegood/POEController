@@ -123,23 +123,22 @@ namespace Controller
         }
         void InitSaveIndexFilter(ConfigData cfg)
         {
-            return;
             Program.gdata.IndexFilter.Clear();
             //建立索引过滤器
             foreach (var OneFilter in cfg.AllFilter)
             {
                 foreach (var OneProperty in OneFilter.rules)
                 {
-                    List<List<Property>> GroupFilter = null;
+                    List<SaveFilter> GroupFilter = null;
                     bool bRet = Program.gdata.IndexFilter.TryGetValue(OneProperty.strInfo, out GroupFilter);
                     if (bRet)//如果已经有了
                     {
-                        GroupFilter.Add(OneFilter.rules);
+                        GroupFilter.Add(OneFilter);
                     }
                     else
                     {
-                        GroupFilter = new List<List<Property>>();
-                        GroupFilter.Add(OneFilter.rules);
+                        GroupFilter = new List<SaveFilter>();
+                        GroupFilter.Add(OneFilter);
                         Program.gdata.IndexFilter.Add(OneProperty.strInfo, GroupFilter);
                     }
                 }
@@ -181,7 +180,6 @@ namespace Controller
                     newItem.Color = item.Value;
                     lootTypeList.Add(newItem);
                 }
-               // Program.client.SetLootTypeList(lootTypeList);
                 Program.client.SetLootTypeList(
                        lootTypeList,
                        Program.config.LootSocketFilter,

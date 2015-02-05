@@ -265,21 +265,42 @@
             this.btnAddMonster = new System.Windows.Forms.Button();
             this.lbPriorMonster = new System.Windows.Forms.ListBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnGetBagItemList = new System.Windows.Forms.Button();
+            this.label71 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.tbV72 = new System.Windows.Forms.TextBox();
+            this.tbV71 = new System.Windows.Forms.TextBox();
+            this.tbV62 = new System.Windows.Forms.TextBox();
+            this.tbV61 = new System.Windows.Forms.TextBox();
+            this.tbV52 = new System.Windows.Forms.TextBox();
+            this.tbV51 = new System.Windows.Forms.TextBox();
+            this.tbV42 = new System.Windows.Forms.TextBox();
+            this.tbV41 = new System.Windows.Forms.TextBox();
+            this.tbV32 = new System.Windows.Forms.TextBox();
+            this.tbV31 = new System.Windows.Forms.TextBox();
+            this.tbV22 = new System.Windows.Forms.TextBox();
+            this.tbV21 = new System.Windows.Forms.TextBox();
+            this.btnDelSaveName = new System.Windows.Forms.Button();
+            this.btnAddSaveName = new System.Windows.Forms.Button();
+            this.lbAllSaveName = new System.Windows.Forms.ListBox();
             this.label68 = new System.Windows.Forms.Label();
+            this.tbSaveRuleName = new System.Windows.Forms.TextBox();
+            this.cbSaveRuleType = new System.Windows.Forms.ComboBox();
+            this.tbProperty7 = new System.Windows.Forms.TextBox();
+            this.tbProperty6 = new System.Windows.Forms.TextBox();
+            this.tbProperty5 = new System.Windows.Forms.TextBox();
+            this.tbProperty4 = new System.Windows.Forms.TextBox();
+            this.tbProperty3 = new System.Windows.Forms.TextBox();
+            this.tbProperty2 = new System.Windows.Forms.TextBox();
+            this.tbV12 = new System.Windows.Forms.TextBox();
+            this.tbV11 = new System.Windows.Forms.TextBox();
+            this.tbProperty1 = new System.Windows.Forms.TextBox();
+            this.label66 = new System.Windows.Forms.Label();
             this.btnDelFilter = new System.Windows.Forms.Button();
             this.btnCreateFilter = new System.Windows.Forms.Button();
-            this.btnSaveCurFilter = new System.Windows.Forms.Button();
-            this.btnEditProperty = new System.Windows.Forms.Button();
-            this.btnDelProperty = new System.Windows.Forms.Button();
             this.lbCurFilterName = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.lbAllFilter = new System.Windows.Forms.ListBox();
-            this.lbFilter = new System.Windows.Forms.ListBox();
-            this.lbProperty = new System.Windows.Forms.ListBox();
-            this.label66 = new System.Windows.Forms.Label();
-            this.lbBag = new System.Windows.Forms.ListBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
@@ -852,7 +873,7 @@
             // 
             this.cbRightSkill.FormattingEnabled = true;
             this.cbRightSkill.Items.AddRange(new object[] {
-            "保留",
+            "移動技能",
             "光環技能",
             "圖騰技能",
             "護盾技能",
@@ -3019,21 +3040,42 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.btnGetBagItemList);
+            this.tabPage4.Controls.Add(this.label71);
+            this.tabPage4.Controls.Add(this.label70);
+            this.tabPage4.Controls.Add(this.label69);
+            this.tabPage4.Controls.Add(this.tbV72);
+            this.tabPage4.Controls.Add(this.tbV71);
+            this.tabPage4.Controls.Add(this.tbV62);
+            this.tabPage4.Controls.Add(this.tbV61);
+            this.tabPage4.Controls.Add(this.tbV52);
+            this.tabPage4.Controls.Add(this.tbV51);
+            this.tabPage4.Controls.Add(this.tbV42);
+            this.tabPage4.Controls.Add(this.tbV41);
+            this.tabPage4.Controls.Add(this.tbV32);
+            this.tabPage4.Controls.Add(this.tbV31);
+            this.tabPage4.Controls.Add(this.tbV22);
+            this.tabPage4.Controls.Add(this.tbV21);
+            this.tabPage4.Controls.Add(this.btnDelSaveName);
+            this.tabPage4.Controls.Add(this.btnAddSaveName);
+            this.tabPage4.Controls.Add(this.lbAllSaveName);
             this.tabPage4.Controls.Add(this.label68);
+            this.tabPage4.Controls.Add(this.tbSaveRuleName);
+            this.tabPage4.Controls.Add(this.cbSaveRuleType);
+            this.tabPage4.Controls.Add(this.tbProperty7);
+            this.tabPage4.Controls.Add(this.tbProperty6);
+            this.tabPage4.Controls.Add(this.tbProperty5);
+            this.tabPage4.Controls.Add(this.tbProperty4);
+            this.tabPage4.Controls.Add(this.tbProperty3);
+            this.tabPage4.Controls.Add(this.tbProperty2);
+            this.tabPage4.Controls.Add(this.tbV12);
+            this.tabPage4.Controls.Add(this.tbV11);
+            this.tabPage4.Controls.Add(this.tbProperty1);
+            this.tabPage4.Controls.Add(this.label66);
             this.tabPage4.Controls.Add(this.btnDelFilter);
             this.tabPage4.Controls.Add(this.btnCreateFilter);
-            this.tabPage4.Controls.Add(this.btnSaveCurFilter);
-            this.tabPage4.Controls.Add(this.btnEditProperty);
-            this.tabPage4.Controls.Add(this.btnDelProperty);
             this.tabPage4.Controls.Add(this.lbCurFilterName);
             this.tabPage4.Controls.Add(this.label67);
-            this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Controls.Add(this.lbAllFilter);
-            this.tabPage4.Controls.Add(this.lbFilter);
-            this.tabPage4.Controls.Add(this.lbProperty);
-            this.tabPage4.Controls.Add(this.label66);
-            this.tabPage4.Controls.Add(this.lbBag);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -3042,149 +3084,297 @@
             this.tabPage4.Text = "高級存倉";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // btnGetBagItemList
+            // label71
             // 
-            this.btnGetBagItemList.Location = new System.Drawing.Point(19, 265);
-            this.btnGetBagItemList.Name = "btnGetBagItemList";
-            this.btnGetBagItemList.Size = new System.Drawing.Size(111, 23);
-            this.btnGetBagItemList.TabIndex = 14;
-            this.btnGetBagItemList.Text = "更新背包物品";
-            this.btnGetBagItemList.UseVisualStyleBackColor = true;
-            this.btnGetBagItemList.Click += new System.EventHandler(this.btnGetBagItemList_Click);
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(394, 71);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(41, 12);
+            this.label71.TabIndex = 43;
+            this.label71.Text = "最大值";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(330, 71);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(41, 12);
+            this.label70.TabIndex = 42;
+            this.label70.Text = "最小值";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(200, 71);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(53, 12);
+            this.label69.TabIndex = 41;
+            this.label69.Text = "屬性設置";
+            // 
+            // tbV72
+            // 
+            this.tbV72.Location = new System.Drawing.Point(394, 272);
+            this.tbV72.Name = "tbV72";
+            this.tbV72.Size = new System.Drawing.Size(47, 21);
+            this.tbV72.TabIndex = 40;
+            // 
+            // tbV71
+            // 
+            this.tbV71.Location = new System.Drawing.Point(332, 272);
+            this.tbV71.Name = "tbV71";
+            this.tbV71.Size = new System.Drawing.Size(47, 21);
+            this.tbV71.TabIndex = 39;
+            // 
+            // tbV62
+            // 
+            this.tbV62.Location = new System.Drawing.Point(394, 243);
+            this.tbV62.Name = "tbV62";
+            this.tbV62.Size = new System.Drawing.Size(47, 21);
+            this.tbV62.TabIndex = 38;
+            // 
+            // tbV61
+            // 
+            this.tbV61.Location = new System.Drawing.Point(332, 243);
+            this.tbV61.Name = "tbV61";
+            this.tbV61.Size = new System.Drawing.Size(47, 21);
+            this.tbV61.TabIndex = 37;
+            // 
+            // tbV52
+            // 
+            this.tbV52.Location = new System.Drawing.Point(394, 216);
+            this.tbV52.Name = "tbV52";
+            this.tbV52.Size = new System.Drawing.Size(47, 21);
+            this.tbV52.TabIndex = 36;
+            // 
+            // tbV51
+            // 
+            this.tbV51.Location = new System.Drawing.Point(332, 216);
+            this.tbV51.Name = "tbV51";
+            this.tbV51.Size = new System.Drawing.Size(47, 21);
+            this.tbV51.TabIndex = 35;
+            // 
+            // tbV42
+            // 
+            this.tbV42.Location = new System.Drawing.Point(394, 189);
+            this.tbV42.Name = "tbV42";
+            this.tbV42.Size = new System.Drawing.Size(47, 21);
+            this.tbV42.TabIndex = 34;
+            // 
+            // tbV41
+            // 
+            this.tbV41.Location = new System.Drawing.Point(332, 189);
+            this.tbV41.Name = "tbV41";
+            this.tbV41.Size = new System.Drawing.Size(47, 21);
+            this.tbV41.TabIndex = 33;
+            // 
+            // tbV32
+            // 
+            this.tbV32.Location = new System.Drawing.Point(394, 162);
+            this.tbV32.Name = "tbV32";
+            this.tbV32.Size = new System.Drawing.Size(47, 21);
+            this.tbV32.TabIndex = 32;
+            // 
+            // tbV31
+            // 
+            this.tbV31.Location = new System.Drawing.Point(332, 162);
+            this.tbV31.Name = "tbV31";
+            this.tbV31.Size = new System.Drawing.Size(47, 21);
+            this.tbV31.TabIndex = 31;
+            // 
+            // tbV22
+            // 
+            this.tbV22.Location = new System.Drawing.Point(394, 125);
+            this.tbV22.Name = "tbV22";
+            this.tbV22.Size = new System.Drawing.Size(47, 21);
+            this.tbV22.TabIndex = 30;
+            // 
+            // tbV21
+            // 
+            this.tbV21.Location = new System.Drawing.Point(332, 125);
+            this.tbV21.Name = "tbV21";
+            this.tbV21.Size = new System.Drawing.Size(47, 21);
+            this.tbV21.TabIndex = 29;
+            // 
+            // btnDelSaveName
+            // 
+            this.btnDelSaveName.Location = new System.Drawing.Point(19, 313);
+            this.btnDelSaveName.Name = "btnDelSaveName";
+            this.btnDelSaveName.Size = new System.Drawing.Size(111, 23);
+            this.btnDelSaveName.TabIndex = 28;
+            this.btnDelSaveName.Text = "刪除名稱";
+            this.btnDelSaveName.UseVisualStyleBackColor = true;
+            this.btnDelSaveName.Click += new System.EventHandler(this.btnDelSaveName_Click);
+            // 
+            // btnAddSaveName
+            // 
+            this.btnAddSaveName.Location = new System.Drawing.Point(19, 284);
+            this.btnAddSaveName.Name = "btnAddSaveName";
+            this.btnAddSaveName.Size = new System.Drawing.Size(111, 23);
+            this.btnAddSaveName.TabIndex = 27;
+            this.btnAddSaveName.Text = "添加名稱";
+            this.btnAddSaveName.UseVisualStyleBackColor = true;
+            this.btnAddSaveName.Click += new System.EventHandler(this.btnAddSaveName_Click);
+            // 
+            // lbAllSaveName
+            // 
+            this.lbAllSaveName.FormattingEnabled = true;
+            this.lbAllSaveName.ItemHeight = 12;
+            this.lbAllSaveName.Location = new System.Drawing.Point(19, 44);
+            this.lbAllSaveName.Name = "lbAllSaveName";
+            this.lbAllSaveName.Size = new System.Drawing.Size(111, 232);
+            this.lbAllSaveName.TabIndex = 26;
             // 
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(149, 40);
+            this.label68.Location = new System.Drawing.Point(198, 44);
             this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(53, 12);
-            this.label68.TabIndex = 13;
-            this.label68.Text = "物品属性";
+            this.label68.Size = new System.Drawing.Size(35, 12);
+            this.label68.TabIndex = 25;
+            this.label68.Text = "類型:";
+            // 
+            // tbSaveRuleName
+            // 
+            this.tbSaveRuleName.Location = new System.Drawing.Point(282, 14);
+            this.tbSaveRuleName.Name = "tbSaveRuleName";
+            this.tbSaveRuleName.Size = new System.Drawing.Size(111, 21);
+            this.tbSaveRuleName.TabIndex = 24;
+            // 
+            // cbSaveRuleType
+            // 
+            this.cbSaveRuleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSaveRuleType.FormattingEnabled = true;
+            this.cbSaveRuleType.Items.AddRange(new object[] {
+            "藥劑",
+            "防具",
+            "武器",
+            "腰帶",
+            "戒指",
+            "項鏈"});
+            this.cbSaveRuleType.Location = new System.Drawing.Point(282, 41);
+            this.cbSaveRuleType.Name = "cbSaveRuleType";
+            this.cbSaveRuleType.Size = new System.Drawing.Size(114, 20);
+            this.cbSaveRuleType.TabIndex = 23;
+            // 
+            // tbProperty7
+            // 
+            this.tbProperty7.Location = new System.Drawing.Point(200, 272);
+            this.tbProperty7.Name = "tbProperty7";
+            this.tbProperty7.Size = new System.Drawing.Size(111, 21);
+            this.tbProperty7.TabIndex = 22;
+            // 
+            // tbProperty6
+            // 
+            this.tbProperty6.Location = new System.Drawing.Point(200, 243);
+            this.tbProperty6.Name = "tbProperty6";
+            this.tbProperty6.Size = new System.Drawing.Size(111, 21);
+            this.tbProperty6.TabIndex = 21;
+            // 
+            // tbProperty5
+            // 
+            this.tbProperty5.Location = new System.Drawing.Point(200, 216);
+            this.tbProperty5.Name = "tbProperty5";
+            this.tbProperty5.Size = new System.Drawing.Size(111, 21);
+            this.tbProperty5.TabIndex = 20;
+            // 
+            // tbProperty4
+            // 
+            this.tbProperty4.Location = new System.Drawing.Point(200, 189);
+            this.tbProperty4.Name = "tbProperty4";
+            this.tbProperty4.Size = new System.Drawing.Size(111, 21);
+            this.tbProperty4.TabIndex = 19;
+            // 
+            // tbProperty3
+            // 
+            this.tbProperty3.Location = new System.Drawing.Point(200, 162);
+            this.tbProperty3.Name = "tbProperty3";
+            this.tbProperty3.Size = new System.Drawing.Size(111, 21);
+            this.tbProperty3.TabIndex = 18;
+            // 
+            // tbProperty2
+            // 
+            this.tbProperty2.Location = new System.Drawing.Point(200, 125);
+            this.tbProperty2.Name = "tbProperty2";
+            this.tbProperty2.Size = new System.Drawing.Size(111, 21);
+            this.tbProperty2.TabIndex = 17;
+            // 
+            // tbV12
+            // 
+            this.tbV12.Location = new System.Drawing.Point(394, 88);
+            this.tbV12.Name = "tbV12";
+            this.tbV12.Size = new System.Drawing.Size(44, 21);
+            this.tbV12.TabIndex = 16;
+            // 
+            // tbV11
+            // 
+            this.tbV11.Location = new System.Drawing.Point(332, 88);
+            this.tbV11.Name = "tbV11";
+            this.tbV11.Size = new System.Drawing.Size(47, 21);
+            this.tbV11.TabIndex = 15;
+            // 
+            // tbProperty1
+            // 
+            this.tbProperty1.Location = new System.Drawing.Point(200, 89);
+            this.tbProperty1.Name = "tbProperty1";
+            this.tbProperty1.Size = new System.Drawing.Size(111, 21);
+            this.tbProperty1.TabIndex = 14;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(17, 23);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(53, 12);
+            this.label66.TabIndex = 13;
+            this.label66.Text = "名称存储";
             // 
             // btnDelFilter
             // 
-            this.btnDelFilter.Location = new System.Drawing.Point(457, 296);
+            this.btnDelFilter.Location = new System.Drawing.Point(457, 321);
             this.btnDelFilter.Name = "btnDelFilter";
             this.btnDelFilter.Size = new System.Drawing.Size(111, 23);
             this.btnDelFilter.TabIndex = 12;
-            this.btnDelFilter.Text = "删除过滤器";
+            this.btnDelFilter.Text = "删除方案";
             this.btnDelFilter.UseVisualStyleBackColor = true;
             this.btnDelFilter.Click += new System.EventHandler(this.btnDelFilter_Click);
             // 
             // btnCreateFilter
             // 
-            this.btnCreateFilter.Location = new System.Drawing.Point(457, 267);
+            this.btnCreateFilter.Location = new System.Drawing.Point(200, 321);
             this.btnCreateFilter.Name = "btnCreateFilter";
-            this.btnCreateFilter.Size = new System.Drawing.Size(111, 23);
+            this.btnCreateFilter.Size = new System.Drawing.Size(125, 23);
             this.btnCreateFilter.TabIndex = 11;
-            this.btnCreateFilter.Text = "新建过滤器";
+            this.btnCreateFilter.Text = "添加屬性存儲方案";
             this.btnCreateFilter.UseVisualStyleBackColor = true;
             this.btnCreateFilter.Click += new System.EventHandler(this.btnCreateFilter_Click);
-            // 
-            // btnSaveCurFilter
-            // 
-            this.btnSaveCurFilter.Location = new System.Drawing.Point(327, 296);
-            this.btnSaveCurFilter.Name = "btnSaveCurFilter";
-            this.btnSaveCurFilter.Size = new System.Drawing.Size(111, 23);
-            this.btnSaveCurFilter.TabIndex = 10;
-            this.btnSaveCurFilter.Text = "保存";
-            this.btnSaveCurFilter.UseVisualStyleBackColor = true;
-            this.btnSaveCurFilter.Click += new System.EventHandler(this.btnSaveCurFilter_Click);
-            // 
-            // btnEditProperty
-            // 
-            this.btnEditProperty.Location = new System.Drawing.Point(327, 267);
-            this.btnEditProperty.Name = "btnEditProperty";
-            this.btnEditProperty.Size = new System.Drawing.Size(111, 23);
-            this.btnEditProperty.TabIndex = 9;
-            this.btnEditProperty.Text = "編輯";
-            this.btnEditProperty.UseVisualStyleBackColor = true;
-            this.btnEditProperty.Click += new System.EventHandler(this.btnEditProperty_Click);
-            // 
-            // btnDelProperty
-            // 
-            this.btnDelProperty.Location = new System.Drawing.Point(327, 324);
-            this.btnDelProperty.Name = "btnDelProperty";
-            this.btnDelProperty.Size = new System.Drawing.Size(111, 23);
-            this.btnDelProperty.TabIndex = 8;
-            this.btnDelProperty.Text = "刪除";
-            this.btnDelProperty.UseVisualStyleBackColor = true;
-            this.btnDelProperty.Click += new System.EventHandler(this.btnDelProperty_Click);
             // 
             // lbCurFilterName
             // 
             this.lbCurFilterName.AutoSize = true;
-            this.lbCurFilterName.Location = new System.Drawing.Point(325, 40);
+            this.lbCurFilterName.Location = new System.Drawing.Point(198, 17);
             this.lbCurFilterName.Name = "lbCurFilterName";
-            this.lbCurFilterName.Size = new System.Drawing.Size(65, 12);
+            this.lbCurFilterName.Size = new System.Drawing.Size(59, 12);
             this.lbCurFilterName.TabIndex = 7;
-            this.lbCurFilterName.Text = "过滤器名称";
+            this.lbCurFilterName.Text = "方案名稱:";
             // 
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(464, 40);
+            this.label67.Location = new System.Drawing.Point(455, 14);
             this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(65, 12);
+            this.label67.Size = new System.Drawing.Size(101, 12);
             this.label67.TabIndex = 6;
-            this.label67.Text = "全部过滤器";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(268, 122);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = ">>";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label67.Text = "全部屬性存儲方案";
             // 
             // lbAllFilter
             // 
             this.lbAllFilter.FormattingEnabled = true;
             this.lbAllFilter.ItemHeight = 12;
-            this.lbAllFilter.Location = new System.Drawing.Point(457, 75);
+            this.lbAllFilter.Location = new System.Drawing.Point(457, 39);
             this.lbAllFilter.Name = "lbAllFilter";
-            this.lbAllFilter.Size = new System.Drawing.Size(111, 184);
+            this.lbAllFilter.Size = new System.Drawing.Size(111, 268);
             this.lbAllFilter.TabIndex = 4;
             this.lbAllFilter.DoubleClick += new System.EventHandler(this.lbAllFilter_DoubleClick);
-            // 
-            // lbFilter
-            // 
-            this.lbFilter.FormattingEnabled = true;
-            this.lbFilter.ItemHeight = 12;
-            this.lbFilter.Location = new System.Drawing.Point(327, 75);
-            this.lbFilter.Name = "lbFilter";
-            this.lbFilter.Size = new System.Drawing.Size(111, 184);
-            this.lbFilter.TabIndex = 3;
-            // 
-            // lbProperty
-            // 
-            this.lbProperty.FormattingEnabled = true;
-            this.lbProperty.ItemHeight = 12;
-            this.lbProperty.Location = new System.Drawing.Point(151, 75);
-            this.lbProperty.Name = "lbProperty";
-            this.lbProperty.Size = new System.Drawing.Size(111, 184);
-            this.lbProperty.TabIndex = 2;
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(17, 40);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(53, 12);
-            this.label66.TabIndex = 1;
-            this.label66.Text = "背包物品";
-            // 
-            // lbBag
-            // 
-            this.lbBag.FormattingEnabled = true;
-            this.lbBag.ItemHeight = 12;
-            this.lbBag.Location = new System.Drawing.Point(19, 75);
-            this.lbBag.Name = "lbBag";
-            this.lbBag.Size = new System.Drawing.Size(111, 184);
-            this.lbBag.TabIndex = 0;
-            this.lbBag.DoubleClick += new System.EventHandler(this.lbBag_DoubleClick);
             // 
             // btnSave
             // 
@@ -3482,18 +3672,39 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button btnDelFilter;
         private System.Windows.Forms.Button btnCreateFilter;
-        private System.Windows.Forms.Button btnSaveCurFilter;
-        private System.Windows.Forms.Button btnEditProperty;
-        private System.Windows.Forms.Button btnDelProperty;
         private System.Windows.Forms.Label lbCurFilterName;
         private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox lbAllFilter;
-        private System.Windows.Forms.ListBox lbFilter;
-        private System.Windows.Forms.ListBox lbProperty;
-        private System.Windows.Forms.Label label66;
-        private System.Windows.Forms.ListBox lbBag;
+        private System.Windows.Forms.TextBox tbV72;
+        private System.Windows.Forms.TextBox tbV71;
+        private System.Windows.Forms.TextBox tbV62;
+        private System.Windows.Forms.TextBox tbV61;
+        private System.Windows.Forms.TextBox tbV52;
+        private System.Windows.Forms.TextBox tbV51;
+        private System.Windows.Forms.TextBox tbV42;
+        private System.Windows.Forms.TextBox tbV41;
+        private System.Windows.Forms.TextBox tbV32;
+        private System.Windows.Forms.TextBox tbV31;
+        private System.Windows.Forms.TextBox tbV22;
+        private System.Windows.Forms.TextBox tbV21;
+        private System.Windows.Forms.Button btnDelSaveName;
+        private System.Windows.Forms.Button btnAddSaveName;
+        private System.Windows.Forms.ListBox lbAllSaveName;
         private System.Windows.Forms.Label label68;
-        private System.Windows.Forms.Button btnGetBagItemList;
+        private System.Windows.Forms.TextBox tbSaveRuleName;
+        private System.Windows.Forms.ComboBox cbSaveRuleType;
+        private System.Windows.Forms.TextBox tbProperty7;
+        private System.Windows.Forms.TextBox tbProperty6;
+        private System.Windows.Forms.TextBox tbProperty5;
+        private System.Windows.Forms.TextBox tbProperty4;
+        private System.Windows.Forms.TextBox tbProperty3;
+        private System.Windows.Forms.TextBox tbProperty2;
+        private System.Windows.Forms.TextBox tbV12;
+        private System.Windows.Forms.TextBox tbV11;
+        private System.Windows.Forms.TextBox tbProperty1;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label label69;
     }
 }

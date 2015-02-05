@@ -147,6 +147,13 @@ namespace Controller
                 cbMidSkill.SelectedIndex = 0;
             }
 
+            if (data.MoveSkillKey != -1)
+            {
+                cbKeyRight.Checked = true;
+                cbRightSkill.SelectedIndex = 0;
+                tbRightAttStep.Text = data.MoveSkillStep.ToString();
+            }
+
             tbSinAttDis.Text=data.SinAttDis.ToString();
             if (data.nSinAttKey != -1)
             {
@@ -154,6 +161,8 @@ namespace Controller
                 cbQSkill.SelectedIndex = 0;
                 tbQAttStep.Text = data.SinAttStep.ToString();
             }
+            
+            
 
             tbMulAttDis.Text=data.MulAttDis.ToString();
             if(data.nMulAttKey!=-1)
@@ -793,11 +802,12 @@ namespace Controller
             LootFile.Close();
             cbLootNameTypeFilter.SelectedIndex = 0;
             updateLootNameText();
-
+            //高级存仓
             foreach (var item in data.AllFilter)
             {
                 lbAllFilter.Items.Add(item.strName);
             }
+            FlashNameSaveCtrl();
            // lbAllFilter.Items
             return ret;
         }
@@ -936,6 +946,8 @@ namespace Controller
             data.nMulAttKey = -1;
             data.nNorAttKey = -1;
             data.nGobackSkill = -1;
+            data.MoveSkillKey = -1;
+            data.MoveSkillStep = 5000;
 
             data.haloSkill.Clear();
             data.ttSkill.Clear();
@@ -1065,6 +1077,8 @@ namespace Controller
                 switch (cbRightSkill.SelectedIndex)
                 {
                     case 0://普通攻击
+                        data.MoveSkillKey = 2;
+                        int.TryParse(tbRightAttStep.Text, out data.MoveSkillStep);
                         break;
                     case 1: //光環技能
                         data.haloSkill.Add(2);
@@ -2292,138 +2306,11 @@ namespace Controller
         List<string> CurFilterStrings = new List<string>();
         void FlashFilterItems()
         {
-            lbFilter.Items.Clear();
-            foreach (var item in CurFilterStrings)
-            {
-                lbFilter.Items.Add(item);
-            }
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (CurFilterName == null)
-            {
-                MessageBox.Show("请选择或创建一个过滤器");
-                return;
-            }
-            int n = lbProperty.SelectedIndex;
-            if (n < 0)
-                return;
-            string strProperty = lbProperty.SelectedItem.ToString();
-            if (strProperty.Length < 1)
-                return;
-            if (CurFilterStrings.Contains(strProperty))
-            {
-                return;
-            }
-            CurFilterStrings.Add(strProperty);
-            FlashFilterItems();
-        }
-        List<Property> GenOneFilter(List<String> AllProperty)
-        {
-            HashSet<string> AddedKey = new HashSet<string>();
-            List<Property> DealProperty = new List<Property>();
-            //string[] AllProperty = strProperty.Split('|');
-            foreach (var OneProperty in AllProperty)
-            {
-                if (OneProperty.Length < 1)
-                    continue;
-                //提取数字
-                bool bNumbering = false;
-                Property OneDealProperty = new Property();
-                StringBuilder strNum = null;// new StringBuilder();
-                StringBuilder strKey = new StringBuilder();
-                foreach (var OneChar in OneProperty)
-                {
-                    if (Program.NumberChar.Contains(OneChar))//如果是数字
-                    {
-                        if (!bNumbering)
-                        {
-                            bNumbering = true;
-                            strKey.Append("*");
-                            strNum = new StringBuilder();
-                        }
-                        strNum.Append(OneChar);
-                    }
-                    else
-                    {
-                        if (bNumbering)
-                        {
-                            double dbTemp = 0;
-                            if (double.TryParse(strNum.ToString(), out dbTemp))
-                            {
-                                OneDealProperty.data.Add(dbTemp);
-                            }
-                         //   strNum.Clear();
-                        }
-                        bNumbering = false;
-                        strKey.Append(OneChar);
-                    }
-                }
-                if (bNumbering)
-                {
-                    double dbTemp = 0;
-                    if (double.TryParse(strNum.ToString(), out dbTemp))
-                    {
-                        OneDealProperty.data.Add(dbTemp);
-                    }
-                  //  strNum.Clear();
-                }
-                OneDealProperty.strInfo = strKey.ToString();
-                if (!AddedKey.Contains(OneDealProperty.strInfo))
-                {
-                    DealProperty.Add(OneDealProperty);
-                    AddedKey.Add(OneDealProperty.strInfo);
-                }
-            }
-            return DealProperty;
-        }
-        private void btnSaveCurFilter_Click(object sender, EventArgs e)
-        {
-            if (CurFilterName == null)
-            {
-                MessageBox.Show("请选择或创建一个过滤器");
-                return;
-            }
-            //保存当前过滤器
-
-            List<Property> NewRules = GenOneFilter(CurFilterStrings);
-
-            foreach (var item in data.AllFilter)
-            {
-                if (item.strName == CurFilterName)
-                {
-                    item.rules = NewRules;
-                    return;
-                }
-            }
-            MessageBox.Show("保存失敗,過濾器可能已被刪除");
-        }
-
-        private void btnDelProperty_Click(object sender, EventArgs e)
-        {
-            int n = lbFilter.SelectedIndex;
-            CurFilterStrings.Remove(CurFilterStrings[n]);
-            FlashFilterItems();
-        }
-
-        private void btnEditProperty_Click(object sender, EventArgs e)
-        {
-            int n = lbFilter.SelectedIndex;
-            if (n < 0)
-                return;
-          //  MessageBox.Show(CurFilterStrings[n]);
-
-            EditProperty dlg = new EditProperty();
-            dlg.SetPropertyString(CurFilterStrings[n]);
-            DialogResult ret = dlg.ShowDialog();
-            if (ret != DialogResult.OK)
-                return;
-            string strName = dlg.strProperty;
-            if (strName.Length < 1)
-                return;
-
-            CurFilterStrings[n] = strName;
-            FlashFilterItems();
+            //lbFilter.Items.Clear();
+            //foreach (var item in CurFilterStrings)
+            //{
+            //    lbFilter.Items.Add(item);
+            //}
         }
 
         void FlashAllFilterCtrl()
@@ -2436,26 +2323,143 @@ namespace Controller
         }
         private void btnCreateFilter_Click(object sender, EventArgs e)
         {
-            CreateFilter dlg = new CreateFilter();
-
-            DialogResult ret = dlg.ShowDialog();
-            if (ret != DialogResult.OK)
-                return;
-
-            string strName = dlg.FilterName;
-
+          //名称
+            string strName = tbSaveRuleName.Text;
             if (strName.Length < 1)
+            {
+                MessageBox.Show("請輸入方案名稱");
                 return;
+            }
             foreach (var item in data.AllFilter)
             {
                 if (item.strName == strName)
                 {
-                    MessageBox.Show("此過濾器名稱已經存在");
+                    MessageBox.Show("此過方案稱已經存在");
                     return;
                 }
             }
-            Filter filter = new Filter();
+            //类型
+            int n = cbSaveRuleType.SelectedIndex;
+            if(n<0)
+            {
+                MessageBox.Show("請選擇物品類型");
+                return;
+            }
+            short type = 0;
+        //     const short byTrophy_SkillStone = 1;//技能石
+        //const short byTrophy_Currency = 2;//卷轴宝石
+        //const short byTrophy_Flask = 3;//血瓶
+        //const short byTrophy_Armour = 4;//装备
+        //const short byTrophy_Ring = 5;//戒指
+        //const short byTrophy_Amulet = 6;//项链
+        //const short byTrophy_Belt = 7;//腰带
+        //const short byTrophy_Weapon = 8;//武器
+        //const short byTrophy_Maps = 11;//地图
+        //const short byTrophy_Money = 12;//通货
+        switch (n)
+        {
+            case 0:
+                type = byTrophy_Flask;
+                break;
+            case 1:
+                type = byTrophy_Armour;
+                break;
+            case 2:
+                type = byTrophy_Weapon;
+                break;
+            case 3:
+                type = byTrophy_Belt;
+                break;
+            case 4:
+                type = byTrophy_Ring;
+                break;
+            case 5:
+                type = byTrophy_Amulet;
+                break;
+        }
+           
+            SaveFilter filter = new SaveFilter();
             filter.strName = strName;
+            filter.type=type;
+            //7个属性
+            if (tbProperty1.Text.Length>0)
+            {
+                Property rule = new Property();
+                rule.strInfo = tbProperty1.Text;
+                if (false == short.TryParse(tbV11.Text, out rule.n1))
+                    rule.n1 = -1;
+                if (false == short.TryParse(tbV12.Text, out rule.n2))
+                    rule.n2 = -1;
+                filter.rules.Add(rule);
+            }
+            //2
+            if (tbProperty2.Text.Length > 0)
+            {
+                Property rule = new Property();
+                rule.strInfo = tbProperty2.Text;
+                if (false == short.TryParse(tbV21.Text, out rule.n1))
+                    rule.n1 = -1;
+                if (false == short.TryParse(tbV22.Text, out rule.n2))
+                    rule.n2 = -1;
+                filter.rules.Add(rule);
+            }
+            //3
+            if (tbProperty3.Text.Length > 0)
+            {
+                Property rule = new Property();
+                rule.strInfo = tbProperty3.Text;
+                if (false == short.TryParse(tbV31.Text, out rule.n1))
+                    rule.n1 = -1;
+                if (false == short.TryParse(tbV32.Text, out rule.n2))
+                    rule.n2 = -1;
+                filter.rules.Add(rule);
+            }
+            //4
+            if (tbProperty4.Text.Length > 0)
+            {
+                Property rule = new Property();
+                rule.strInfo = tbProperty4.Text;
+                if (false == short.TryParse(tbV41.Text, out rule.n1))
+                    rule.n1 = -1;
+                if (false == short.TryParse(tbV42.Text, out rule.n2))
+                    rule.n2 = -1;
+                filter.rules.Add(rule);
+            }
+            //5
+            if (tbProperty5.Text.Length > 0)
+            {
+                Property rule = new Property();
+                rule.strInfo = tbProperty5.Text;
+                if (false == short.TryParse(tbV51.Text, out rule.n1))
+                    rule.n1 = -1;
+                if (false == short.TryParse(tbV52.Text, out rule.n2))
+                    rule.n2 = -1;
+                filter.rules.Add(rule);
+            }
+            //6
+            if (tbProperty6.Text.Length > 0)
+            {
+                Property rule = new Property();
+                rule.strInfo = tbProperty6.Text;
+                if (false == short.TryParse(tbV61.Text, out rule.n1))
+                    rule.n1 = -1;
+                if (false == short.TryParse(tbV62.Text, out rule.n2))
+                    rule.n2 = -1;
+                filter.rules.Add(rule);
+            }
+            //7
+            if (tbProperty7.Text.Length > 0)
+            {
+                Property rule = new Property();
+                rule.strInfo = tbProperty7.Text;
+                if (false == short.TryParse(tbV71.Text, out rule.n1))
+                    rule.n1 = -1;
+                if (false == short.TryParse(tbV72.Text, out rule.n2))
+                    rule.n2 = -1;
+                filter.rules.Add(rule);
+            }
+
+            //保存刷新
             data.AllFilter.Add(filter);
             FlashAllFilterCtrl();
         }
@@ -2468,7 +2472,30 @@ namespace Controller
             data.AllFilter.Remove(data.AllFilter[n]);
             FlashAllFilterCtrl();
         }
-
+        void  ClearValueCtrl()
+        {
+            tbProperty1.Text = "";
+            tbV11.Text = "";
+            tbV12.Text = "";
+            tbProperty2.Text = "";
+            tbV21.Text = "";
+            tbV22.Text = "";
+            tbProperty3.Text = "";
+            tbV31.Text = "";
+            tbV32.Text = "";
+            tbProperty4.Text = "";
+            tbV41.Text = "";
+            tbV42.Text = "";
+            tbProperty5.Text = "";
+            tbV51.Text = "";
+            tbV52.Text = "";
+            tbProperty6.Text = "";
+            tbV61.Text = "";
+            tbV62.Text = "";
+            tbProperty7.Text = "";
+            tbV71.Text = "";
+            tbV72.Text = "";
+        }
         private void lbAllFilter_DoubleClick(object sender, EventArgs e)
         {
             int n = lbAllFilter.SelectedIndex;
@@ -2476,66 +2503,125 @@ namespace Controller
             {
                 return;
             }
-            //if (CurFilterName != null)
-            //{
-            //    //询问是否保存旧的
-            //}
-            lbFilter.Items.Clear();
-            CurFilterName = lbAllFilter.SelectedItem.ToString();
-            lbCurFilterName.Text = CurFilterName;
-            CurFilterStrings.Clear();
-            StringBuilder temp = null;// new StringBuilder();
-           
-            foreach (var item in data.AllFilter[n].rules)
+            SaveFilter filter=data.AllFilter[n];
+            //名称
+            tbSaveRuleName.Text = filter.strName;
+
+            //类型
+            switch (filter.type)
             {
-                int i = 0;
-                temp = new StringBuilder();
-                foreach (var OneChar in item.strInfo)
-                {
-                    if (OneChar == '*')
-                    {
-                        temp.Append(item.data[i].ToString());
-                        ++i;
-                    }
-                    else
-                        temp.Append(OneChar);
-                }
-                CurFilterStrings.Add(temp.ToString());
+                case byTrophy_Flask:
+                    cbSaveRuleType.SelectedIndex = 0;
+                    break;
+                case byTrophy_Armour:
+                    cbSaveRuleType.SelectedIndex = 1;
+                    break;
+                case byTrophy_Weapon:
+                    cbSaveRuleType.SelectedIndex = 2;
+                    break;
+                case byTrophy_Belt:
+                    cbSaveRuleType.SelectedIndex = 3;
+                    break;
+                case byTrophy_Ring:
+                    cbSaveRuleType.SelectedIndex = 4;
+                    break;
+                case byTrophy_Amulet:
+                    cbSaveRuleType.SelectedIndex = 5;
+                    break;
             }
-            FlashFilterItems();
+            
+            //7个属性
+            ClearValueCtrl();
+            n = 1;
+            foreach(var item in filter.rules)
+            {
+                switch(n)
+                {
+                    case 1:
+                        tbProperty1.Text = item.strInfo;
+                        if (item.n1 >= 0)
+                            tbV11.Text = item.n1.ToString();
+                        if (item.n2 >= 0)
+                            tbV12.Text = item.n2.ToString();
+                        break;
+                    case 2:
+                        tbProperty2.Text = item.strInfo;
+                        if (item.n1 >= 0)
+                            tbV21.Text = item.n1.ToString();
+                        if (item.n2 >= 0)
+                            tbV22.Text = item.n2.ToString();
+                        break;
+                    case 3:
+                        tbProperty3.Text = item.strInfo;
+                        if (item.n1 >= 0)
+                            tbV31.Text = item.n1.ToString();
+                        if (item.n2 >= 0)
+                            tbV32.Text = item.n2.ToString();
+                        break;
+                    case 4:
+                        tbProperty4.Text = item.strInfo;
+                        if (item.n1 >= 0)
+                            tbV41.Text = item.n1.ToString();
+                        if (item.n2 >= 0)
+                            tbV42.Text = item.n2.ToString();
+                        break;
+                    case 5:
+                        tbProperty5.Text = item.strInfo;
+                        if (item.n1 >= 0)
+                            tbV51.Text = item.n1.ToString();
+                        if (item.n2 >= 0)
+                            tbV52.Text = item.n2.ToString();
+                        break;
+                    case 6:
+                        tbProperty6.Text = item.strInfo;
+                        if (item.n1 >= 0)
+                            tbV61.Text = item.n1.ToString();
+                        if (item.n2 >= 0)
+                            tbV62.Text = item.n2.ToString();
+                        break;
+                    case 7:
+                        tbProperty7.Text = item.strInfo;
+                        if (item.n1 >= 0)
+                            tbV71.Text = item.n1.ToString();
+                        if (item.n2 >= 0)
+                            tbV72.Text = item.n2.ToString();
+                        break;
+                }
+                ++n;
+            }
         }
-        List<ItemPropertyInfo> bag=null;
-        private void lbBag_DoubleClick(object sender, EventArgs e)
+        void FlashNameSaveCtrl()
         {
-            //将背包的物品的属性显示在属性列表里
-            int n=lbBag.SelectedIndex;
+            lbAllSaveName.Items.Clear();
+            foreach(var item in data.NameSaveList)
+            {
+                lbAllSaveName.Items.Add(item);
+            }
+        }
+        private void btnAddSaveName_Click(object sender, EventArgs e)
+        {
+            CreateFilter dlg = new CreateFilter();
+            DialogResult ret=dlg.ShowDialog();
+            if (ret != DialogResult.OK)
+                return;
+            string strNameSaveItem=dlg.FilterName;
+            if(data.NameSaveList.Contains(strNameSaveItem))
+            {
+                MessageBox.Show("已經包含此名稱");
+                return;
+            }
+            data.NameSaveList.Add(strNameSaveItem);
+            FlashNameSaveCtrl();
+        }
+
+        private void btnDelSaveName_Click(object sender, EventArgs e)
+        {
+            int n=lbAllSaveName.SelectedIndex;
             if (n < 0)
                 return;
-            lbProperty.Items.Clear();
-
-            sbyte[] bname = bag[n].Property.ToArray();
-            byte[] bytes = new byte[bname.Length];
-            Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
-            string strProperty = Encoding.Unicode.GetString(bytes);
-            string[] SplitProperty=strProperty.Split('|');
-            foreach(var item in SplitProperty)
-            {
-                lbProperty.Items.Add(item);
-            }         
-        }
-
-        private void btnGetBagItemList_Click(object sender, EventArgs e)
-        {
-            lbBag.Items.Clear();
-            bag = Program.client.GetBagItemPropertyInfo();
-            foreach (var item in bag)
-            {
-                sbyte[] bname = item.Name.ToArray();
-                byte[] bytes = new byte[bname.Length];
-                Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
-                string strName = Encoding.Unicode.GetString(bytes);
-                lbBag.Items.Add(strName);
-            }
+            string strDelItem = (string)lbAllSaveName.SelectedItem;
+            data.NameSaveList.Remove(strDelItem);
+            FlashNameSaveCtrl();
         }
     }
 }

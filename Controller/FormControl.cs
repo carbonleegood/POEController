@@ -67,7 +67,7 @@ namespace Controller
         public static extern Int32 MoveToTransferDoor(UInt16 x, UInt16 y);
 
         [DllImport("MapServer.dll", EntryPoint = "GGGGGG", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
-        public static extern Int32 StartCheck(string uid, string pwd);
+        public static extern Int32 StartCheck(string uid, string pwd,Int32 VersionID);
 
         [DllImport("MapServer.dll", EntryPoint = "GetGGPid", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern UInt32 GetGGPid(byte[] buff);
@@ -869,7 +869,7 @@ namespace Controller
 
         private void button46_Click(object sender, EventArgs e)
         {
-            StartCheck(textBox1.Text, textBox2.Text);
+            StartCheck(textBox1.Text, textBox2.Text,15);
         }
 
         private void button47_Click(object sender, EventArgs e)
@@ -1091,12 +1091,34 @@ namespace Controller
         }
         private void button57_Click(object sender, EventArgs e)
         {
-            List<ItemInfo> saveList = GenSaveList();
-            Thread.Sleep(1000);
-            int nRet = SaveToStorage(saveList);
-            Thread.Sleep(1000);
+        //    List<ItemInfo> saveList = GenSaveList();
+         //   Thread.Sleep(1000);
+        //    int nRet = SaveToStorage(saveList);
+        //    Thread.Sleep(1000);
         }
-
+        void InitSaveIndexFilter(ConfigData cfg)
+        {
+            Program.gdata.IndexFilter.Clear();
+            //建立索引过滤器
+            foreach (var OneFilter in cfg.AllFilter)
+            {
+                foreach (var OneProperty in OneFilter.rules)
+                {
+                    List<SaveFilter> GroupFilter = null;
+                    bool bRet = Program.gdata.IndexFilter.TryGetValue(OneProperty.strInfo, out GroupFilter);
+                    if (bRet)//如果已经有了
+                    {
+                        GroupFilter.Add(OneFilter);
+                    }
+                    else
+                    {
+                        GroupFilter = new List<SaveFilter>();
+                        GroupFilter.Add(OneFilter);
+                        Program.gdata.IndexFilter.Add(OneProperty.strInfo, GroupFilter);
+                    }
+                }
+            }
+        }
         private void button58_Click(object sender, EventArgs e)
         {
             string filename = "Config\\default.cfg" ;
@@ -1114,11 +1136,6 @@ namespace Controller
                 fStream.Close();
 
                 //设置运行时配置,全局配置在程序载入时即加载进内存
-                //lbMap.Items.Clear();
-                //foreach (var item in Program.config.MissionMapList)
-                //{
-                //    lbMap.Items.Add(item);
-                //}
 
                 List<LootType> lootTypeList = new List<LootType>();
                 foreach (var item in Program.config.LootTypeList)
@@ -1134,12 +1151,12 @@ namespace Controller
                        Program.config.LootSocketFilter,
                        Program.config.LootSocketConnectFilter,
                        Program.config.LootThreeColor,
-    Program.config.LootSkillQuality);
+                       Program.config.LootSkillQuality);
 
                 Program.runtime = new RunTimeData();
-              //  lbMap.SelectedIndex = 0;
-                //   Program.runtime.curMissionMapIndex = 0;
-              //  lbNotice.Text = "使用中配置:" + cbConfig.Text + ",如果您修改了該配置方案或選擇了其他配置方案,請點擊重載配置.";
+
+                InitSaveIndexFilter(Program.config);
+                Program.runtime.reset();
             }
             catch (Exception ex)
             {
@@ -1152,170 +1169,146 @@ namespace Controller
         const short byTrophy_Amulet = 6;//项链
         const short byTrophy_Belt = 7;//腰带
         const short byTrophy_Weapon = 8;//武器
-        List<ItemInfo> GenSaveList()
+        Dictionary<string, List<short>> GenTrophyProperty(string strProperty)
         {
-            //遍历背包,找到装备,售卖
-            //
-            //   List<ItemInfo> GobackCurrency = new List<ItemInfo>();
-            ItemInfo MaxCurrency = null;
-            List<ItemInfo> SaveList = new List<ItemInfo>();
-            List<ItemInfo> bag = Program.client.GetContainerItemList(0);
-            foreach (var item in bag)
+            Dictionary<string, List<short>> DealProperty = new Dictionary<string, List<short>>();
+            string[] AllProperty = strProperty.Split('|');
+            foreach (var OneProperty in AllProperty)
             {
-                int FilterColor = 0;
-                if (item.Type == byTrophy_Currency)//回城卷轴,存储
-                {
-                    if (Program.config.SaveTypeList.TryGetValue(item.Type, out FilterColor) == false)
-                        continue;
-                    sbyte[] bname = item.Name.ToArray();
-                    byte[] bytes = new byte[bname.Length];
-                    Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
-                    string strName = Encoding.Unicode.GetString(bytes);
-                    if (strName == "傳送卷軸")//如果是傳送卷軸,保存20个以上
-                    {
-                        if (MaxCurrency == null)
-                            MaxCurrency = item;
-                        else
-                        {
-                            if (item.Count > MaxCurrency.Count)
-                            {
-                                SaveList.Add(MaxCurrency);
-                                MaxCurrency = item;
-                            }
-                        }
-                        continue;
-
-                    }
-                    SaveList.Add(item);
+                if (OneProperty.Length < 1)
                     continue;
-                }
-                if (item.Type != byTrophy_Armour && item.Type != byTrophy_Weapon)//没孔没槽的
+                //提取数字
+                bool bNumbering = false;
+                StringBuilder strNum = null;// new StringBuilder();
+                StringBuilder strKey = new StringBuilder();
+                List<short> data = new List<short>();
+                foreach (var OneChar in OneProperty)
                 {
-                    if (Program.config.SaveTypeList.TryGetValue(item.Type, out FilterColor) == false)
-                        continue;
-                    if (FilterColor > item.Color)
-                        continue;
-                    SaveList.Add(item);
+                    if (Program.NumberChar.Contains(OneChar))//如果是数字
+                    {
+                        if (!bNumbering)
+                        {
+                            bNumbering = true;
+                            strKey.Append("n");
+                            strNum = new StringBuilder();
+                        }
+                        strNum.Append(OneChar);
+                    }
+                    else
+                    {
+                        if (bNumbering)
+                        {
+                            short dbTemp = 0;
+                            if (short.TryParse(strNum.ToString(), out dbTemp))
+                            {
+                                data.Add(dbTemp);
+                            }
+                            // strNum.Clear();
+                        }
+                        bNumbering = false;
+                        strKey.Append(OneChar);
+                    }
+                }
+                if (bNumbering)
+                {
+                    short dbTemp = 0;
+                    if (short.TryParse(strNum.ToString(), out dbTemp))
+                    {
+                        data.Add(dbTemp);
+                    }
+                    //  strNum.Clear();
+                }
+                List<short> ExistData = null;
+                bool bExist = DealProperty.TryGetValue(strKey.ToString(), out ExistData);
+                if (bExist)
+                {
+                    for (int i = 0; i < data.Count; ++i)
+                    {
+                        if (data[i] > ExistData[i])
+                        {
+                            for (int j = 0; j < data.Count; ++j)
+                            {
+                                ExistData[j] = data[j];
+                            }
+                            break;
+                        }
+                        else if (data[i] < ExistData[i])
+                        {
+                            break;
+                        }
+                    }
                 }
                 else
+                    DealProperty.Add(strKey.ToString(), data);
+            }
+            return DealProperty;
+        }
+        List<SaveFilter> SearchFilter(Dictionary<string, List<short>> TrophyProperty)
+        {
+            List<SaveFilter> GroupFilter = null;
+            foreach (var item in TrophyProperty)
+            {
+                bool bRet = Program.gdata.IndexFilter.TryGetValue(item.Key, out GroupFilter);
+                if (bRet)
+                    break;
+                GroupFilter = null;
+            }
+            return GroupFilter;
+        }
+        bool CompareProperty(Dictionary<string, List<short>> TrophyProperty, SaveFilter Filter)
+        {
+            //判断过滤器中的每一条,是否都在目标中
+            foreach (var FilterItem in Filter.rules)
+            {
+                List<short> tempData = null;
+                bool bRet = TrophyProperty.TryGetValue(FilterItem.strInfo, out tempData);
+                if (bRet == false)
+                    return false;
+                if (FilterItem.n1 >= 0)
                 {
-                    //这里的逻辑有点乱啊
-                    if (Program.config.SaveSocketFilter > 0 )
-                    {
-                        if (Program.config.SaveSocketFilter <= item.Socket)
-                        {
-                            SaveList.Add(item);
-                            continue;
-                        }
-                    }
-                    if (Program.config.SaveSocketConnectFilter > 0)
-                    {
-                        if (Program.config.SaveSocketConnectFilter <= item.SocketConnect)
-                        {
-                            SaveList.Add(item);
-                            continue;
-                        }
-                    }
-                    if (item.ThreeColorSocket && Program.config.SaveThreeColor)
-                    {
-                        SaveList.Add(item);
-                        continue;
-                    }
-                    if (Program.config.SaveTypeList.TryGetValue(item.Type, out FilterColor) == false)
-                        continue;
-                    if (FilterColor > item.Color)
-                        continue;
-                    SaveList.Add(item);
+                    if (FilterItem.n1 > tempData[0])
+                        return false;
+                }
+                if (FilterItem.n2 >= 0)
+                {
+                    if (FilterItem.n2 > tempData[1])
+                        return false;
                 }
             }
-            return SaveList;
+            return true;
         }
-  
+        bool IsFilterTrophy(ItemFullInfo trophy)
+        {
+            sbyte[] bname = trophy.Name.ToArray();
+            byte[] bytes = new byte[bname.Length];
+            Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+            string strName = Encoding.Unicode.GetString(bytes);
+            if (Program.config.NameSaveList.Contains(strName))
+                return true;
+
+            ///////////////////////////////////////////////////////////////////////
+            bname = trophy.DescribInfo.ToArray();
+            bytes = new byte[bname.Length];
+            Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+            string strProperty = Encoding.Unicode.GetString(bytes);
+            Dictionary<string, List<short>> TrophyProperty = GenTrophyProperty(strProperty);
+            List<SaveFilter> GroupFilter = SearchFilter(TrophyProperty);
+            if (GroupFilter == null)
+                return false;
+            foreach (var item in GroupFilter)
+            {
+                bool bRet = CompareProperty(TrophyProperty, item);
+                if (bRet == true)
+                    return true;
+            }
+            return false;
+        }
+
         const sbyte TrophyType = 4;
         private void button59_Click(object sender, EventArgs e)
         {
-            List<ObjInfo> round = Program.client.GetRoundList();
-            List<TrophyBaseInfo> trophyIDList = new List<TrophyBaseInfo>();
-            foreach (var item in round)
-            {
-                switch (item.Type)
-                {
-                    case TrophyType:
-                        TrophyBaseInfo trophy = new TrophyBaseInfo();
-                        trophy.ObjPtr = item.ObjPtr;
-                        trophy.X = (short)item.X;
-                        trophy.Y = (short)item.Y;
-                        trophyIDList.Add(trophy);
-                        break;
-                }
-            }
-            List<TrophyInfo> sell = Program.client.GetTrophyList(trophyIDList);
-
-            listView1.Items.Clear();
-            listView1.Columns.Clear();
-            listView1.Columns.Add("ID");
-            listView1.Columns.Add("COLOR");
-            //listView1.Columns.Add("count");
-            //listView1.Columns.Add("maxCount");
-            //listView1.Columns.Add("ServiceID");
-            listView1.Columns.Add("Name");
-         //   listView1.Columns.Add("left/Ttop");
-            listView1.Columns.Add("width/height");
-         //   listView1.Columns.Add("TypeName");
-            listView1.Columns.Add("socket");
-            listView1.Columns.Add("connect");
-            listView1.Columns.Add("threeColor");
-
-            listView1.Columns.Add("type");
-         //   listView1.Columns.Add("BagObjPtr");
-
-           // List<TrophyInfo> sell = Program.client.GetTrophyList();
-          //  List<ItemInfo> sell=GenSaveList();
-            foreach(var item in sell)
-            {
-                var SubItem = listView1.Items.Add(item.ID.ToString());
-                SubItem.SubItems.Add(item.Color.ToString());
-                //SubItem.SubItems.Add(item.Count.ToString());
-                //SubItem.SubItems.Add(item.MaxCount.ToString());
-                //SubItem.SubItems.Add(item.ServiceID.ToString());
-
-                if (item.Name != null)
-                {
-                    sbyte[] bname = item.Name.ToArray();
-                    byte[] bytes = new byte[bname.Length];
-                    Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
-                    string strName = Encoding.Unicode.GetString(bytes);
-                    SubItem.SubItems.Add(strName);
-                }
-                else
-                {
-                    SubItem.SubItems.Add("未获取到名字");
-                }
-
-            //    SubItem.SubItems.Add(item.Left.ToString() + "," + item.Top.ToString());
-                SubItem.SubItems.Add(item.Width.ToString() + "," + item.Height.ToString());
-
-                //if (item.TypeName != null)
-                //{
-                //    sbyte[] bname = item.TypeName.ToArray();
-                //    byte[] bytes = new byte[bname.Length];
-                //    Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
-                //    string strTypeName = Encoding.Unicode.GetString(bytes);
-                //    SubItem.SubItems.Add(strTypeName);
-                //}
-                //else
-                //{
-                //    SubItem.SubItems.Add("未获取到类型");
-                //}
-
-                SubItem.SubItems.Add(item.Socket.ToString());
-                SubItem.SubItems.Add(item.SocketConnect.ToString());
-                SubItem.SubItems.Add(item.ThreeColorSocket.ToString());
-                SubItem.SubItems.Add(item.Type.ToString());
-
-                //    SubItem.SubItems.Add(item.WinID.ToString());
-               // SubItem.SubItems.Add(item.BagObjPtr.ToString());
-            }
+            ItemFullInfo item=SearchSaveItem();
+            return;
         }
 
         private void button60_Click(object sender, EventArgs e)
@@ -1337,6 +1330,39 @@ namespace Controller
             }
             return IdentityList;
         }
+        //List<ItemInfo> GenIdentityList()
+        //{
+        //    List<ItemInfo> IdentityList = new List<ItemInfo>();
+        //    List<ItemInfo> bag = Program.client.GetContainerItemList(0);
+        //    //if (bag.Count < 1)
+        //    //    System.Windows.Forms.MessageBox.Show("bag error!");
+        //    foreach (var item in bag)
+        //    {
+        //        if (item.NeedIdentify)
+        //        {
+        //            switch (item.Type)
+        //            {
+        //                case byTrophy_Ring:
+        //                    if (Program.config.bNoIdentifyRing == false)
+        //                        IdentityList.Add(item);
+        //                    break;
+        //                case byTrophy_Amulet:
+        //                    if (Program.config.bNoIdentifyAmulet == false)
+        //                        IdentityList.Add(item);
+        //                    break;
+        //                case byTrophy_Belt:
+        //                    if (Program.config.bNoIdentifyBelt == false)
+        //                        IdentityList.Add(item);
+        //                    break;
+        //                default:
+        //                    IdentityList.Add(item);
+        //                    break;
+        //            }
+
+        //        }
+        //    }
+        //    return IdentityList;
+        //}
         int SearchIdentityCurrencyServiceID()
         {
             int nServiceID = -1;
@@ -1749,6 +1775,147 @@ namespace Controller
         {
             bool bRet=InDungeonHome();
             textBox1.Text = bRet.ToString();
+        }
+
+        private void button79_Click(object sender, EventArgs e)
+        {
+            int BagPtr = int.Parse(textBox1.Text);
+            int ServiceID = int.Parse(textBox2.Text);
+            Program.client.SaveToStorage(BagPtr, ServiceID);
+        }
+        ItemFullInfo SearchSaveItem()
+        {
+            ItemFullInfo NeedSaveItem = null;
+            ItemFullInfo MaxGobackCurrency = null;
+            ItemFullInfo MaxIdentityCurrency = null;
+            List<ItemFullInfo> bag = Program.client.GetBagItemFullInfo();
+
+            foreach (var item in bag)
+            {
+                int FilterColor = 0;
+                if (item.Type == byTrophy_Currency)//回城卷轴,存储
+                {
+                    if (Program.config.SaveTypeList.TryGetValue(item.Type, out FilterColor) == false)
+                        continue;
+                    sbyte[] bname = item.Name.ToArray();
+                    byte[] bytes = new byte[bname.Length];
+                    Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                    string strName = Encoding.Unicode.GetString(bytes);
+                    if (strName == "傳送卷軸")//如果是傳送卷軸,保存個數最大的一組
+                    {
+                        if (MaxGobackCurrency == null)
+                        {
+                            MaxGobackCurrency = item;
+                            continue;
+                        }
+                        else
+                        {
+                            if (item.Count > MaxGobackCurrency.Count)
+                            {
+                                NeedSaveItem = MaxGobackCurrency;
+                                break;
+                            }
+                            else
+                            {
+                                NeedSaveItem = item;
+                                break;
+                            }
+                        }
+                    }
+                    if (strName == "知識卷軸")//如果是傳送卷軸,保存個數最大的一組
+                    {
+                        if (MaxIdentityCurrency == null)
+                        {
+                            MaxIdentityCurrency = item;
+                            continue;
+                        }
+                        else
+                        {
+                            if (item.Count > MaxIdentityCurrency.Count)
+                            {
+                                NeedSaveItem = MaxIdentityCurrency;
+                                break;
+                            }
+                            else
+                            {
+                                NeedSaveItem = item;
+                                break;
+                            }
+                        }
+                    }
+                }
+                //如果符合过滤要求的,直接返回
+                if (IsFilterTrophy(item))
+                {
+                    NeedSaveItem = item;
+                    break;
+                }
+                //如果符合名字的,也直接返回
+                if (item.Type != byTrophy_Armour && item.Type != byTrophy_Weapon)//没孔没槽的
+                {
+                    if (item.Type == byTrophy_Money)
+                    {
+                        sbyte[] bname = item.Name.ToArray();
+                        byte[] bytes = new byte[bname.Length];
+                        Buffer.BlockCopy(bname, 0, bytes, 0, bname.Length);
+                        string strName = Encoding.Unicode.GetString(bytes);
+                        if (strName == "改造石碎片" || strName == "蛻變石碎片"
+                            || strName == "點金石碎片" || strName == "卷軸碎片")
+                            continue;
+
+                    }
+                    if (Program.config.SaveTypeList.TryGetValue(item.Type, out FilterColor) == false)
+                        continue;
+                    if (FilterColor > item.Color)
+                        continue;
+                    NeedSaveItem = item;
+                    break;
+                }
+                else
+                {
+                    
+                    //这里的逻辑有点乱啊
+                    if (Program.config.SaveSocketFilter > 0)
+                    {
+                        if (Program.config.SaveSocketFilter <= item.Socket)
+                        {
+                            NeedSaveItem = item;
+                            break;
+                        }
+                    }
+                    if (Program.config.SaveSocketConnectFilter > 0)
+                    {
+                        if (Program.config.SaveSocketConnectFilter <= item.SocketConnect)
+                        {
+                            NeedSaveItem = item;
+                            break;
+                        }
+                    }
+                    if (item.ThreeColorSocket && Program.config.SaveThreeColor)
+                    {
+                        NeedSaveItem = item;
+                        break;
+                    }
+                    if (Program.config.SaveTypeList.TryGetValue(item.Type, out FilterColor) == false)
+                        continue;
+                    if (FilterColor > item.Color)
+                        continue;
+                    NeedSaveItem = item;
+                    break;
+                }
+            }
+            return NeedSaveItem;
+        }
+        private void button80_Click(object sender, EventArgs e)
+        {
+            SearchSaveItem();
+        }
+
+        private void button81_Click(object sender, EventArgs e)
+        {
+            int n = 0;
+            int.TryParse(textBox1.Text, out n);
+            Program.client.Relive(n);
         }
     }
 #endif

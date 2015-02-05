@@ -21,7 +21,7 @@ namespace Controller
             }
             base.Dispose(disposing);
         }
-
+      
         #region Windows 窗体设计器生成的代码
 
         /// <summary>
@@ -88,6 +88,7 @@ namespace Controller
             this.button41 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button81 = new System.Windows.Forms.Button();
             this.button61 = new System.Windows.Forms.Button();
             this.button60 = new System.Windows.Forms.Button();
             this.button46 = new System.Windows.Forms.Button();
@@ -99,6 +100,7 @@ namespace Controller
             this.button48 = new System.Windows.Forms.Button();
             this.button47 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button79 = new System.Windows.Forms.Button();
             this.button62 = new System.Windows.Forms.Button();
             this.button59 = new System.Windows.Forms.Button();
             this.button58 = new System.Windows.Forms.Button();
@@ -114,6 +116,8 @@ namespace Controller
             this.button43 = new System.Windows.Forms.Button();
             this.button42 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button80 = new System.Windows.Forms.Button();
+            this.button78 = new System.Windows.Forms.Button();
             this.button77 = new System.Windows.Forms.Button();
             this.button76 = new System.Windows.Forms.Button();
             this.button75 = new System.Windows.Forms.Button();
@@ -127,7 +131,6 @@ namespace Controller
             this.button66 = new System.Windows.Forms.Button();
             this.button51 = new System.Windows.Forms.Button();
             this.button70 = new System.Windows.Forms.Button();
-            this.button78 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -185,7 +188,7 @@ namespace Controller
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(6, 138);
+            this.button3.Location = new System.Drawing.Point(9, 126);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(97, 23);
             this.button3.TabIndex = 6;
@@ -598,7 +601,7 @@ namespace Controller
             // 
             // button38
             // 
-            this.button38.Location = new System.Drawing.Point(6, 109);
+            this.button38.Location = new System.Drawing.Point(6, 97);
             this.button38.Name = "button38";
             this.button38.Size = new System.Drawing.Size(100, 23);
             this.button38.TabIndex = 42;
@@ -650,6 +653,7 @@ namespace Controller
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button81);
             this.tabPage1.Controls.Add(this.button61);
             this.tabPage1.Controls.Add(this.button60);
             this.tabPage1.Controls.Add(this.button46);
@@ -675,11 +679,21 @@ namespace Controller
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button81
+            // 
+            this.button81.Location = new System.Drawing.Point(29, 187);
+            this.button81.Name = "button81";
+            this.button81.Size = new System.Drawing.Size(75, 23);
+            this.button81.TabIndex = 48;
+            this.button81.Text = "复活";
+            this.button81.UseVisualStyleBackColor = true;
+            this.button81.Click += new System.EventHandler(this.button81_Click);
+            // 
             // button61
             // 
             this.button61.Location = new System.Drawing.Point(309, 164);
             this.button61.Name = "button61";
-            this.button61.Size = new System.Drawing.Size(75, 23);
+            this.button61.Size = new System.Drawing.Size(90, 23);
             this.button61.TabIndex = 47;
             this.button61.Text = "辨識背包物品";
             this.button61.UseVisualStyleBackColor = true;
@@ -794,6 +808,7 @@ namespace Controller
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button79);
             this.tabPage3.Controls.Add(this.button62);
             this.tabPage3.Controls.Add(this.button59);
             this.tabPage3.Controls.Add(this.button58);
@@ -823,6 +838,16 @@ namespace Controller
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button79
+            // 
+            this.button79.Location = new System.Drawing.Point(6, 187);
+            this.button79.Name = "button79";
+            this.button79.Size = new System.Drawing.Size(75, 23);
+            this.button79.TabIndex = 57;
+            this.button79.Text = "左键点击";
+            this.button79.UseVisualStyleBackColor = true;
+            this.button79.Click += new System.EventHandler(this.button79_Click);
             // 
             // button62
             // 
@@ -916,7 +941,7 @@ namespace Controller
             // 
             // button49
             // 
-            this.button49.Location = new System.Drawing.Point(221, 68);
+            this.button49.Location = new System.Drawing.Point(198, 68);
             this.button49.Name = "button49";
             this.button49.Size = new System.Drawing.Size(98, 23);
             this.button49.TabIndex = 47;
@@ -946,9 +971,9 @@ namespace Controller
             // 
             // button43
             // 
-            this.button43.Location = new System.Drawing.Point(16, 182);
+            this.button43.Location = new System.Drawing.Point(6, 155);
             this.button43.Name = "button43";
-            this.button43.Size = new System.Drawing.Size(75, 23);
+            this.button43.Size = new System.Drawing.Size(91, 23);
             this.button43.TabIndex = 44;
             this.button43.Text = "拿起背包物品";
             this.button43.UseVisualStyleBackColor = true;
@@ -966,6 +991,7 @@ namespace Controller
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button80);
             this.tabPage4.Controls.Add(this.button78);
             this.tabPage4.Controls.Add(this.button77);
             this.tabPage4.Controls.Add(this.button76);
@@ -985,6 +1011,26 @@ namespace Controller
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button80
+            // 
+            this.button80.Location = new System.Drawing.Point(40, 20);
+            this.button80.Name = "button80";
+            this.button80.Size = new System.Drawing.Size(75, 23);
+            this.button80.TabIndex = 12;
+            this.button80.Text = "搜索存仓物品";
+            this.button80.UseVisualStyleBackColor = true;
+            this.button80.Click += new System.EventHandler(this.button80_Click);
+            // 
+            // button78
+            // 
+            this.button78.Location = new System.Drawing.Point(28, 95);
+            this.button78.Name = "button78";
+            this.button78.Size = new System.Drawing.Size(97, 23);
+            this.button78.TabIndex = 11;
+            this.button78.Text = "是否在藏身处";
+            this.button78.UseVisualStyleBackColor = true;
+            this.button78.Click += new System.EventHandler(this.button78_Click);
             // 
             // button77
             // 
@@ -1047,7 +1093,7 @@ namespace Controller
             // 
             // button71
             // 
-            this.button71.Location = new System.Drawing.Point(40, 114);
+            this.button71.Location = new System.Drawing.Point(40, 124);
             this.button71.Name = "button71";
             this.button71.Size = new System.Drawing.Size(75, 23);
             this.button71.TabIndex = 4;
@@ -1087,7 +1133,7 @@ namespace Controller
             // 
             // button66
             // 
-            this.button66.Location = new System.Drawing.Point(40, 21);
+            this.button66.Location = new System.Drawing.Point(28, 66);
             this.button66.Name = "button66";
             this.button66.Size = new System.Drawing.Size(75, 23);
             this.button66.TabIndex = 0;
@@ -1114,16 +1160,6 @@ namespace Controller
             this.button70.Text = "背包全信息";
             this.button70.UseVisualStyleBackColor = true;
             this.button70.Click += new System.EventHandler(this.button70_Click);
-            // 
-            // button78
-            // 
-            this.button78.Location = new System.Drawing.Point(29, 66);
-            this.button78.Name = "button78";
-            this.button78.Size = new System.Drawing.Size(97, 23);
-            this.button78.TabIndex = 11;
-            this.button78.Text = "是否在藏身处";
-            this.button78.UseVisualStyleBackColor = true;
-            this.button78.Click += new System.EventHandler(this.button78_Click);
             // 
             // FormControl
             // 
@@ -1258,6 +1294,9 @@ namespace Controller
         private System.Windows.Forms.Button button75;
         private System.Windows.Forms.Button button77;
         private System.Windows.Forms.Button button78;
+        private System.Windows.Forms.Button button79;
+        private System.Windows.Forms.Button button80;
+        private System.Windows.Forms.Button button81;
     }
 #endif
 }

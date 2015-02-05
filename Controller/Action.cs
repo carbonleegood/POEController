@@ -208,6 +208,10 @@ namespace Controller
         }
         int safeBlockCount = 0;
         GPoint lastSafeMovePos = new GPoint();
+        void ActSkillMove(GPoint pos)
+        {
+            Program.client.CastUntargetSkill((short)pos.x,(short)pos.y,2,8);
+        }
         void ActSafeMove(GPoint pos)
         {
             if (CurMapID == pollutantMapID)
@@ -1613,7 +1617,7 @@ namespace Controller
             return 0;
             //几次就放弃
         }
-        int ActKillMonster(SMonsterInfo targetMonster, int targetMonsterRoundCount, int curTickCount)
+        int KillMonster(SMonsterInfo targetMonster, int targetMonsterRoundCount, int curTickCount)
         {
             double dis = CalcDis(player.Pos, targetMonster.Pos);
             //如果当前目标是上次目标,攻击5次且满血,放弃
@@ -1666,7 +1670,7 @@ namespace Controller
             }
             return 0;
         }
-        int ActKillMonsterNew(SMonsterInfo targetMonster, int targetMonsterRoundCount, List<SMonsterInfo> NearbyMonster,int curTickCount)
+        int KillMonsterNew(SMonsterInfo targetMonster, int targetMonsterRoundCount, List<SMonsterInfo> NearbyMonster,int curTickCount)
         {
             double dis = CalcDis(player.Pos, targetMonster.Pos);
             //如果当前目标是上次目标,攻击5次且满血,放弃
@@ -1689,8 +1693,11 @@ namespace Controller
                 LastTargetMonsterObjPtr = targetMonster.ObjPtr;
                 MonsterBlockCount = 0;
             }
+            int MaxBlockCount = 5;
+            if (targetMonster.Priority > 0)
+                MaxBlockCount = 15;
 
-            if (MonsterBlockCount > 5)
+            if (MonsterBlockCount > MaxBlockCount)
                 FilterMonsterList.Add(targetMonster.Pos);
 
             //召唤技能
@@ -1706,61 +1713,133 @@ namespace Controller
             if (0 == CastShieldSkill(curTickCount))
                 return 0;
 
+            if (targetMonster.Priority > 0)
+            {
+                if (dis < 50.0f && dis > 18.0)//如果距离足够近,再瞬移技能之内
+                {
+                    if (Program.config.MoveSkillKey > 0)//如果设置了瞬移技能
+                    {
+                     //   if (Program.config.MoveSkillStep < (curTickCount - LastRightSkillCastTime))//如果瞬移技能的CD到了
+                        if (5000< (curTickCount - LastRightSkillCastTime))
+                        {
+                            LastRightSkillCastTime = curTickCount;
+                            ActSkillMove(targetMonster.Pos);
+                            nSleepTime = 200;
+                            return 0;
+                        }
+                    }
+                }
+            }
             //先判断目标是单体还是群体,
             if ((Program.config.nMulAttKey != -1) && targetMonsterRoundCount > Program.config.MultiCount && (player.MP > 20))//如果有群攻技能,且目标是群体
             {
                 //如果距离远,走过去
                 if (dis > Program.config.MulAttDis)
                 {
+                    MonsterBlockCount = 0;
                     //如果阻塞,干身边的怪
-                    if (CalcDis(AttMonsterPos, player.Pos) < 8.0)
+                    if (CalcDis(AttMovePos, player.Pos) < 8.0)
                     {
                         //如果身边有怪,则干身边的怪,这里有可能被箱子卡住
                         //没有,则放弃
-                        if(NearbyMonster.Count>0)
-                        {
-                            AttackNearbyMonster(NearbyMonster);
-                        }
-                        else
-                        {
-                            FilterMonsterList.Add(targetMonster.Pos);
-                        }
+                        //if(NearbyMonster.Count>0)
+                        //{
+                        //    AttMovePos.x = player.Pos.x;
+                        //    AttMovePos.y = player.Pos.y;
+                        //    AttackNearbyMonster(NearbyMonster);
+                        //}
+                        //else
+                        //{
+                        //    AttMovePos.x = 0;
+                        //    AttMovePos.y = 0;
+                        //    FilterMonsterList.Add(targetMonster.Pos);
+                        //    nSleepTime = 0;
+                        //}
+                        AttackMoveBlockCount++;
+                        //  return 0;
+                    }
+                    else
+                        AttackMoveBlockCount = 0;
+
+                    if (AttackMoveBlockCount>10)
+                    {
+                        AttackMoveBlockCount = 0;
+                        ReturnRolePolicy();
                         return 0;
                     }
+                   
                     //否则走过去
                     ActSafeMove(targetMonster.Pos);
                     AttMovePos.x = player.Pos.x;
                     AttMovePos.y = player.Pos.y;
                 }
                 else
+                {
+                    AttackMoveBlockCount = 0;
                     MultiAttackNew(targetMonster.Pos);
+                }
             }
             else//使用单体技能
             {
                 if (dis > Program.config.SinAttDis)
                 {
+                    MonsterBlockCount = 0;
                     //如果阻塞,干身边的怪
-                    if (CalcDis(AttMonsterPos, player.Pos) < 8.0)
+                    if (CalcDis(AttMovePos, player.Pos) < 8.0)
                     {
                         //如果身边有怪,则干身边的怪,这里有可能被箱子卡住
                         //没有,则放弃
-                        if (NearbyMonster.Count > 0)
-                        {
-                            AttackNearbyMonster(NearbyMonster);
-                        }
-                        else
-                        {
-                            FilterMonsterList.Add(targetMonster.Pos);
-                        }
+                        //if (NearbyMonster.Count > 0)
+                        //{
+                        //    AttackNearbyMonster(NearbyMonster);
+                        //    AttMovePos.x = player.Pos.x;
+                        //    AttMovePos.y = player.Pos.y;
+                        //}
+                        //else
+                        //{
+                        //    AttMovePos.x = 0;
+                        //    AttMovePos.y = 0;
+                        //    FilterMonsterList.Add(targetMonster.Pos);
+                        //    nSleepTime = 0;
+                        //}
+                        //return 0;
+                        AttackMoveBlockCount++;
+                    }
+                    else
+                        AttackMoveBlockCount = 0;
+
+                    if (AttackMoveBlockCount > 10)
+                    {
+                        AttackMoveBlockCount = 0;
+                        ReturnRolePolicy();
                         return 0;
                     }
+                    //if (targetMonster.Priority>0)//如果是图腾
+                    //{
+                    //    if (dis < 40.0f)//如果距离足够近,再瞬移技能之内
+                    //    {
+                    //        if (Program.config.MoveSkillKey > 0)//如果设置了瞬移技能
+                    //        {
+                    //            if (Program.config.MoveSkillStep < (curTickCount - LastRightSkillCastTime))//如果瞬移技能的CD到了
+                    //            {
+                    //                LastRightSkillCastTime = curTickCount;
+                    //                ActSkillMove(targetMonster.Pos);
+                    //                nSleepTime = 500;
+                    //                return 0;
+                    //            }
+                    //        }
+                    //    }
+                    //}
                     //否则走过去
                     ActSafeMove(targetMonster.Pos);
                     AttMovePos.x = player.Pos.x;
                     AttMovePos.y = player.Pos.y;
                 }
                 else
+                {
+                    AttackMoveBlockCount = 0;
                     SingleAttackNew(targetMonster.Pos, targetMonster.ID);
+                }
             }
             return 0;
         }

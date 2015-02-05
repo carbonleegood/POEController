@@ -203,14 +203,14 @@ namespace Controller
                 double dis = CalcDis(player.Pos, item.Pos);
                 if (item.Priority == 0)
                 {
-                    if (dis > 50.0)
+                    if (dis > 60.0)
                     {
                         continue;
                     }
                 }
                 else if (item.Priority > 0)
                 {
-                    if (dis > 80.0)
+                    if (dis > 90.0)
                     {
                         continue;
                     }
@@ -266,7 +266,7 @@ namespace Controller
                 if (targetMonster.ID == item.ID)
                     continue;
                 double dis = CalcDis(targetMonster.Pos, item.Pos);
-                if (dis < 17.0)
+                if (dis < 25.0)
                 {
                     MonsterRoundCount++;
                 }

@@ -45,30 +45,30 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(52, 39);
+            this.tbName.Location = new System.Drawing.Point(12, 39);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(114, 21);
+            this.tbName.Size = new System.Drawing.Size(154, 21);
             this.tbName.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 13);
+            this.label1.Location = new System.Drawing.Point(43, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 12);
+            this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 2;
-            this.label1.Text = "請輸入過濾器名稱";
+            this.label1.Text = "請輸入物品名稱";
             // 
             // CreateFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 96);
+            this.ClientSize = new System.Drawing.Size(288, 71);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.btnOK);
             this.Name = "CreateFilter";
-            this.Text = "CreateFilter";
+            this.Text = "添加名稱存儲";
             this.ResumeLayout(false);
             this.PerformLayout();
 

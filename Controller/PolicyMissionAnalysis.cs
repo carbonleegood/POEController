@@ -113,8 +113,8 @@ namespace Controller
                             {
                                 Program.client.ActiveTarget(nObj);
                                 Thread.Sleep(1000 * 3);
-                                UseTransDoor = false;
                             }
+                            UseTransDoor = false;
                         }
                         else
                         {
@@ -332,7 +332,7 @@ namespace Controller
                 SMonsterInfo targetMonster = SearchMonsterAndLootNew(out nMonsterCount, out NearbyMonster);
                 if (targetMonster != null)
                 {
-                    ActKillMonsterNew(targetMonster, nMonsterCount, NearbyMonster, curTickCount);
+                    KillMonsterNew(targetMonster, nMonsterCount, NearbyMonster, curTickCount);
                     return 0;
                 }
                 TrophyInfo trophy = SearchLoot();
@@ -347,7 +347,7 @@ namespace Controller
                 SMonsterInfo targetMonster = SearchMonsterAndLoot(out nMonsterCount);
                 if (targetMonster != null)
                 {
-                    ActKillMonster(targetMonster, nMonsterCount, curTickCount);
+                    KillMonster(targetMonster, nMonsterCount, curTickCount);
                     return 0;
                 }
                 TrophyInfo trophy = SearchLoot();

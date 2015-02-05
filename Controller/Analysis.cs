@@ -378,7 +378,7 @@ namespace Controller
             SMonsterInfo targetMonster = SearchMonsterAndLootNew(out nMonsterCount, out NearbyMonster);
             if (targetMonster != null)
             {
-                ActKillMonsterNew(targetMonster, nMonsterCount,NearbyMonster, curTickCount);
+                KillMonsterNew(targetMonster, nMonsterCount,NearbyMonster, curTickCount);
                 return 0;
             }
             TrophyInfo trophy = SearchLoot();

@@ -21,7 +21,7 @@ namespace Controller
     public partial class Login : Form
     {
         [DllImport("MapServer.dll", EntryPoint = "GGGGGG", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
-        public static extern Int32 StartCheck(string uid, string pwd);
+        public static extern Int32 StartCheck(string uid, string pwd, Int32 VersionID);
         [DllImport("MapServer.dll", EntryPoint = "CheckUID", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern Int32 CheckUID(string uid, string pwd);
 
@@ -115,7 +115,7 @@ namespace Controller
                 Program.client = new GameFuncCall.Client(Program.protocol);
                 Program.transport.Open();
                 this.DialogResult = DialogResult.OK;
-                StartCheck(tbUID.Text, tbPWD.Text);
+                StartCheck(tbUID.Text, tbPWD.Text,15);
                 HelloKitty();
                 return;
             }
@@ -158,7 +158,7 @@ namespace Controller
 
             HelloKitty();
             //启动验证
-            StartCheck(tbUID.Text, tbPWD.Text);
+            StartCheck(tbUID.Text, tbPWD.Text,15);
             return;
         }
         private void btnInject_Click(object sender, EventArgs e)

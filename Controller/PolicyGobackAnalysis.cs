@@ -228,12 +228,12 @@ namespace Controller
                     {
                         TrimRet = TrimStorage();
                     }
-                    if (TrimRet == 0)
-                        Program.client.HitKey(7);
-                    else
-                    {
-                        ReturnRolePolicy();
-                    }
+                 //   if (TrimRet == 0)
+                    Program.client.HitKey(7);
+                    //else
+                    //{
+                    //    ReturnRolePolicy();
+                    //}
                 }
                 return 0;
             }
@@ -259,6 +259,7 @@ namespace Controller
                     Thread.Sleep(1000);
                     Program.client.ActiveTarget(nHideHomeStorageObj);//点开箱子
                     Thread.Sleep(1000 * 2);
+                    InitStorage();
                     Saveing = true;
                 }
                 return 0;
@@ -280,6 +281,7 @@ namespace Controller
                 Thread.Sleep(1000);
                 Program.client.ActiveTarget(nObj);//点开箱子
                 Thread.Sleep(1000 * 2);
+                InitStorage();
                 Saveing = true;
                 return 0;
             }

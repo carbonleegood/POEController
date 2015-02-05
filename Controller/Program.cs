@@ -28,7 +28,7 @@ namespace Controller
         [STAThread]
         static void Main()
         {
-            NumberChar.Add('.');
+         //   NumberChar.Add('.');
             NumberChar.Add('0');
             NumberChar.Add('1');
             NumberChar.Add('2');
