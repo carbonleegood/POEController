@@ -1713,23 +1713,6 @@ namespace Controller
             if (0 == CastShieldSkill(curTickCount))
                 return 0;
 
-            if (targetMonster.Priority > 0)
-            {
-                if (dis < 50.0f && dis > 18.0)//如果距离足够近,再瞬移技能之内
-                {
-                    if (Program.config.MoveSkillKey > 0)//如果设置了瞬移技能
-                    {
-                     //   if (Program.config.MoveSkillStep < (curTickCount - LastRightSkillCastTime))//如果瞬移技能的CD到了
-                        if (5000< (curTickCount - LastRightSkillCastTime))
-                        {
-                            LastRightSkillCastTime = curTickCount;
-                            ActSkillMove(targetMonster.Pos);
-                            nSleepTime = 200;
-                            return 0;
-                        }
-                    }
-                }
-            }
             //先判断目标是单体还是群体,
             if ((Program.config.nMulAttKey != -1) && targetMonsterRoundCount > Program.config.MultiCount && (player.MP > 20))//如果有群攻技能,且目标是群体
             {
@@ -1738,7 +1721,7 @@ namespace Controller
                 {
                     MonsterBlockCount = 0;
                     //如果阻塞,干身边的怪
-                    if (CalcDis(AttMovePos, player.Pos) < 8.0)
+                    if (CalcDis(AttMovePos, player.Pos) < 5.0)
                     {
                         //如果身边有怪,则干身边的怪,这里有可能被箱子卡住
                         //没有,则放弃
@@ -1761,13 +1744,28 @@ namespace Controller
                     else
                         AttackMoveBlockCount = 0;
 
-                    if (AttackMoveBlockCount>10)
+                    if (AttackMoveBlockCount>20)
                     {
                         AttackMoveBlockCount = 0;
                         ReturnRolePolicy();
                         return 0;
                     }
-                   
+                    if (targetMonster.Priority > 0)
+                    {
+                        if (dis < 40.0f)//如果距离足够近,再瞬移技能之内
+                        {
+                            if (Program.config.MoveSkillKey > 0)//如果设置了瞬移技能
+                            {
+                                if (Program.config.MoveSkillStep < (curTickCount - LastRightSkillCastTime))//如果瞬移技能的CD到了
+                                {
+                                    LastRightSkillCastTime = curTickCount;
+                                    ActSkillMove(targetMonster.Pos);
+                                    nSleepTime = 500;
+                                    return 0;
+                                }
+                            }
+                        }
+                    }
                     //否则走过去
                     ActSafeMove(targetMonster.Pos);
                     AttMovePos.x = player.Pos.x;
@@ -1785,7 +1783,7 @@ namespace Controller
                 {
                     MonsterBlockCount = 0;
                     //如果阻塞,干身边的怪
-                    if (CalcDis(AttMovePos, player.Pos) < 8.0)
+                    if (CalcDis(AttMovePos, player.Pos) < 5.0)
                     {
                         //如果身边有怪,则干身边的怪,这里有可能被箱子卡住
                         //没有,则放弃
@@ -1808,28 +1806,28 @@ namespace Controller
                     else
                         AttackMoveBlockCount = 0;
 
-                    if (AttackMoveBlockCount > 10)
+                    if (AttackMoveBlockCount > 20)
                     {
                         AttackMoveBlockCount = 0;
                         ReturnRolePolicy();
                         return 0;
                     }
-                    //if (targetMonster.Priority>0)//如果是图腾
-                    //{
-                    //    if (dis < 40.0f)//如果距离足够近,再瞬移技能之内
-                    //    {
-                    //        if (Program.config.MoveSkillKey > 0)//如果设置了瞬移技能
-                    //        {
-                    //            if (Program.config.MoveSkillStep < (curTickCount - LastRightSkillCastTime))//如果瞬移技能的CD到了
-                    //            {
-                    //                LastRightSkillCastTime = curTickCount;
-                    //                ActSkillMove(targetMonster.Pos);
-                    //                nSleepTime = 500;
-                    //                return 0;
-                    //            }
-                    //        }
-                    //    }
-                    //}
+                    if (targetMonster.Priority>127)//如果是图腾
+                    {
+                        if (dis < 40.0f)//如果距离足够近,再瞬移技能之内
+                        {
+                            if (Program.config.MoveSkillKey > 0)//如果设置了瞬移技能
+                            {
+                                if (Program.config.MoveSkillStep < (curTickCount - LastRightSkillCastTime))//如果瞬移技能的CD到了
+                                {
+                                    LastRightSkillCastTime = curTickCount;
+                                    ActSkillMove(targetMonster.Pos);
+                                    nSleepTime = 500;
+                                    return 0;
+                                }
+                            }
+                        }
+                    }
                     //否则走过去
                     ActSafeMove(targetMonster.Pos);
                     AttMovePos.x = player.Pos.x;
