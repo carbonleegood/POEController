@@ -1,4 +1,4 @@
-﻿//#define DEBUG
+﻿#define DEBUG
 namespace Controller
 {
 #if DEBUG

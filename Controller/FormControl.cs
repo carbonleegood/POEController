@@ -1,4 +1,4 @@
-﻿//#define DEBUG
+﻿#define DEBUG
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,7 +67,7 @@ namespace Controller
         public static extern Int32 MoveToTransferDoor(UInt16 x, UInt16 y);
 
         [DllImport("MapServer.dll", EntryPoint = "GGGGGG", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
-        public static extern Int32 StartCheck(string uid, string pwd,Int32 VersionID);
+        public static extern Int32 StartCheck(string uid, string pwd);
 
         [DllImport("MapServer.dll", EntryPoint = "GetGGPid", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern UInt32 GetGGPid(byte[] buff);
@@ -869,7 +869,7 @@ namespace Controller
 
         private void button46_Click(object sender, EventArgs e)
         {
-            StartCheck(textBox1.Text, textBox2.Text,15);
+            StartCheck(textBox1.Text, textBox2.Text);
         }
 
         private void button47_Click(object sender, EventArgs e)

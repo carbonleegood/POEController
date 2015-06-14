@@ -141,7 +141,7 @@ namespace Controller
         public static extern Int32 MoveToTransferDoor(UInt16 x, UInt16 y);
 
         [DllImport("MapServer.dll", EntryPoint = "GGGGGG", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
-        public static extern Int32 StartCheck(string uid, string pwd, Int32 VersionID);
+        public static extern Int32 StartCheck(string uid, string pwd, int nTemp);
 
         [DllImport("MapServer.dll", EntryPoint = "GetGGPid", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern UInt32 GetGGPid(byte[] buff);
