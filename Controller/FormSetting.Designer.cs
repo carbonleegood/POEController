@@ -421,7 +421,8 @@
             this.cbGroup.Items.AddRange(new object[] {
             "第一章",
             "第二章",
-            "第三章"});
+            "第三章",
+            "第四章"});
             this.cbGroup.Location = new System.Drawing.Point(389, 94);
             this.cbGroup.Name = "cbGroup";
             this.cbGroup.Size = new System.Drawing.Size(114, 20);
